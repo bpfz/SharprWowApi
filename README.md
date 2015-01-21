@@ -1,5 +1,6 @@
-###Strongly typed World of Warcraft API
-https://dev.battle.net/
+###SharprWowApi
+SharprWowApi is a strongly typed .NET library for accessing blizzards Wow API (https://dev.battle.net/).
+
 
 #####Changelog
 __01-21 Initial Commit__ 
