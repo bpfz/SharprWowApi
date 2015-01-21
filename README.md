@@ -3,8 +3,7 @@ SharprWowApi is a strongly typed .NET library for accessing blizzards Wow API (h
 
 
 #####Changelog
-__01-21 Initial Commit__ 
-Character Audit, not currently fully implemented. More testing needed.
+__01-21 Initial Commit__ Character Audit, not currently fully implemented.
 
 ## Usage example
 
