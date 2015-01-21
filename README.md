@@ -81,6 +81,11 @@ var lm = from f in getAuctionFile.Files
   if (!lm.Equals(someCachedValue))
   {
     var getAuction = await client.GetAuctionsAsync("Grim batol");
-    var auction = getAuction.Auctions.Auctions;
+    var auction = getAuction.Auctions.Auction;
+    
+     foreach (var a in auction.Take(5))
+     {
+      Console.WriteLine(a.owner);
+     }
  ...
 ```
