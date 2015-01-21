@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6763494E-1705-4800-A138-7DFC5E195CAC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharprWowApi</RootNamespace>
+    <AssemblyName>SharprWowApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums.cs" />
+    <Compile Include="IApiClient.cs" />
+    <Compile Include="Models\Achievement\AchievementRoot.cs" />
+    <Compile Include="Models\Achievement\AchievementRewardItem.cs" />
+    <Compile Include="Models\Achievement\AchiviementCriterion.cs" />
+    <Compile Include="Models\Auction\Auction.cs" />
+    <Compile Include="Models\Auction\AuctionFilesRoot.cs" />
+    <Compile Include="Models\Auction\AuctionRealm.cs" />
+    <Compile Include="Models\Auction\AuctionsList.cs" />
+    <Compile Include="Models\Auction\AuctionsRoot.cs" />
+    <Compile Include="Models\Auction\AuctionFile.cs" />
+    <Compile Include="Models\BattlePet\BattlePetAbilitiesRoot.cs" />
+    <Compile Include="Models\BattlePet\BattlePetSpeciesRoot.cs" />
+    <Compile Include="Models\BattlePet\BattlePetStatsRoot.cs" />
+    <Compile Include="Models\ChallengeMode\Challenge.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeGroup.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeGroupMember.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeGroupMemberCharacter.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeIndividualSpec.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeRealm.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeRoot.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeCriteria.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeMap.cs" />
+    <Compile Include="Models\ChallengeMode\ChallengeTime.cs" />
+    <Compile Include="Models\Character\ArenaBracket.cs" />
+    <Compile Include="Models\Character\AuditModel\Audit.cs" />
+    <Compile Include="Models\Character\AuditModel\AuditSpell.cs" />
+    <Compile Include="Models\Character\AuditModel\BonusSummary.cs" />
+    <Compile Include="Models\Character\AuditModel\InappropriateArmorType.cs" />
+    <Compile Include="Models\Character\AuditModel\ItemSource.cs" />
+    <Compile Include="Models\Character\AuditModel\ItemSpell.cs" />
+    <Compile Include="Models\Character\AuditModel\ItemsWithEmptySockets.cs" />
+    <Compile Include="Models\Character\AuditModel\LowLevelItems.cs" />
+    <Compile Include="Models\Character\AuditModel\MissingEnchants.cs" />
+    <Compile Include="Models\Character\AuditModel\MissingExtraSockets.cs" />
+    <Compile Include="Models\Character\AuditModel\RecommendedBeltBuckle.cs" />
+    <Compile Include="Models\Character\AuditModel\Slots.cs" />
+    <Compile Include="Models\Character\CharacterHunterPet.cs" />
+    <Compile Include="Models\Character\CharacterHunterPetSpec.cs" />
+    <Compile Include="Models\Character\CharacterItem.cs" />
+    <Compile Include="Models\Character\CharacterItems.cs" />
+    <Compile Include="Models\Character\CharacterMounts.cs" />
+    <Compile Include="Models\Character\CharacterMountsCollected.cs" />
+    <Compile Include="Models\Character\CharacterPets.cs" />
+    <Compile Include="Models\Character\CharacterPetsCollected.cs" />
+    <Compile Include="Models\Character\CharacterPetSlot.cs" />
+    <Compile Include="Models\Character\CharacterPetsStats.cs" />
+    <Compile Include="Models\Character\CharacterProfession.cs" />
+    <Compile Include="Models\Character\CharacterProgressionBoss.cs" />
+    <Compile Include="Models\Character\CharacterProgressionRaid.cs" />
+    <Compile Include="Models\Character\CharacterPVPBrackets.cs" />
+    <Compile Include="Models\Character\CharacterRoot.cs" />
+    <Compile Include="Models\Character\CharacterFeedAchivements.cs" />
+    <Compile Include="Models\Character\CharacterFeedAchievementCriteria.cs" />
+    <Compile Include="Models\Character\CharacterAchivements.cs" />
+    <Compile Include="Models\Character\CharacterAppearance.cs" />
+    <Compile Include="Models\Character\CharacterFeed.cs" />
+    <Compile Include="Models\Character\CharacterProfessions.cs" />
+    <Compile Include="Models\Character\CharacterGuild.cs" />
+    <Compile Include="Models\Character\CharacterProgression.cs" />
+    <Compile Include="Models\Character\CharacterPVP.cs" />
+    <Compile Include="Models\Character\CharacterReputation.cs" />
+    <Compile Include="Models\Character\CharacterStats.cs" />
+    <Compile Include="Models\Character\CharacterTalent.cs" />
+    <Compile Include="Models\Character\CharacterTalentGlyphs.cs" />
+    <Compile Include="Models\Character\CharacterTalentSelectedTalent.cs" />
+    <Compile Include="Models\Character\CharacterTalentSpell.cs" />
+    <Compile Include="Models\Character\CharacterTitles.cs" />
+    <Compile Include="Models\Character\CharacterTalentSpec.cs" />
+    <Compile Include="Models\DataResources\DataAchievementRoot.cs" />
+    <Compile Include="Models\DataResources\DataBattleGroupRoot.cs" />
+    <Compile Include="Models\DataResources\DataCharacterClass.cs" />
+    <Compile Include="Models\DataResources\DataCharacterClassesRoot.cs" />
+    <Compile Include="Models\DataResources\DataGuildAchivementRoot.cs" />
+    <Compile Include="Models\DataResources\DataGuildPerksRoot.cs" />
+    <Compile Include="Models\DataResources\DataGuildRewardsRoot.cs" />
+    <Compile Include="Models\DataResources\DataItemClassRoot.cs" />
+    <Compile Include="Models\DataResources\DataPetTypesRoot.cs" />
+    <Compile Include="Models\DataResources\DataRacesRoot.cs" />
+    <Compile Include="Models\Guild\GuildChallenge.cs" />
+    <Compile Include="Models\Guild\ChallengeGuild.cs" />
+    <Compile Include="Models\Guild\ChallengeGroup.cs" />
+    <Compile Include="Models\Guild\GroupMember.cs" />
+    <Compile Include="Models\Guild\GuildRoot.cs" />
+    <Compile Include="Models\Guild\GuildAchievement.cs" />
+    <Compile Include="Models\Guild\GuildAchievements.cs" />
+    <Compile Include="Models\Guild\GuildCharacter.cs" />
+    <Compile Include="Models\Guild\GuildEmblem.cs" />
+    <Compile Include="Models\Guild\GuildMember.cs" />
+    <Compile Include="Models\Guild\GuildNews.cs" />
+    <Compile Include="Models\Item\ItemBonusStat.cs" />
+    <Compile Include="Models\Item\ItemBonusSummary.cs" />
+    <Compile Include="Models\Item\ItemDamage.cs" />
+    <Compile Include="Models\Item\ItemRoot.cs" />
+    <Compile Include="Models\Item\ItemSetBonus.cs" />
+    <Compile Include="Models\Item\ItemSetRoot.cs" />
+    <Compile Include="Models\Item\ItemSource.cs" />
+    <Compile Include="Models\Item\ItemWeaponInfo.cs" />
+    <Compile Include="Models\PVP\LeaderboardRoot.cs" />
+    <Compile Include="Models\Quest\QuestRoot.cs" />
+    <Compile Include="Models\RealmStatus\Realm.cs" />
+    <Compile Include="Models\RealmStatus\RealmRoot.cs" />
+    <Compile Include="Models\RealmStatus\PvpZone.cs" />
+    <Compile Include="Models\Recipe\RecipeRoot.cs" />
+    <Compile Include="Models\Spells\SpellRoot.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\CharacterUtility.cs" />
+    <Compile Include="Utility\GuildUtility.cs" />
+    <Compile Include="Utility\JsonUtility.cs" />
+    <Compile Include="Utility\LeaderboardUtility.cs" />
+    <Compile Include="ApiClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharprWowApi.Test", "SharprWowApi.Test\SharprWowApi.Test.csproj", "{6DDB2D2C-BFEF-4154-A9D6-4608121EDFBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharprWowApi", "SharprWowApi\SharprWowApi.csproj", "{6763494E-1705-4800-A138-7DFC5E195CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DDB2D2C-BFEF-4154-A9D6-4608121EDFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DDB2D2C-BFEF-4154-A9D6-4608121EDFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DDB2D2C-BFEF-4154-A9D6-4608121EDFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DDB2D2C-BFEF-4154-A9D6-4608121EDFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6763494E-1705-4800-A138-7DFC5E195CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6763494E-1705-4800-A138-7DFC5E195CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6763494E-1705-4800-A138-7DFC5E195CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6763494E-1705-4800-A138-7DFC5E195CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
