@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace SharprWowApi
 {
 
-    public class ApiClient : SharprWowApi.IApiClient
+    public class ApiClient : SharprWowApi.IApiClient, SharprWowApi.IApiClient
     {
         public Region _Region { get; set; }
         public Locale _Locale { get; set; }
