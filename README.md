@@ -1,6 +1,10 @@
 ###Strongly typed World of Warcraft API
 https://dev.battle.net/
 
+#####Changelog
+__01-21 Initial Commit__ 
+Character Audit, not currently fully implemented. More testing needed.
+
 ## Usage example
 
 ######Get achievement By ID
