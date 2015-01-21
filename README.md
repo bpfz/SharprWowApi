@@ -84,8 +84,8 @@ var lm = from f in getAuctionFile.Files
     var auction = getAuction.Auctions.Auction;
     
      foreach (var a in auction.Take(5))
-    {
-    Console.WriteLine(a.owner);
-    }
+     {
+      Console.WriteLine(a.owner);
+     }
  ...
 ```
