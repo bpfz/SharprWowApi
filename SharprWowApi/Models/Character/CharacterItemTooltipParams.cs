@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Models.Character
 {
-    public class CharacterTalentGlyphs
+    public class CharacterItemTooltipParams
     {
-        public List<CharacterTalentGlyph> Major { get; set; }
-        public List<CharacterTalentGlyph> Minor { get; set; }
+        public int transmogItem { get; set; }
     }
 }

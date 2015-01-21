@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Models.Guild
 {
-    public class ChallengeGroup
+    public class GuildChallengeGroup
     {
         public int ranking { get; set; }
         public ChallengeTime time { get; set; }

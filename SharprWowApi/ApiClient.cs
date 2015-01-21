@@ -294,7 +294,6 @@ namespace SharprWowApi
             return null;
         }
 
-
         #endregion
 
         //Needs testing
@@ -575,6 +574,7 @@ namespace SharprWowApi
         /// <returns>returns guildRoot</returns>
         public GuildRoot GetGuild(string realm, string name)
         {
+
             return GetGuild(realm, name, GuildOptions.None);
         }
 

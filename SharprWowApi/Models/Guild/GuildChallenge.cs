@@ -11,6 +11,6 @@ namespace SharprWowApi.Models.Guild
     {
         public ChallengeRealm realm { get; set; }
         public ChallengeMap map { get; set; }
-        public List<ChallengeGroup> groups { get; set; }
+        public List<GuildChallengeGroup> groups { get; set; }
     }
 }

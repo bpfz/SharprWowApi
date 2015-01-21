@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharprWowApi.Models.Achievement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +11,6 @@ namespace SharprWowApi.Models.DataResources
     {
         public List<Reward> rewards { get; set; }
     }
-
-    /// <summary>
-    /// Unused?
-    /// </summary>
-    public class TooltipParams
-    {
-    }
-
     public class RewardItem
     {
         public int id { get; set; }
@@ -32,7 +25,7 @@ namespace SharprWowApi.Models.DataResources
         public List<object> bonusLists { get; set; }
     }
 
-    public class GuildAchievement
+    public class DataGuildAchievement
     {
         public int id { get; set; }
         public string title { get; set; }
@@ -71,7 +64,7 @@ namespace SharprWowApi.Models.DataResources
     {
         public int minGuildLevel { get; set; }
         public int minGuildRepLevel { get; set; }
-        public GuildAchievement achievement { get; set; }
+        public DataGuildAchievement achievement { get; set; }
         public GuildItem item { get; set; }
         public List<int?> races { get; set; }
     }

@@ -86,6 +86,8 @@
     <Compile Include="Models\Character\CharacterHunterPetSpec.cs" />
     <Compile Include="Models\Character\CharacterItem.cs" />
     <Compile Include="Models\Character\CharacterItems.cs" />
+    <Compile Include="Models\Character\CharacterItemStat.cs" />
+    <Compile Include="Models\Character\CharacterItemTooltipParams.cs" />
     <Compile Include="Models\Character\CharacterMounts.cs" />
     <Compile Include="Models\Character\CharacterMountsCollected.cs" />
     <Compile Include="Models\Character\CharacterPets.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Models\Character\CharacterReputation.cs" />
     <Compile Include="Models\Character\CharacterStats.cs" />
     <Compile Include="Models\Character\CharacterTalent.cs" />
+    <Compile Include="Models\Character\CharacterTalentGlyph.cs" />
     <Compile Include="Models\Character\CharacterTalentGlyphs.cs" />
     <Compile Include="Models\Character\CharacterTalentSelectedTalent.cs" />
     <Compile Include="Models\Character\CharacterTalentSpell.cs" />
@@ -126,7 +129,7 @@
     <Compile Include="Models\DataResources\DataRacesRoot.cs" />
     <Compile Include="Models\Guild\GuildChallenge.cs" />
     <Compile Include="Models\Guild\ChallengeGuild.cs" />
-    <Compile Include="Models\Guild\ChallengeGroup.cs" />
+    <Compile Include="Models\Guild\GuildChallengeGroup.cs" />
     <Compile Include="Models\Guild\GroupMember.cs" />
     <Compile Include="Models\Guild\GuildRoot.cs" />
     <Compile Include="Models\Guild\GuildAchievement.cs" />

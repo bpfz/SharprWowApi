@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Models.Character
 {
-    public class CharacterTalentGlyphs
+   public class CharacterItemStat
     {
-        public List<CharacterTalentGlyph> Major { get; set; }
-        public List<CharacterTalentGlyph> Minor { get; set; }
+          public int stat { get; set; }
+        public int amount { get; set; }
     }
 }
