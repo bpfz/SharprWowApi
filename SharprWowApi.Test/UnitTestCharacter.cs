@@ -22,6 +22,17 @@ namespace SharprWowApi.Test
             Assert.IsNotNull(character.Name);
 
         }
+
+        [TestMethod]
+        public void Test_CharacterRoot_EU2()
+        {
+            client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
+
+            var character = client.GetCharacter("Hjortronsmak", CharacterOptions.None);
+
+            Assert.IsNotNull(character.Name);
+
+        }
         [TestMethod]
         public void Test_CharacterRoot_US()
         {
