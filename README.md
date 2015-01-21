@@ -3,19 +3,19 @@ SharprWowApi is a strongly typed .NET library for accessing blizzards Wow API (h
 
 
 #####Changelog
-__01-21 Initial Commit__ Character Audit, not currently fully implemented.
+__01-21__ Initial Commit
 
 ## Usage example
 
-######Get achievement By ID
+#####Get achievement By ID
 
 ```c#
 var client = ApiClient(Region.Eu, Locale.en_GB, ApiKey.Value);
 var achievement = client.GetAchievement(2144);
 Console.WriteLine(achievement.Title);
-```
+```  
 
-######Get Character by realm and name
+#####Get Character by realm and name
 
 ```c#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
@@ -26,7 +26,7 @@ var characterTwo = client.GetCharacter("Xavius", "Tuds", CharacterOptions.GetPvP
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
 ```
-You can also set __realm__ in the _ApiClient_ and use overloaded methods if you're always using the same realm for all characters.
+You can also set __realm__ in the _ApiClient_ and use overloaded methods if all characters you're getting are from the same realm.
 
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
@@ -65,6 +65,7 @@ public ActionResult Members()
         }
 ...
 ```
+
 
 #####Async
 Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads it to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
