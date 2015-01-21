@@ -13,7 +13,7 @@ __01-21__ Initial Commit
 var client = ApiClient(Region.Eu, Locale.en_GB, ApiKey.Value);
 var achievement = client.GetAchievement(2144);
 Console.WriteLine(achievement.Title);
-```
+```  
 
 ######Get Character by realm and name
 
@@ -40,7 +40,8 @@ Console.WriteLine(characterTwo.Name);
 Console.WriteLine(characterThree.Name);
 ```
 
-#####Usage example ASP.NET MVC
+
+######Usage example ASP.NET MVC
 Returns a strongly typed _GuildRoot_ object to the view.
 ```C#
 using SharprWowApi.Models.Guild;
@@ -66,7 +67,8 @@ public ActionResult Members()
 ...
 ```
 
-#####Async
+
+######Async
 Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads it to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
 
 ```C#
