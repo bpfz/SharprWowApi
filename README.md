@@ -26,7 +26,7 @@ var characterTwo = client.GetCharacter("Xavius", "Tuds", CharacterOptions.GetPvP
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
 ```
-You can also set __realm__ in the _ApiClient_ and use overloaded methods if you're always using the same realm for all characters.
+You can also set __realm__ in the _ApiClient_ and use overloaded methods if all characters you're getting are from the same realm.
 
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
