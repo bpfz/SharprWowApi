@@ -11,7 +11,7 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_EU_Achivement_By_Id()
         {
-            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
 
             var achievement = client.GetAchievement(2144);
 
@@ -25,7 +25,7 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_US_Achivement_By_Id()
         {
-            client = new ApiClient(Region.US, Locale.en_US, ApiKey.Value);
+            client = new ApiClient(Region.US, Locale.en_US, TestConstants.ApiKey);
 
             var achievement = client.GetAchievement(2144);
 
