@@ -6,6 +6,6 @@ namespace SharprWowApi.Models.Auction
 {
     public class AuctionsList
     {
-        public List<Auction> Auctions { get; set; }
+        public List<Auction> Auction { get; set; }
     }
 }
