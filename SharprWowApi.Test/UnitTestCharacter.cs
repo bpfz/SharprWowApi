@@ -9,15 +9,15 @@ namespace SharprWowApi.Test
     [TestClass]
     public class UnitTestCharacter
     {
-        private static ApiClient explorer;
+        private static ApiClient client;
 
 
         [TestMethod]
         public void Test_CharacterRoot_EU()
         {
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.None);
+            var character = client.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.None);
 
             Assert.IsNotNull(character.Name);
 
@@ -25,9 +25,9 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_CharacterRoot_US()
         {
-            explorer = new ApiClient(Region.US, Locale.en_US, ApiKey.Value);
+            client = new ApiClient(Region.US, Locale.en_US, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Tichondrius", "Smexxin", CharacterOptions.None);
+            var character = client.GetCharacter("Tichondrius", "Smexxin", CharacterOptions.None);
 
             Assert.IsNotNull(character.Name);
         }
@@ -35,10 +35,11 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_CharacterRoot_Achievement_EU()
         {
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.GetAchievements);
+            var character = client.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.GetAchievements);
 
+            Console.WriteLine(character.Name);
             Assert.IsNotNull(character.Achievements.AchievementsCompleted[1]);
             Assert.IsNotNull(character.Achievements.Criteria[1]);
             Assert.IsNotNull(character.Achievements.Criteria);
@@ -49,10 +50,11 @@ namespace SharprWowApi.Test
         public void Test_CharacterRoot_PVP_EU()
         {
 
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Grim Batol", "xzy", CharacterOptions.GetPvP);
+            var character = client.GetCharacter("Grim Batol", "xzy", CharacterOptions.GetPvP);
 
+            Console.WriteLine(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
             Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_3v3.Rating);
@@ -63,8 +65,8 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_CharacterRoot_Items_EU()
         {
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
-            var character = explorer.GetCharacter("Grim Batol", "xzy", CharacterOptions.GetItems);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            var character = client.GetCharacter("Grim Batol", "xzy", CharacterOptions.GetItems);
 
             foreach (var stat in character.Items.Finger1.Stats)
             {
@@ -79,9 +81,9 @@ namespace SharprWowApi.Test
         public void Test_CharacterRoot_Everything_EU()
         {
 
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Grim Batol", "hjortronsmak", CharacterOptions.GetEverything);
+            var character = client.GetCharacter("Grim Batol", "hjortronsmak", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
@@ -116,9 +118,9 @@ namespace SharprWowApi.Test
         public async Task Test_CharacterRoot_Everything_EU_async()
         {
 
-            explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-            var character = await explorer.GetCharacterAsync("Grim Batol", "hjortronsmak", CharacterOptions.GetEverything);
+            var character = await client.GetCharacterAsync("Grim Batol", "hjortronsmak", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
@@ -153,9 +155,9 @@ namespace SharprWowApi.Test
         public void Test_CharacterRoot_Everything_US()
         {
 
-            explorer = new ApiClient(Region.US, Locale.en_US, ApiKey.Value);
+            client = new ApiClient(Region.US, Locale.en_US, ApiKey.Value);
 
-            var character = explorer.GetCharacter("Tichondrius", "smexxin", CharacterOptions.GetEverything);
+            var character = client.GetCharacter("Tichondrius", "smexxin", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);

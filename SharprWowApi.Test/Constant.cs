@@ -8,6 +8,6 @@ namespace SharprWowApi.Test
 {
     public class ApiKey
     {
-        public const string Value = "dsk6g9dmwbardyzqpshs73nwm7z3dkv4"; 
+        public const string Value = ""; 
     }
 }

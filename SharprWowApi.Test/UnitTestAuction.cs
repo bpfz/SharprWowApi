@@ -12,8 +12,8 @@ namespace SharprWowApi.Test
         [TestMethod]
         public void Test_Get_EU_AuctionData()
         {
-            var explorer = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
-            var getAuction = explorer.GetAuctions("Grim batol");
+            var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+            var getAuction = client.GetAuctions("Grim batol");
             var auction = getAuction.Auctions.Auctions;
 
             string owner = "";
