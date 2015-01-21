@@ -117,7 +117,6 @@ namespace SharprWowApi.Test
             }
             Assert.AreEqual(CharacterClass.Priest, character.Class);
 
-            //character.Race should be "Pandaren_Alliance", ' ' replaced by '_'
             Assert.AreEqual(CharacterRace.Pandaren_Alliance, character.Race);
 
             Console.WriteLine("Class: " + character.Class);
@@ -154,7 +153,6 @@ namespace SharprWowApi.Test
 
             Assert.AreEqual(CharacterClass.Priest, character.Class);
 
-            //character.Race should be "Pandaren_Alliance", ' ' replaced by '_'
             Assert.AreEqual(CharacterRace.Pandaren_Alliance, character.Race);
 
             Console.WriteLine("Class: " + character.Class);
