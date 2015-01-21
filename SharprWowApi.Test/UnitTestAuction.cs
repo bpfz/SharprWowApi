@@ -25,7 +25,7 @@ namespace SharprWowApi.Test
             {
 
                 var getAuction = client.GetAuctions("Grim batol");
-                var auction = getAuction.Auctions.Auctions;
+                var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
                 foreach (var a in auction.Take(5))
@@ -58,7 +58,7 @@ namespace SharprWowApi.Test
             {
 
                 var getAuction = await client.GetAuctionsAsync("Grim batol");
-                var auction = getAuction.Auctions.Auctions;
+                var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
                 foreach (var a in auction.Take(5))
