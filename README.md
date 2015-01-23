@@ -68,7 +68,7 @@ public ActionResult Members()
 
 
 #####Async
-Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads it to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
+Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads the json deserialization to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
 
 ```C#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
