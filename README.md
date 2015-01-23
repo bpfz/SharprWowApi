@@ -24,7 +24,7 @@ var characterOne = client.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOp
 var characterTwo = client.GetCharacter("Xavius", "Tuds", CharacterOptions.GetPvP);
 
 Console.WriteLine(character.Name);
-Console.WriteLine(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
+Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
 ```
 You can also set __realm__ in the _ApiClient_ and use overloaded methods if all characters you're getting are from the same realm.
 
@@ -65,7 +65,6 @@ public ActionResult Members()
         }
 ...
 ```
-
 
 #####Async
 Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads the json deserialization to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
