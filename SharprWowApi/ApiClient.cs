@@ -29,61 +29,82 @@ namespace SharprWowApi
         public string _Realm { get; set; }
 
         /// <summary>
-        /// Explorer method for API init.
+        /// Set region, locale, your API key and optional Realm
         /// </summary>
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
         /// <param name="locale">_Locale, en_gb, en_us etc. Use "_Locale" Property"</param>
         /// <param name="apiKey">Your API key (get one at dev.battle.net)</param>
         public ApiClient(Region region, Locale locale, string apiKey)
         {
-            _Region = region;
-            _Locale = locale;
-            _APIKey = apiKey;
-
-            switch (_Region)
+            if (!string.IsNullOrEmpty(apiKey))
             {
-                case Region.EU:
-                    _Host = "https://eu.api.battle.net";
-                    break;
-                case Region.KR:
-                    _Host = "https://kr.api.battle.net";
-                    break;
-                case Region.TW:
-                    _Host = "https://tw.api.battle.net";
-                    break;
-                case Region.CN:
-                    _Host = "https://www.battlenet.com.cn";
-                    break;
-                case Region.US:
-                    _Host = "https://us.api.battle.net";
-                    break;
+                _Region = region;
+                _Locale = locale;
+                _APIKey = apiKey;
+
+                switch (_Region)
+                {
+                    case Region.EU:
+                        _Host = "https://eu.api.battle.net";
+                        break;
+                    case Region.KR:
+                        _Host = "https://kr.api.battle.net";
+                        break;
+                    case Region.TW:
+                        _Host = "https://tw.api.battle.net";
+                        break;
+                    case Region.CN:
+                        _Host = "https://www.battlenet.com.cn";
+                        break;
+                    case Region.US:
+                        _Host = "https://us.api.battle.net";
+                        break;
+                }
+            }
+            else
+            {
+                throw new Exception("Api key missing");
             }
         }
 
+        /// <summary>
+        /// Set region, locale, your API key and optional Realm
+        /// </summary>
+        /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
+        /// <param name="locale">_Locale, en_gb, en_us etc. Use "_Locale" Property"</param>
+        /// <param name="apiKey">Your API key (get one at dev.battle.net)</param>
         public ApiClient(Region region, Locale locale, string realm, string apiKey)
         {
-            _Region = region;
-            _Locale = locale;
-            _APIKey = apiKey;
-            _Realm = realm;
 
-            switch (_Region)
+            if (!string.IsNullOrEmpty(apiKey))
             {
-                case Region.EU:
-                    _Host = "https://eu.api.battle.net";
-                    break;
-                case Region.KR:
-                    _Host = "https://kr.api.battle.net";
-                    break;
-                case Region.TW:
-                    _Host = "https://tw.api.battle.net";
-                    break;
-                case Region.CN:
-                    _Host = "https://www.battlenet.com.cn";
-                    break;
-                case Region.US:
-                    _Host = "https://us.api.battle.net";
-                    break;
+                _Region = region;
+                _Locale = locale;
+                _APIKey = apiKey;
+                _Realm = realm;
+
+                switch (_Region)
+                {
+                    case Region.EU:
+                        _Host = "https://eu.api.battle.net";
+                        break;
+                    case Region.KR:
+                        _Host = "https://kr.api.battle.net";
+                        break;
+                    case Region.TW:
+                        _Host = "https://tw.api.battle.net";
+                        break;
+                    case Region.CN:
+                        _Host = "https://www.battlenet.com.cn";
+                        break;
+                    case Region.US:
+                        _Host = "https://us.api.battle.net";
+                        break;
+                }
+            }
+            else
+            {
+                throw new Exception("Api key missing");
             }
         }
 
@@ -124,19 +145,13 @@ namespace SharprWowApi
         //needs testing
         #region Auctions
 
+        /// <summary>
+        /// Realm from client
+        /// </summary>
+        /// <returns>AuctionFilesRoot</returns>
         public AuctionFilesRoot GetAuctionFile()
         {
-            AuctionFilesRoot auctionFiles = new AuctionFilesRoot();
-            _Realm.ToLower().Replace(' ', '-');
-
-            string url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
-                _Host,
-                _Realm,
-                _Locale,
-                _APIKey);
-
-            auctionFiles = GetDataFromURL<AuctionFilesRoot>(url);
-            return auctionFiles;
+            return GetAuctionFile(_Realm);
         }
 
         /// <summary>
@@ -159,38 +174,20 @@ namespace SharprWowApi
             return auctionFiles;
         }
 
+        /// <summary>
+        /// Realm from client
+        /// </summary>
+        /// <returns>AuctionsRoot</returns>
         public AuctionsRoot GetAuctions()
         {
-            AuctionFilesRoot auctionFiles = new AuctionFilesRoot();
-            _Realm.ToLower().Replace(' ', '-');
-
-            string url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
-                _Host,
-                _Realm,
-                _Locale,
-                _APIKey);
-
-            auctionFiles = GetDataFromURL<AuctionFilesRoot>(url);
-
-            if (auctionFiles != null)
-            {
-                string auctionUrl = "";
-
-                foreach (var auctionFile in auctionFiles.Files)
-                {
-                    auctionUrl = auctionFile.Url;
-                }
-
-                AuctionsRoot auctions = new AuctionsRoot();
-
-                auctions = GetDataFromURL<AuctionsRoot>(auctionUrl);
-
-                return auctions;
-            }
-
-            return null;
+            return GetAuctions(_Realm);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="realm"></param>
+        /// <returns>AuctionsRoot</returns>
         public AuctionsRoot GetAuctions(string realm)
         {
             AuctionFilesRoot auctionFiles = new AuctionFilesRoot();
@@ -224,10 +221,19 @@ namespace SharprWowApi
         }
 
         /// <summary>
+        /// Gets Realm from client
+        /// </summary>
+        /// <returns>Task<AuctionsRoot></returns>
+        public async Task<AuctionsRoot> GetAuctionsAsync()
+        {
+            return await GetAuctionsAsync(_Realm);
+        }
+
+        /// <summary>
         /// Does not block main thread.
         /// </summary>
         /// <param name="realm"></param>
-        /// <returns></returns>
+        /// <returns>Task<AuctionsRoot></returns>
         public async Task<AuctionsRoot> GetAuctionsAsync(string realm)
         {
             AuctionFilesRoot auctionFiles = new AuctionFilesRoot();
@@ -236,41 +242,6 @@ namespace SharprWowApi
             string url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
-                _Locale,
-                _APIKey);
-
-            auctionFiles = await GetDataFromURLAsync<AuctionFilesRoot>(url);
-
-            if (auctionFiles != null)
-            {
-                string auctionUrl = "";
-
-                foreach (var auctionFile in auctionFiles.Files)
-                {
-                    auctionUrl = auctionFile.Url;
-                }
-
-                AuctionsRoot auctions = new AuctionsRoot();
-
-                auctions = await GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
-
-                return auctions;
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Gets Realm from client, if that's used.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<AuctionsRoot> GetAuctionsAsync()
-        {
-            AuctionFilesRoot auctionFiles = new AuctionFilesRoot();
-            _Realm.ToLower().Replace(' ', '-');
-
-            string url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
-                _Host,
-                _Realm,
                 _Locale,
                 _APIKey);
 
@@ -363,6 +334,15 @@ namespace SharprWowApi
         #region Challenge Mode
 
         /// <summary>
+        /// Uses realm from client.
+        /// </summary>
+        /// <returns></returns>
+        public ChallengeRoot GetChallengeModeLeaderboard()
+        {
+            return GetChallengeModeLeaderboard(_Realm);
+        }
+
+        /// <summary>
         /// Leaderboard for challenge mode on "realm"
         /// </summary>
         /// <param name="realm">realm to get CM leaderboard from</param>
@@ -386,19 +366,9 @@ namespace SharprWowApi
         /// Uses realm from client.
         /// </summary>
         /// <returns></returns>
-        public ChallengeRoot GetChallengeModeLeaderboard()
+        public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync()
         {
-            ChallengeRoot challenge = new ChallengeRoot();
-
-            string url = string.Format(@"{0}/wow/challenge/{1}?locale={2}&apikey={3}",
-                _Host,
-                _Realm,
-                _Locale,
-                _APIKey);
-
-            challenge = GetDataFromURL<ChallengeRoot>(url);
-
-            return challenge;
+            return await GetChallengeModeLeaderboardAsync(_Realm);
         }
 
         public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync(string realm)
@@ -408,25 +378,6 @@ namespace SharprWowApi
             string url = string.Format(@"{0}/wow/challenge/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
-                _Locale,
-                _APIKey);
-
-            challenge = await GetDataFromURLAsync<ChallengeRoot>(url);
-
-            return challenge;
-        }
-
-        /// <summary>
-        /// Uses realm from client.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync()
-        {
-            ChallengeRoot challenge = new ChallengeRoot();
-
-            string url = string.Format(@"{0}/wow/challenge/{1}?locale={2}&apikey={3}",
-                _Host,
-                _Realm,
                 _Locale,
                 _APIKey);
 
@@ -484,30 +435,7 @@ namespace SharprWowApi
         /// <returns></returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions)
         {
-            CharacterRoot character = new CharacterRoot();
-
-            string url = string.Format(@"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
-                _Host,
-                _Realm,
-                name,
-                _Locale,
-                CharacterUtility.BuildOptionalFields(characterOptions),
-                _APIKey);
-
-            character = GetDataFromURL<CharacterRoot>(url);
-
-            return character;
-        }
-
-        /// <summary>
-        /// gets Character with CharacterOptions.None (plain character)
-        /// </summary>
-        /// <param name="realm"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public CharacterRoot GetCharacter(string realm, string name)
-        {
-            return GetCharacter(realm, name, CharacterOptions.None);
+            return GetCharacter(_Realm, name, characterOptions);
         }
 
         public CharacterRoot GetCharacter(string realm, string name, CharacterOptions characterOptions)
@@ -527,6 +455,11 @@ namespace SharprWowApi
             return character;
         }
 
+        public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions)
+        {
+            return await GetCharacterAsync(_Realm, name, characterOptions);
+        }
+
         public async Task<CharacterRoot> GetCharacterAsync(string realm, string name, CharacterOptions characterOptions)
         {
             CharacterRoot character = new CharacterRoot();
@@ -544,41 +477,24 @@ namespace SharprWowApi
             return character;
         }
 
-        public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions)
-        {
-            CharacterRoot character = new CharacterRoot();
-
-            string url = string.Format(@"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
-                _Host,
-                _Realm,
-                name,
-                _Locale,
-                CharacterUtility.BuildOptionalFields(characterOptions),
-                _APIKey);
-
-            character = await GetDataFromURLAsync<CharacterRoot>(url);
-
-            return character;
-        }
-
         #endregion
 
         //Needs testing
         #region Guild
 
         /// <summary>
-        /// Guild with Guildoptions.None
+        /// Gets realm from client
         /// </summary>
-        /// <param name="realm"></param>
         /// <param name="name"></param>
-        /// <returns>returns guildRoot</returns>
-        public GuildRoot GetGuild(string realm, string name)
+        /// <param name="guildOptions"></param>
+        /// <returns></returns>
+        public GuildRoot GetGuild(string name, GuildOptions guildOptions)
         {
 
-            return GetGuild(realm, name, GuildOptions.None);
+            return GetGuild(_Realm, name, guildOptions);
         }
 
-        public GuildRoot GetGuild(string realm, string name, GuildOptions realmOptions)
+        public GuildRoot GetGuild(string realm, string name, GuildOptions guildOptions)
         {
             GuildRoot guild = new GuildRoot();
             string url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
@@ -586,7 +502,7 @@ namespace SharprWowApi
                 realm,
                 name,
                 _Locale,
-                GuildUtility.BuildOptionalFields(realmOptions),
+                GuildUtility.BuildOptionalFields(guildOptions),
                 _APIKey);
 
             guild = GetDataFromURL<GuildRoot>(url);
@@ -598,25 +514,14 @@ namespace SharprWowApi
         /// Gets realm from client
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="realmOptions"></param>
+        /// <param name="guildOptions"></param>
         /// <returns></returns>
-        public GuildRoot GetGuild(string name, GuildOptions realmOptions)
+        public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions)
         {
-            GuildRoot guild = new GuildRoot();
-            string url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
-                _Host,
-                _Realm,
-                name,
-                _Locale,
-                GuildUtility.BuildOptionalFields(realmOptions),
-                _APIKey);
-
-            guild = GetDataFromURL<GuildRoot>(url);
-
-            return guild;
+            return await GetGuildAsync(_Realm, name, guildOptions);
         }
 
-        public async Task<GuildRoot> GetGuildAsync(string realm, string name, GuildOptions realmOptions)
+        public async Task<GuildRoot> GetGuildAsync(string realm, string name, GuildOptions guildOptions)
         {
             GuildRoot guild = new GuildRoot();
             string url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
@@ -624,29 +529,7 @@ namespace SharprWowApi
                 realm,
                 name,
                 _Locale,
-                GuildUtility.BuildOptionalFields(realmOptions),
-                _APIKey);
-
-            guild = await GetDataFromURLAsync<GuildRoot>(url);
-
-            return guild;
-        }
-
-        /// <summary>
-        /// Gets realm from client
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="realmOptions"></param>
-        /// <returns></returns>
-        public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions realmOptions)
-        {
-            GuildRoot guild = new GuildRoot();
-            string url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
-                _Host,
-                _Realm,
-                name,
-                _Locale,
-                GuildUtility.BuildOptionalFields(realmOptions),
+                GuildUtility.BuildOptionalFields(guildOptions),
                 _APIKey);
 
             guild = await GetDataFromURLAsync<GuildRoot>(url);
@@ -998,7 +881,6 @@ namespace SharprWowApi
         #endregion
 
         #endregion
-
 
         private T GetDataFromURL<T>(string url) where T : class
         {

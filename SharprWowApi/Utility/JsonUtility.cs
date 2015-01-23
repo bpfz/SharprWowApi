@@ -23,10 +23,11 @@ namespace SharprWowApi.Utility
         /// </returns>
         public T JsonDeserialize<T>(string url) where T : class
         {
-            using (var webClient = new WebClient())
+            try
             {
-                try
+                using (var webClient = new WebClient())
                 {
+
                     var jsonString = webClient.DownloadString(url);
 
                     using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(jsonString)))
@@ -41,12 +42,12 @@ namespace SharprWowApi.Utility
                     }
                 }
 
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.GetType().FullName);
-                    Console.WriteLine(ex.Message);
-                    throw;
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType().FullName);
+                Console.WriteLine(ex.Message);
+                throw;
             }
         }
 
@@ -85,7 +86,7 @@ namespace SharprWowApi.Utility
             {
                 Console.WriteLine(ex.GetType().FullName);
                 Console.WriteLine(ex.Message);
-                throw ex;
+                throw;
             }
         }
     }
