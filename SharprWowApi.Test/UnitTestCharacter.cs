@@ -65,12 +65,12 @@ namespace SharprWowApi.Test
 
             var character = client.GetCharacter(TestConstants.EU_en_GB_Realm, "xzy", CharacterOptions.GetPvP);
 
-            Console.WriteLine(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
+            Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsTrue(character.TotalHonorableKills > 0);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_3v3.Rating);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_5v5.Rating);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_RBG.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket3v3.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket5v5.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracketRBG.Rating);
 
         }
         [TestMethod]
@@ -97,7 +97,7 @@ namespace SharprWowApi.Test
             var character = client.GetCharacter(TestConstants.EU_en_GB_Realm, "hjortronsmak", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsNotNull(character.AchievementPoints);
             Assert.IsNotNull(character.Achievements);
             Assert.IsNotNull(character.Appearance);
@@ -133,7 +133,7 @@ namespace SharprWowApi.Test
             var character = await client.GetCharacterAsync(TestConstants.EU_en_GB_Realm, "hjortronsmak", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsNotNull(character.AchievementPoints);
             Assert.IsNotNull(character.Achievements);
             Assert.IsNotNull(character.Appearance);
@@ -169,7 +169,7 @@ namespace SharprWowApi.Test
             var character = client.GetCharacter(TestConstants.US_en_US_Realm, "smexxin", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
-            Assert.IsNotNull(character.Pvp.Brackets.Arena_Bracket_2v2.Rating);
+            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsNotNull(character.AchievementPoints);
             Assert.IsNotNull(character.Achievements);
             Assert.IsNotNull(character.Appearance);
