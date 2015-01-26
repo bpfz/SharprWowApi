@@ -5,7 +5,7 @@ namespace SharprWowApi.Models.Guild
     {
         public string Type { get; set; }
         public string Character { get; set; }
-        public object Timestamp { get; set; }
+        public long Timestamp { get; set; }
         public int ItemId { get; set; }
         public GuildAchievement Achievement { get; set; }
     }
