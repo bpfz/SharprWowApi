@@ -71,14 +71,17 @@ Since some of the data returned by blizzards wow API is quite big (especially au
 
 ```C#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+
 var getAuctionFile = client.GetAuctionFile("Grim batol");
 var someCachedValue = "...";
 
+//Check when the auctiondata was last modified (updated)
 var lm = from f in getAuctionFile.Files
             select f.LastModified;
 
   if (!lm.Equals(someCachedValue))
   {
+    //await here
     var getAuction = await client.GetAuctionsAsync("Grim batol");
     var auction = getAuction.Auctions.Auction;
     
