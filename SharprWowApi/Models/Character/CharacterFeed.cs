@@ -4,7 +4,7 @@ namespace SharprWowApi.Models
     public class CharacterFeed
     {
         public string Type { get; set; }
-        public object Timestamp { get; set; }
+        public long Timestamp { get; set; }
         public int ItemId { get; set; }
         public CharacterFeedAchivements Achievement { get; set; }
         public bool? FeatOfStrength { get; set; }
