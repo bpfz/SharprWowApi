@@ -8,67 +8,78 @@ namespace SharprWowApi.Utility
 {
     public class CharacterUtility
     {
+
+        private const string AllOptions =
+        "guild,stats,talents,items,reputation,titles,professions,appearance,petSlots,mounts,pets,achievements,progression,feed,pvp,quests,hunterPets";
+
         public static string BuildOptionalFields(CharacterOptions characterOptions)
         {
-            string query = "&fields=";
+            var query = "&fields=";
             List<string> fields = new List<string>();
 
-            if ((characterOptions & CharacterOptions.GetGuild).Equals(CharacterOptions.GetGuild))
-                fields.Add("guild");
-
-            if ((characterOptions & CharacterOptions.GetStats).Equals(CharacterOptions.GetStats))
-                fields.Add("stats");
-
-            if ((characterOptions & CharacterOptions.GetTalents).Equals(CharacterOptions.GetTalents))
-                fields.Add("talents");
-
-            if ((characterOptions & CharacterOptions.GetItems).Equals(CharacterOptions.GetItems))
-                fields.Add("items");
-
-            if ((characterOptions & CharacterOptions.GetReputation).Equals(CharacterOptions.GetReputation))
-                fields.Add("reputation");
-
-            if ((characterOptions & CharacterOptions.GetTitles).Equals(CharacterOptions.GetTitles))
-                fields.Add("titles");
-
-            if ((characterOptions & CharacterOptions.GetProfessions).Equals(CharacterOptions.GetProfessions))
-                fields.Add("professions");
-
-            if ((characterOptions & CharacterOptions.GetAppearance).Equals(CharacterOptions.GetAppearance))
-                fields.Add("appearance");
-
-            if ((characterOptions & CharacterOptions.GetPetSlots).Equals(CharacterOptions.GetPetSlots))
-                fields.Add("petSlots");
-
-            if ((characterOptions & CharacterOptions.GetMounts).Equals(CharacterOptions.GetMounts))
-                fields.Add("mounts");
-
-            if ((characterOptions & CharacterOptions.GetPets).Equals(CharacterOptions.GetPets))
-                fields.Add("pets");
-
-            if ((characterOptions & CharacterOptions.GetAchievements).Equals(CharacterOptions.GetAchievements))
-                fields.Add("achievements");
-
-            if ((characterOptions & CharacterOptions.GetProgression).Equals(CharacterOptions.GetProgression))
-                fields.Add("progression");
-
-            if ((characterOptions & CharacterOptions.GetFeed).Equals(CharacterOptions.GetFeed))
-                fields.Add("feed");
-
-            if ((characterOptions & CharacterOptions.GetPvP).Equals(CharacterOptions.GetPvP))
-                fields.Add("pvp");
-
-            if ((characterOptions & CharacterOptions.GetQuests).Equals(CharacterOptions.GetQuests))
-                fields.Add("quests");
-
-            if ((characterOptions & CharacterOptions.GetHunterPets).Equals(CharacterOptions.GetHunterPets))
-                fields.Add("hunterPets");
-
+            switch (characterOptions)
+            {
+                case CharacterOptions.GetGuild:
+                    fields.Add("guild");
+                    break;
+                case CharacterOptions.GetStats:
+                    fields.Add("stats");
+                    break;
+                case CharacterOptions.GetTalents:
+                    fields.Add("talents");
+                    break;
+                case CharacterOptions.GetItems:
+                    fields.Add("items");
+                    break;
+                case CharacterOptions.GetReputation:
+                    fields.Add("reputation");
+                    break;
+                case CharacterOptions.GetTitles:
+                    fields.Add("titles");
+                    break;
+                case CharacterOptions.GetProfessions:
+                    fields.Add("professions");
+                    break;
+                case CharacterOptions.GetAppearance:
+                    fields.Add("appearance");
+                    break;
+                case CharacterOptions.GetPetSlots:
+                    fields.Add("petSlots");
+                    break;
+                case CharacterOptions.GetMounts:
+                    fields.Add("mounts");
+                    break;
+                case CharacterOptions.GetPets:
+                    fields.Add("pets");
+                    break;
+                case CharacterOptions.GetAchievements:
+                    fields.Add("achievements");
+                    break;
+                case CharacterOptions.GetProgression:
+                    fields.Add("progression");
+                    break;
+                case CharacterOptions.GetFeed:
+                    fields.Add("feed");
+                    break;
+                case CharacterOptions.GetPvP:
+                    fields.Add("pvp");
+                    break;
+                case CharacterOptions.GetQuests:
+                    fields.Add("quests");
+                    break;
+                case CharacterOptions.GetHunterPets:
+                    fields.Add("hunterPets");
+                    break;
+                case CharacterOptions.GetEverything:
+                    fields.Add(AllOptions);
+                    break;
+                default:
+                    break;
+            };
 
             if (fields.Count == 0) return string.Empty;
 
-            query += string.Join(",", fields.ToArray());
-
+            query += fields[0].ToString();
             return query;
         }
     }
