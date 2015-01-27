@@ -13,7 +13,9 @@ namespace SharprWowApi.Test
         public void Test_Get_EU_AuctionData()
         {
             var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
+
             var getAuctionFile = client.GetAuctionFile(TestConstants.EU_en_GB_Realm);
+
             var someCachedValue = "14218549882000";
 
             var lm = from f in getAuctionFile.Files
@@ -22,8 +24,8 @@ namespace SharprWowApi.Test
             if (!lm.Equals(someCachedValue))
             {
 
-                var getAuctions = client.GetAuctions(TestConstants.EU_en_GB_Realm);
-                var auction = getAuctions.Auctions.Auction;
+                var getAuction = client.GetAuctions(TestConstants.EU_en_GB_Realm);
+                var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
                 foreach (var a in auction.Take(5))
@@ -34,6 +36,7 @@ namespace SharprWowApi.Test
                     Assert.IsNotNull(a.Item);
 
                     owner = a.Owner;
+
                 }
                 Console.WriteLine(owner);
 
@@ -53,8 +56,9 @@ namespace SharprWowApi.Test
 
             if (!lm.Equals(someCachedValue))
             {
-                var getAuctions = await client.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
-                var auction = getAuctions.Auctions.Auction;
+
+                var getAuction = await client.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
+                var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
                 foreach (var a in auction.Take(5))
