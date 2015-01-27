@@ -56,6 +56,8 @@
     <Compile Include="Models\Auction\AuctionsList.cs" />
     <Compile Include="Models\Auction\AuctionsRoot.cs" />
     <Compile Include="Models\Auction\AuctionFile.cs" />
+    <Compile Include="Models\Auction\BonusList.cs" />
+    <Compile Include="Models\Auction\Modifier.cs" />
     <Compile Include="Models\BattlePet\BattlePetAbilitiesRoot.cs" />
     <Compile Include="Models\BattlePet\BattlePetSpeciesRoot.cs" />
     <Compile Include="Models\BattlePet\BattlePetStatsRoot.cs" />
