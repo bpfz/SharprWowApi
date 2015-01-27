@@ -4,21 +4,22 @@ namespace SharprWowApi.Models.Auction
 {
     public class Auction
     {
-        public int Auc { get; set; }
-        public int Item { get; set; }
-        public string Owner { get; set; }
-        public string OwnerRealm { get; set; }
-        public int Bid { get; set; }
-        public int Buyout { get; set; }
-        public int Quantity { get; set; }
-        public string TimeLeft { get; set; }
-        public int Rand { get; set; }
-        public int Seed { get; set; }
-        public int Context { get; set; }
-        public List<Modifier> Modifiers { get; set; }
-        public int? PetSpeciesId { get; set; }
-        public int? PetBreedId { get; set; }
-        public int? PetLevel { get; set; }
-        public int? PetQualityId { get; set; }
+        public int auc { get; set; }
+        public int item { get; set; }
+        public string owner { get; set; }
+        public string ownerRealm { get; set; }
+        public object bid { get; set; }
+        public object buyout { get; set; }
+        public int quantity { get; set; }
+        public string timeLeft { get; set; }
+        public int rand { get; set; }
+        public object seed { get; set; }
+        public int context { get; set; }
+        public List<BonusList> bonusLists { get; set; }
+        public List<Modifier> modifiers { get; set; }
+        public int? petSpeciesId { get; set; }
+        public int? petBreedId { get; set; }
+        public int? petLevel { get; set; }
+        public int? petQualityId { get; set; }
     }
 }
