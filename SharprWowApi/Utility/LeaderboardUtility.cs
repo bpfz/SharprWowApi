@@ -11,27 +11,27 @@ namespace SharprWowApi.Utility
 
         public static string buildOptionalQuery(LeaderboardOptions leaderboardOptions)
         {
-        string query = "&fields=";
-        List<string> tmp = new List<string>();
+            string query = "&fields=";
+            List<string> fields = new List<string>();
 
-          if ((leaderboardOptions & LeaderboardOptions.TwoVersusTwo).Equals(LeaderboardOptions.TwoVersusTwo))
-                tmp.Add("2v2");
+            switch (leaderboardOptions)
+            {
+                case LeaderboardOptions.TwoVersusTwo:
+                    fields.Add("2v2");
+                    break;
+                case LeaderboardOptions.ThreeVersusThree:
+                    fields.Add("3v3");
+                    break;
+                case LeaderboardOptions.FiveVersusFive:
+                    fields.Add("5v5");
+                    break;
+                case LeaderboardOptions.RBG:
+                    fields.Add("RBG");
+                    break;
+            }
 
-            if ((leaderboardOptions & LeaderboardOptions.ThreeVersusThree).Equals(LeaderboardOptions.ThreeVersusThree))
-                tmp.Add("3v3");
-
-            if ((leaderboardOptions & LeaderboardOptions.FiveVersusFive).Equals(LeaderboardOptions.FiveVersusFive))
-                tmp.Add("5v5");
-
-             if ((leaderboardOptions & LeaderboardOptions.RBG).Equals(LeaderboardOptions.RBG))
-                tmp.Add("5v5");
-
-            if (tmp.Count == 0) return "3v3";
-
-            query += string.Join(",", tmp.ToArray());
-
+            query += fields[0];
             return query;
-
-    }
+        }
     }
 }

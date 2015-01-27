@@ -8,27 +8,32 @@ namespace SharprWowApi.Utility
 {
     public class GuildUtility
     {
+        private const string AllOptions = "members,achievements,news,challenge";
+
         public static string BuildOptionalFields(GuildOptions realmOptions)
         {
             string query = "&fields=";
             List<string> fields = new List<string>();
 
-            if ((realmOptions & GuildOptions.GetMembers).Equals(GuildOptions.GetMembers))
-                fields.Add("members");
+            switch (realmOptions)
+            {
+                case GuildOptions.GetMembers:
+                    fields.Add("members");
+                    break;
+                case GuildOptions.GetAchievements:
+                    fields.Add("achievements");
+                    break;
+                case GuildOptions.GetNews:
+                    fields.Add("news");
+                    break;
+                case GuildOptions.GetChallenge:
+                    fields.Add("challenge");
+                    break;
+                default:
+                    return string.Empty;
+            }
 
-            if ((realmOptions & GuildOptions.GetAchievements).Equals(GuildOptions.GetAchievements))
-                fields.Add("achievements");
-
-            if ((realmOptions & GuildOptions.GetNews).Equals(GuildOptions.GetNews))
-                fields.Add("news");
-
-            if ((realmOptions & GuildOptions.GetChallenge).Equals(GuildOptions.GetChallenge))
-                fields.Add("news");
-
-            if (fields.Count == 0) return string.Empty;
-
-            query += string.Join(",", fields.ToArray());
-
+            query += fields[0];
             return query;
         }
     }

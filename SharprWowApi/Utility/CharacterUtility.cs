@@ -74,12 +74,10 @@ namespace SharprWowApi.Utility
                     fields.Add(AllOptions);
                     break;
                 default:
-                    break;
+                    return string.Empty;
             };
 
-            if (fields.Count == 0) return string.Empty;
-
-            query += fields[0].ToString();
+            query += fields[0];
             return query;
         }
     }
