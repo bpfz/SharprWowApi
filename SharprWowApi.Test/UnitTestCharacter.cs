@@ -130,7 +130,7 @@ namespace SharprWowApi.Test
 
             client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
 
-            var character = await client.GetCharacterAsync(TestConstants.EU_en_GB_Realm, "hjortronsmak", CharacterOptions.GetEverything);
+            var character = await client.GetCharacterAsync(TestConstants.EU_en_GB_Realm, "Hjortronsmak", CharacterOptions.GetEverything);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
