@@ -6,6 +6,7 @@ namespace SharprWowApi.Models.Auction
 {
     public class AuctionsList
     {
+        [JsonProperty("auctions")]
         public List<Auction> Auction { get; set; }
     }
 }
