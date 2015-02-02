@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SharprWowApi.WowModels
+namespace SharprWowApi.Models
 {
     public class CharacterFeedAchievementCriteria
     {

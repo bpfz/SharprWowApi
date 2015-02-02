@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SharprWowApi.WowModels.Character;
-using SharprWowApi.WowModels.ChallengeMode;
+using SharprWowApi.Models.Character;
+using SharprWowApi.Models.ChallengeMode;
 
-namespace SharprWowApi.WowModels.Guild
+namespace SharprWowApi.Models.Guild
 {
     public class GroupMember
     {

@@ -1,11 +1,11 @@
-﻿using SharprWowApi.WowModels.Achievement;
+﻿using SharprWowApi.Models.Achievement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharprWowApi.WowModels.DataResources
+namespace SharprWowApi.Models.DataResources
 {
     public class DataGuildRewardsRoot
     {

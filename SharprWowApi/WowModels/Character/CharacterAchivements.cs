@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels
+namespace SharprWowApi.Models
 {
     public class CharacterAchivements
     {

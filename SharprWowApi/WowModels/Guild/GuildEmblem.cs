@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Guild
+namespace SharprWowApi.Models.Guild
 {
     public class GuildEmblem
     {

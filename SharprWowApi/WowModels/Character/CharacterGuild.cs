@@ -1,6 +1,6 @@
-﻿using SharprWowApi.WowModels.Guild;
+﻿using SharprWowApi.Models.Guild;
 
-namespace SharprWowApi.WowModels
+namespace SharprWowApi.Models
 {
     public class CharacterGuild
     {

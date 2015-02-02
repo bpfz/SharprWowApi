@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Auction
+namespace SharprWowApi.Models.Auction
 {
     public class AuctionRealm
     {

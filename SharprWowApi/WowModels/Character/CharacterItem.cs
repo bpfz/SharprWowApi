@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     public class CharacterItem
     {

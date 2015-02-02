@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.ChallengeMode
+namespace SharprWowApi.Models.ChallengeMode
 {
     public class ChallengeGroupMember
     {

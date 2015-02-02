@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Guild
+namespace SharprWowApi.Models.Guild
 {
     public class GuildRoot
     {

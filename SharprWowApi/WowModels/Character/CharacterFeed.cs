@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels
+namespace SharprWowApi.Models
 {
     public class CharacterFeed
     {

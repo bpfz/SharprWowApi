@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Recipe
+namespace SharprWowApi.Models.Recipe
 {
     public class RecipeRoot
     {

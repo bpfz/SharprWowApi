@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharprWowApi.WowModels.Auction
+namespace SharprWowApi.Models.Auction
 {
     public class Modifier
     {

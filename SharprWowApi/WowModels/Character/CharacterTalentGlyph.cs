@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     public class CharacterTalentGlyph
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Achievement
+namespace SharprWowApi.Models.Achievement
 {
     public class AchiviementCriteria
     {

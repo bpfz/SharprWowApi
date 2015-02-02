@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Achievement
+namespace SharprWowApi.Models.Achievement
 {
     public class AchievementRewardItem
     {

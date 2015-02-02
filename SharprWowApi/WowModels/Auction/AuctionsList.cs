@@ -2,7 +2,7 @@
 using SharprWowApi.Utility;
 using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Auction
+namespace SharprWowApi.Models.Auction
 {
     public class AuctionsList
     {

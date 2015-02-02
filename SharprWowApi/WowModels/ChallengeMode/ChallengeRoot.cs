@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.ChallengeMode
+namespace SharprWowApi.Models.ChallengeMode
 {
     /// <summary>
     /// The data in this request has data for all 9 challenge mode maps (currently).

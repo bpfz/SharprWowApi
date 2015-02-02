@@ -18,7 +18,6 @@ namespace SharprWowApi.Test
             client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
 
             var character = client.GetCharacter(TestConstants.EU_en_GB_Realm, "Hjortronsmak", CharacterOptions.None);
-
             Assert.IsNotNull(character.Name);
 
         }

@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.BattlePet
+namespace SharprWowApi.Models.BattlePet
 {
     public class BattlePetStatsRoot
     {

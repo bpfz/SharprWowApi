@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.BattlePet
+namespace SharprWowApi.Models.BattlePet
 {
     public class BattlePetSpeciesRoot
     {

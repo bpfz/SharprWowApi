@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Quest
+namespace SharprWowApi.Models.Quest
 {
     public class QuestRoot
     {

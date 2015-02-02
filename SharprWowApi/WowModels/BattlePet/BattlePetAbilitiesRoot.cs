@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.BattlePet
+namespace SharprWowApi.Models.BattlePet
 {
     /// <summary>
     /// This provides data about a individual battle pet ability ID. 

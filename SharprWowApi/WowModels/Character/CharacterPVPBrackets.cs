@@ -1,6 +1,6 @@
 ﻿
 using Newtonsoft.Json;
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
 
     public class CharacterPVPBrackets

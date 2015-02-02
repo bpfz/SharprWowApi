@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
-using SharprWowApi.WowModels.Character.AuditModel;
+using SharprWowApi.Models.Character.AuditModel;
 
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     /// <summary>
     /// The Character Profile API is the primary way to access character information.

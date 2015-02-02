@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.PVP
+namespace SharprWowApi.Models.PVP
 {
     public class LeaderboardRoot
     {

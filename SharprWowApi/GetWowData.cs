@@ -1,15 +1,15 @@
-﻿using SharprWowApi.WowModels.Achievement;
-using SharprWowApi.WowModels.Auction;
-using SharprWowApi.WowModels.BattlePet;
-using SharprWowApi.WowModels.ChallengeMode;
-using SharprWowApi.WowModels.Character;
-using SharprWowApi.WowModels.DataResources;
-using SharprWowApi.WowModels.Guild;
-using SharprWowApi.WowModels.PVP;
-using SharprWowApi.WowModels.Quest;
-using SharprWowApi.WowModels.RealmStatus;
-using SharprWowApi.WowModels.Recipe;
-using SharprWowApi.WowModels.Spells;
+﻿using SharprWowApi.Models.Achievement;
+using SharprWowApi.Models.Auction;
+using SharprWowApi.Models.BattlePet;
+using SharprWowApi.Models.ChallengeMode;
+using SharprWowApi.Models.Character;
+using SharprWowApi.Models.DataResources;
+using SharprWowApi.Models.Guild;
+using SharprWowApi.Models.PVP;
+using SharprWowApi.Models.Quest;
+using SharprWowApi.Models.RealmStatus;
+using SharprWowApi.Models.Recipe;
+using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
 using System;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ using SharprWowApi.Utility;
 
 namespace SharprWowApi
 {
-    public abstract class GetWowData
+    public abstract class GetData
     {
         JsonUtility json = new JsonUtility();
 

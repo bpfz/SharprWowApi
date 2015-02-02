@@ -1,11 +1,11 @@
-﻿using SharprWowApi.WowModels.ChallengeMode;
+﻿using SharprWowApi.Models.ChallengeMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharprWowApi.WowModels.Guild
+namespace SharprWowApi.Models.Guild
 {
     public class GuildChallengeGroup
     {

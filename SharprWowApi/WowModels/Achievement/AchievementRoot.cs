@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Achievement
+namespace SharprWowApi.Models.Achievement
 {
     /// <summary>
     /// This provides data about an individual achievement.

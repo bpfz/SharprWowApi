@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.ChallengeMode
+namespace SharprWowApi.Models.ChallengeMode
 {
     public class ChallengeRealm
     {

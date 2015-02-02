@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     /// <summary>
     /// A list of the titles obtained by the character including the currently selected title.

@@ -45,17 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiabloModels\DataResources\ArtisanData.cs" />
-    <Compile Include="DiabloModels\DataResources\FollowerData.cs" />
-    <Compile Include="DiabloModels\DataResources\ItemData.cs" />
-    <Compile Include="DiabloModels\Hero\Crafting.cs" />
-    <Compile Include="DiabloModels\Hero\Followers.cs" />
-    <Compile Include="DiabloModels\Hero\HeroRoot.cs" />
-    <Compile Include="DiabloModels\Hero\Items.cs" />
-    <Compile Include="DiabloModels\Hero\Progression.cs" />
-    <Compile Include="DiabloModels\Hero\Skills.cs" />
-    <Compile Include="DiabloModels\Hero\Stats.cs" />
-    <Compile Include="DiabloModels\Profile\ProfileRoot.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GetWowData.cs" />
     <Compile Include="WowModels\Achievement\AchievementRoot.cs" />

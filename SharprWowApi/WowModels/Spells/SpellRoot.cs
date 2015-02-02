@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Spells
+namespace SharprWowApi.Models.Spells
 {
     public class SpellRoot
     {

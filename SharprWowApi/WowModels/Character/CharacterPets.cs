@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     /// <summary>
     /// A list of the battle pets obtained by the character.

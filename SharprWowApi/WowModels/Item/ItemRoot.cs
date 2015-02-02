@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.Item
+namespace SharprWowApi.Models.Item
 {
     public class ItemRoot
     {

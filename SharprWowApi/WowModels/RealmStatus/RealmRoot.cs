@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.WowModels.RealmStatus
+namespace SharprWowApi.Models.RealmStatus
 {
     public class RealmRoot
     {

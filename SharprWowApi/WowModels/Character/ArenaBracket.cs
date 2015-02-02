@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.WowModels.Character
+namespace SharprWowApi.Models.Character
 {
     public class ArenaBracket
     {
