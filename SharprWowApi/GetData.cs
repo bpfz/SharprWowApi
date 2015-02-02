@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi
 {
-    public class GetData
+    public abstract class GetData
     {
 
         public Region _Region { get; set; }
