@@ -120,7 +120,4 @@ namespace SharprWowApi
         Male = 0,
         Female = 1,
     }
-    public class Enums
-    {
-    }
 }
