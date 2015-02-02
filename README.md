@@ -28,7 +28,7 @@ You can also set __realm__ in the _ApiClient_ and use extention methods if all c
 client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
 
 var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None);
-var characterTwo = client.GetCharacter("CharacterNameCharactername", CharacterOptions.None);
+var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.None);
 var characterThree = client.GetCharacter("CharacterName", CharacterOptions.None);
 
 Console.WriteLine(characterOne.Name);
@@ -44,7 +44,7 @@ using SharprWowApi.Models.Guild;
 public ActionResult Members()
 {
     var client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
-    var guild = client.GetGuild("Guild name", GuildOptions.GetEverything);
+    var guild = client.GetGuild("GuildName", GuildOptions.GetEverything);
     
      return View(guild);
 }
@@ -68,7 +68,7 @@ Since some of the data returned by blizzards wow API is quite big (especially au
 ```C#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var getAuctionFile = client.GetAuctionFile("Grim batol");
+var getAuctionFile = client.GetAuctionFile("Realm");
 var someCachedValue = "...";
 
 //Check when the auctiondata was last modified (updated)
