@@ -29,6 +29,9 @@ namespace SharprWowApi.Utility
                 case GuildOptions.GetChallenge:
                     fields.Add("challenge");
                     break;
+                case GuildOptions.GetEverything:
+                    fields.Add(AllOptions);
+                    break;
                 default:
                     return string.Empty;
             }
