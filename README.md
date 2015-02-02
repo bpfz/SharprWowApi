@@ -16,8 +16,8 @@ Console.WriteLine(achievement.Title);
 ```c#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var characterOne = client.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.None);
-var characterTwo = client.GetCharacter("Xavius", "Tuds", CharacterOptions.GetPvP);
+var characterOne = client.GetCharacter("Realm", "CharacterName", CharacterOptions.None);
+var characterTwo = client.GetCharacter("Realm", "CharacterName", CharacterOptions.GetPvP);
 
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -27,9 +27,9 @@ You can also set __realm__ in the _ApiClient_ and use extention methods if all c
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
 
-var characterOne = client.GetCharacter("Hjortronsmak", CharacterOptions.None);
-var characterTwo = client.GetCharacter("xzy", CharacterOptions.None);
-var characterThree = client.GetCharacter("Lingonberry", CharacterOptions.None);
+var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None);
+var characterTwo = client.GetCharacter("CharacterNameCharactername", CharacterOptions.None);
+var characterThree = client.GetCharacter("CharacterName", CharacterOptions.None);
 
 Console.WriteLine(characterOne.Name);
 Console.WriteLine(characterTwo.Name);
