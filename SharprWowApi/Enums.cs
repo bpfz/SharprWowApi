@@ -56,21 +56,17 @@ namespace SharprWowApi
         GetPvP,
         GetQuests,
         GetHunterPets,
-        GetEverything = GetGuild | GetStats | GetTalents | GetItems | GetReputation | GetTitles
-        | GetProfessions | GetAppearance | GetPetSlots | GetMounts | GetPets
-        | GetAchievements | GetProgression | GetFeed | GetPvP | GetQuests | GetHunterPets
-
+        GetEverything
     }
 
-    [Flags]
     public enum GuildOptions
     {
-        None = 0,
-        GetMembers = 1,
-        GetAchievements = 2,
-        GetNews = 4,
-        GetChallenge = 8,
-        GetEverything = GetMembers | GetAchievements | GetNews | GetChallenge
+        None,
+        GetMembers,
+        GetAchievements,
+        GetNews,
+        GetChallenge,
+        GetEverything
     }
 
     public enum LeaderboardOptions
