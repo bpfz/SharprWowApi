@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
-    <Compile Include="GetWowData.cs" />
+    <Compile Include="GetData.cs" />
     <Compile Include="WowModels\Achievement\AchievementRoot.cs" />
     <Compile Include="WowModels\Achievement\AchievementRewardItem.cs" />
     <Compile Include="WowModels\Achievement\AchiviementCriterion.cs" />
