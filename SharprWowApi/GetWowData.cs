@@ -1,23 +1,25 @@
-﻿using SharprWowApi.Models.Achievement;
-using SharprWowApi.Models.Auction;
-using SharprWowApi.Models.BattlePet;
-using SharprWowApi.Models.ChallengeMode;
-using SharprWowApi.Models.Character;
-using SharprWowApi.Models.DataResources;
-using SharprWowApi.Models.Guild;
-using SharprWowApi.Models.PVP;
-using SharprWowApi.Models.Quest;
-using SharprWowApi.Models.RealmStatus;
-using SharprWowApi.Models.Recipe;
-using SharprWowApi.Models.Spells;
+﻿using SharprWowApi.WowModels.Achievement;
+using SharprWowApi.WowModels.Auction;
+using SharprWowApi.WowModels.BattlePet;
+using SharprWowApi.WowModels.ChallengeMode;
+using SharprWowApi.WowModels.Character;
+using SharprWowApi.WowModels.DataResources;
+using SharprWowApi.WowModels.Guild;
+using SharprWowApi.WowModels.PVP;
+using SharprWowApi.WowModels.Quest;
+using SharprWowApi.WowModels.RealmStatus;
+using SharprWowApi.WowModels.Recipe;
+using SharprWowApi.WowModels.Spells;
 using SharprWowApi.Utility;
 using System;
 using System.Threading.Tasks;
+using SharprWowApi.Utility;
 
 namespace SharprWowApi
 {
-    public abstract class GetData
+    public abstract class GetWowData
     {
+        JsonUtility json = new JsonUtility();
 
         public Region _Region { get; internal set; }
         public Locale _Locale { get; internal set; }
@@ -38,7 +40,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievement = await GetDataFromURLAsync<AchievementRoot>(url);
+            achievement = await json.GetDataFromURLAsync<AchievementRoot>(url);
 
             return achievement;
         }
@@ -53,7 +55,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievement = GetDataFromURL<AchievementRoot>(url);
+            achievement = json.GetDataFromURL<AchievementRoot>(url);
             return achievement;
         }
 
@@ -87,7 +89,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            auctionFiles = GetDataFromURL<AuctionFilesRoot>(url);
+            auctionFiles = json.GetDataFromURL<AuctionFilesRoot>(url);
             return auctionFiles;
         }
 
@@ -119,7 +121,7 @@ namespace SharprWowApi
                     auctionUrl = auctionFile.Url;
                 }
 
-                auctions = GetDataFromURL<AuctionsRoot>(auctionUrl);
+                auctions = json.GetDataFromURL<AuctionsRoot>(auctionUrl);
 
                 return auctions;
             }
@@ -156,7 +158,7 @@ namespace SharprWowApi
 
                 var auctions = new AuctionsRoot();
 
-                auctions = await GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
+                auctions = await json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
 
                 return auctions;
             }
@@ -183,7 +185,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlePetAbility = GetDataFromURL<BattlePetAbilitiesRoot>(url);
+            battlePetAbility = json.GetDataFromURL<BattlePetAbilitiesRoot>(url);
             return battlePetAbility;
         }
 
@@ -202,7 +204,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlePetSpecies = GetDataFromURL<BattlePetSpeciesRoot>(url);
+            battlePetSpecies = json.GetDataFromURL<BattlePetSpeciesRoot>(url);
             return battlePetSpecies;
         }
 
@@ -215,13 +217,13 @@ namespace SharprWowApi
         {
             var battlePetStats = new BattlePetStatsRoot();
 
-            var url = string.Format(@"{0}/wow/battlepet/Stats/{1}?locale={2}&apikey={3}",
+            var url = string.Format(@"{0}/wow/battlepet/FollowerStats/{1}?locale={2}&apikey={3}",
                 _Host,
                 speciesId,
                 _Locale,
                 _APIKey);
 
-            battlePetStats = GetDataFromURL<BattlePetStatsRoot>(url);
+            battlePetStats = json.GetDataFromURL<BattlePetStatsRoot>(url);
             return battlePetStats;
         }
 
@@ -255,7 +257,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = GetDataFromURL<ChallengeRoot>(url);
+            challenge = json.GetDataFromURL<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -279,7 +281,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = await GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await json.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -297,7 +299,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = GetDataFromURL<ChallengeRoot>(url);
+            challenge = json.GetDataFromURL<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -315,7 +317,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = await GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await json.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -348,7 +350,7 @@ namespace SharprWowApi
                 CharacterUtility.BuildOptionalFields(characterOptions),
                 _APIKey);
 
-            character = GetDataFromURL<CharacterRoot>(url);
+            character = json.GetDataFromURL<CharacterRoot>(url);
 
             return character;
         }
@@ -370,7 +372,7 @@ namespace SharprWowApi
                 CharacterUtility.BuildOptionalFields(characterOptions),
                 _APIKey);
 
-            character = await GetDataFromURLAsync<CharacterRoot>(url);
+            character = await json.GetDataFromURLAsync<CharacterRoot>(url);
 
             return character;
         }
@@ -402,7 +404,7 @@ namespace SharprWowApi
                 GuildUtility.BuildOptionalFields(guildOptions),
                 _APIKey);
 
-            guild = GetDataFromURL<GuildRoot>(url);
+            guild = json.GetDataFromURL<GuildRoot>(url);
 
             return guild;
         }
@@ -429,7 +431,7 @@ namespace SharprWowApi
                 GuildUtility.BuildOptionalFields(guildOptions),
                 _APIKey);
 
-            guild = await GetDataFromURLAsync<GuildRoot>(url);
+            guild = await json.GetDataFromURLAsync<GuildRoot>(url);
 
             return guild;
         }
@@ -454,7 +456,7 @@ namespace SharprWowApi
                _Locale,
                _APIKey);
 
-            leaderboard = GetDataFromURL<LeaderboardRoot>(url);
+            leaderboard = json.GetDataFromURL<LeaderboardRoot>(url);
 
             return leaderboard;
         }
@@ -469,7 +471,7 @@ namespace SharprWowApi
                _Locale,
                _APIKey);
 
-            leaderboard = await GetDataFromURLAsync<LeaderboardRoot>(url);
+            leaderboard = await json.GetDataFromURLAsync<LeaderboardRoot>(url);
 
             return leaderboard;
         }
@@ -494,7 +496,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            quest = GetDataFromURL<QuestRoot>(url);
+            quest = json.GetDataFromURL<QuestRoot>(url);
             return quest;
         }
 
@@ -516,7 +518,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            realm = GetDataFromURL<RealmRoot>(url);
+            realm = json.GetDataFromURL<RealmRoot>(url);
             return realm;
         }
 
@@ -535,7 +537,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            recipe = GetDataFromURL<RecipeRoot>(url);
+            recipe = json.GetDataFromURL<RecipeRoot>(url);
             return recipe;
         }
 
@@ -553,7 +555,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            spell = GetDataFromURL<SpellRoot>(url);
+            spell = json.GetDataFromURL<SpellRoot>(url);
             return spell;
         }
 
@@ -578,7 +580,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementsData = GetDataFromURL<DataAchievementRoot>(url);
+            achievementsData = json.GetDataFromURL<DataAchievementRoot>(url);
             return achievementsData;
         }
 
@@ -591,7 +593,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementsData = await GetDataFromURLAsync<DataAchievementRoot>(url);
+            achievementsData = await json.GetDataFromURLAsync<DataAchievementRoot>(url);
             return achievementsData;
         }
 
@@ -613,7 +615,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlegroupData = GetDataFromURL<DataBattleGroupRoot>(url);
+            battlegroupData = json.GetDataFromURL<DataBattleGroupRoot>(url);
             return battlegroupData;
         }
         #endregion
@@ -633,7 +635,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            classData = GetDataFromURL<DataCharacterClassesRoot>(url);
+            classData = json.GetDataFromURL<DataCharacterClassesRoot>(url);
             return classData;
         }
         #endregion
@@ -654,7 +656,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementData = GetDataFromURL<DataGuildAchivementRoot>(url);
+            achievementData = json.GetDataFromURL<DataGuildAchivementRoot>(url);
             return achievementData;
         }
 
@@ -667,7 +669,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementData = await GetDataFromURLAsync<DataGuildAchivementRoot>(url);
+            achievementData = await json.GetDataFromURLAsync<DataGuildAchivementRoot>(url);
             return achievementData;
         }
         #endregion
@@ -688,7 +690,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guildPerksData = GetDataFromURL<DataGuildPerksRoot>(url);
+            guildPerksData = json.GetDataFromURL<DataGuildPerksRoot>(url);
             return guildPerksData;
         }
         #endregion
@@ -709,7 +711,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guildRewardsData = GetDataFromURL<DataGuildRewardsRoot>(url);
+            guildRewardsData = json.GetDataFromURL<DataGuildRewardsRoot>(url);
             return guildRewardsData;
         }
 
@@ -731,7 +733,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            itemData = GetDataFromURL<DataItemClassRoot>(url);
+            itemData = json.GetDataFromURL<DataItemClassRoot>(url);
             return itemData;
         }
         #endregion
@@ -752,7 +754,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            petData = GetDataFromURL<DataPetTypesRoot>(url);
+            petData = json.GetDataFromURL<DataPetTypesRoot>(url);
             return petData;
         }
         #endregion
@@ -772,7 +774,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            raceData = GetDataFromURL<DataRacesRoot>(url);
+            raceData = json.GetDataFromURL<DataRacesRoot>(url);
             return raceData;
         }
 
@@ -780,37 +782,6 @@ namespace SharprWowApi
 
         #endregion
 
-        private T GetDataFromURL<T>(string url) where T : class
-        {
-            var json = new JsonUtility();
 
-            try
-            {
-                return json.DeserializeJson<T>(url);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("GetDataFromURL");
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-        }
-
-        private async Task<T> GetDataFromURLAsync<T>(string url) where T : class
-        {
-            var json = new JsonUtility();
-            try
-            {
-                return await json.DeserializeJsonAsync<T>(url);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("GetDataFromURLAsync");
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
-                throw ex;
-            }
-        }
     }
 }
