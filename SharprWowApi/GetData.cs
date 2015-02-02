@@ -12,9 +12,6 @@ using SharprWowApi.Models.Recipe;
 using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SharprWowApi
@@ -22,11 +19,11 @@ namespace SharprWowApi
     public abstract class GetData
     {
 
-        public Region _Region { get; set; }
-        public Locale _Locale { get; set; }
-        public string _APIKey { get; set; }
-        public string _Host { get; set; }
-        public string _Realm { get; set; }
+        public Region _Region { get; internal set; }
+        public Locale _Locale { get; internal set; }
+        public string _APIKey { get; internal set; }
+        public string _Host { get; internal set; }
+        public string _Realm { get; internal set; }
 
         //done
         #region achievement
