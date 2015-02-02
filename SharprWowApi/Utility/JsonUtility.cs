@@ -21,7 +21,7 @@ namespace SharprWowApi.Utility
         /// <param name="url">Url for the json</param>
         /// <returns>Deserialized json object.
         /// </returns>
-        public T JsonDeserialize<T>(string url) where T : class
+        public T DeserializeJson<T>(string url) where T : class
         {
             try
             {
@@ -51,15 +51,14 @@ namespace SharprWowApi.Utility
             }
         }
 
+
         private async Task<String> DownloadStringAsync(string url)
         {
             var downloadedString = await new WebClient().DownloadStringTaskAsync(url);
 
             return downloadedString;
         }
-
-
-        public async Task<T> JsonDeserializeAsync<T>(string url) where T : class
+        public async Task<T> DeserializeJsonAsync<T>(string url) where T : class
         {
             string downloadedString = await DownloadStringAsync(url);
 
@@ -72,7 +71,6 @@ namespace SharprWowApi.Utility
                         using (var jsonTextReader = new JsonTextReader(sr))
                         {
                             var serializer = new JsonSerializer();
-
                             var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
                             deserialize.Start();
                             T apiResponseObject = await deserialize;
@@ -84,9 +82,9 @@ namespace SharprWowApi.Utility
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
-                throw;
+                //Console.WriteLine(ex.GetType().FullName);
+                // Console.WriteLine(ex.Message);
+                throw ex;
             }
         }
     }
