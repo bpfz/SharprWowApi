@@ -1,10 +1,6 @@
 ###SharprWowApi
 SharprWowApi is a strongly typed .NET library for accessing blizzards Wow API (https://dev.battle.net/).
 
-
-#####Changelog
-__01-21__ Initial Commit
-
 ## Usage example
 
 #####Get achievement By ID
