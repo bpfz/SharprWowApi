@@ -82,8 +82,38 @@ namespace SharprWowApi.Utility
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.GetType().FullName);
-                // Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+
+        public T GetDataFromURL<T>(string url) where T : class
+        {
+
+            try
+            {
+                return DeserializeJson<T>(url);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetDataFromURL");
+                Console.WriteLine(ex.GetType().FullName);
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<T> GetDataFromURLAsync<T>(string url) where T : class
+        {
+           
+            try
+            {
+                return await DeserializeJsonAsync<T>(url);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetDataFromURLAsync");
+                Console.WriteLine(ex.GetType().FullName);
+                Console.WriteLine(ex.Message);
                 throw ex;
             }
         }
