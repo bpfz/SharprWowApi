@@ -3,7 +3,7 @@
 namespace SharprWowApi
 {
 
-    public class ApiClient : GetData
+    public class ApiClient : GetWowData
     {
         /// <summary>
         /// Set region, locale, your API key and optional Realm
