@@ -81,9 +81,12 @@ var lm = from f in getAuctionFile.Files
     var getAuction = await client.GetAuctionsAsync("Grim batol");
     var auction = getAuction.Auctions.Auction;
     
-     foreach (var a in auction.Take(5))
-     {
-      Console.WriteLine(a.owner);
-     }
+  using (auction.GetEnumerator())
+  {
+       Parallel.ForEach(auction.Take(5), a =>
+       {
+         Console.WriteLine(a.owner);
+       });
+  }
  ...
 ```
