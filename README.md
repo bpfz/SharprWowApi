@@ -16,8 +16,8 @@ Console.WriteLine(achievement.Title);
 ```c#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var characterOne = client.GetCharacter("Grim Batol", "Hjortronsmak", CharacterOptions.None);
-var characterTwo = client.GetCharacter("Xavius", "Tuds", CharacterOptions.GetPvP);
+var characterOne = client.GetCharacter("Realm", "CharacterName", CharacterOptions.None);
+var characterTwo = client.GetCharacter("Realm", "CharacterName", CharacterOptions.GetPvP);
 
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -27,9 +27,9 @@ You can also set __realm__ in the _ApiClient_ and use extention methods if all c
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
 
-var characterOne = client.GetCharacter("Hjortronsmak", CharacterOptions.None);
-var characterTwo = client.GetCharacter("xzy", CharacterOptions.None);
-var characterThree = client.GetCharacter("Lingonberry", CharacterOptions.None);
+var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None);
+var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.None);
+var characterThree = client.GetCharacter("CharacterName", CharacterOptions.None);
 
 Console.WriteLine(characterOne.Name);
 Console.WriteLine(characterTwo.Name);
@@ -44,7 +44,7 @@ using SharprWowApi.Models.Guild;
 public ActionResult Members()
 {
     var client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
-    var guild = client.GetGuild("Guild name", GuildOptions.GetEverything);
+    var guild = client.GetGuild("GuildName", GuildOptions.GetEverything);
     
      return View(guild);
 }
@@ -68,7 +68,7 @@ Since some of the data returned by blizzards wow API is quite big (especially au
 ```C#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var getAuctionFile = client.GetAuctionFile("Grim batol");
+var getAuctionFile = client.GetAuctionFile("Realm");
 var someCachedValue = "...";
 
 //Check when the auctiondata was last modified (updated)
@@ -81,9 +81,12 @@ var lm = from f in getAuctionFile.Files
     var getAuction = await client.GetAuctionsAsync("Grim batol");
     var auction = getAuction.Auctions.Auction;
     
-     foreach (var a in auction.Take(5))
-     {
-      Console.WriteLine(a.owner);
-     }
+  using (auction.GetEnumerator())
+  {
+       Parallel.ForEach(auction.Take(5), a =>
+       {
+         Console.WriteLine(a.owner);
+       });
+  }
  ...
 ```
