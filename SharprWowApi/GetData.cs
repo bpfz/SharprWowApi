@@ -174,7 +174,7 @@ namespace SharprWowApi
         /// This provides data about a individual battle pet ability ID.
         /// </summary>
         /// <param name="achievementId">ID of the ability you want to retrieve</param>
-        /// <returns></returns>
+        /// <returns>BattlePetAbilitiesRoot object</returns>
         public BattlePetAbilitiesRoot GetBattlePetAbilities(int abilityId)
         {
             var battlePetAbility = new BattlePetAbilitiesRoot();
@@ -193,7 +193,7 @@ namespace SharprWowApi
         /// Get pet species from ID.
         /// </summary>
         /// <param name="speciesId"></param>
-        /// <returns></returns>
+        /// <returns>BattlePetSpeciesRoot object</returns>
         public BattlePetSpeciesRoot GetBattlePetSpecies(int speciesId)
         {
             var battlePetSpecies = new BattlePetSpeciesRoot();
@@ -212,7 +212,7 @@ namespace SharprWowApi
         /// Get stats from species
         /// </summary>
         /// <param name="speciesId">Species ID</param>
-        /// <returns></returns>
+        /// <returns>BattlePetStatsRoot object</returns>
         public BattlePetStatsRoot GetBattlePetStats(int speciesId)
         {
             var battlePetStats = new BattlePetStatsRoot();
@@ -226,7 +226,6 @@ namespace SharprWowApi
             battlePetStats = json.GetDataFromURL<BattlePetStatsRoot>(url);
             return battlePetStats;
         }
-
 
         #endregion
 
@@ -328,16 +327,22 @@ namespace SharprWowApi
         #region Character
 
         /// <summary>
-        /// Gets realm from client
+        /// Get character. Use this if you have set the realm in ApiClient.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="characterOptions"></param>
-        /// <returns></returns>
+        /// <param name="name">The Characters name</param>
+        /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions)
         {
             return GetCharacter(_Realm, name, characterOptions);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">The Characters name</param>
+        /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string realm, string name, CharacterOptions characterOptions)
         {
             var character = new CharacterRoot();
@@ -355,11 +360,23 @@ namespace SharprWowApi
             return character;
         }
 
+        /// <summary>
+        /// Get character. Use this if you have set the realm in ApiClient.
+        /// </summary>
+        /// <param name="name">The Characters name</param>
+        /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions)
         {
             return await GetCharacterAsync(_Realm, name, characterOptions);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">The Characters name</param>
+        /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string realm, string name, CharacterOptions characterOptions)
         {
             var character = new CharacterRoot();
