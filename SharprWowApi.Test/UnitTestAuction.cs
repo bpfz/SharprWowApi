@@ -61,18 +61,21 @@ namespace SharprWowApi.Test
                 var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
-                foreach (var a in auction.Take(5))
+
+                using (auction.GetEnumerator())
                 {
-                    Assert.IsNotNull(a.Auc);
-                    Assert.IsNotNull(a.Bid);
-                    Assert.IsNotNull(a.Buyout);
-                    Assert.IsNotNull(a.Context);
-                    Assert.IsNotNull(a.Item);
-
-                    owner = a.Owner;
-
+                    Parallel.ForEach(auction.Take(5), a =>
+                    {
+                        Assert.IsNotNull(a.Auc);
+                        Assert.IsNotNull(a.Bid);
+                        Assert.IsNotNull(a.Buyout);
+                        Assert.IsNotNull(a.Context);
+                        Assert.IsNotNull(a.Item);
+                        owner = a.Owner;
+                        Console.WriteLine(owner);
+                    });
                 }
-                Console.WriteLine(owner);
+
             }
         }
     }
