@@ -5,6 +5,7 @@ using SharprWowApi.Models.ChallengeMode;
 using SharprWowApi.Models.Character;
 using SharprWowApi.Models.DataResources;
 using SharprWowApi.Models.Guild;
+using SharprWowApi.Models.Item;
 using SharprWowApi.Models.PVP;
 using SharprWowApi.Models.Quest;
 using SharprWowApi.Models.RealmStatus;
@@ -231,7 +232,7 @@ namespace SharprWowApi
         #region Challenge Mode
 
         /// <summary>
-        /// Uses realm from client.
+        /// Uses realm from apiclient.
         /// </summary>
         /// <returns></returns>
         public ChallengeRoot GetChallengeModeLeaderboard()
@@ -260,7 +261,7 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// Uses realm from client.
+        /// Uses realm from apiclient.
         /// </summary>
         /// <returns></returns>
         public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync()
@@ -332,7 +333,7 @@ namespace SharprWowApi
         /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions)
         {
-            return GetCharacter(_Realm, name, characterOptions);
+            return GetCharacter(name, characterOptions, _Realm);
         }
 
         /// <summary>
@@ -341,7 +342,7 @@ namespace SharprWowApi
         /// <param name="name">The Characters name</param>
         /// <param name="characterOptions">What characteroptions should be set (enum)</param>
         /// <returns>CharacterRoot object</returns>
-        public CharacterRoot GetCharacter(string realm, string name, CharacterOptions characterOptions)
+        public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions, string realm)
         {
             var character = new CharacterRoot();
 
@@ -366,7 +367,7 @@ namespace SharprWowApi
         /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions)
         {
-            return await GetCharacterAsync(_Realm, name, characterOptions);
+            return await GetCharacterAsync(name, characterOptions, _Realm);
         }
 
         /// <summary>
@@ -375,7 +376,7 @@ namespace SharprWowApi
         /// <param name="name">The Characters name</param>
         /// <param name="characterOptions">What characteroptions should be set (enum)</param>
         /// <returns>CharacterRoot object</returns>
-        public async Task<CharacterRoot> GetCharacterAsync(string realm, string name, CharacterOptions characterOptions)
+        public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions, string realm)
         {
             var character = new CharacterRoot();
 
@@ -405,10 +406,10 @@ namespace SharprWowApi
         /// <returns></returns>
         public GuildRoot GetGuild(string name, GuildOptions guildOptions)
         {
-            return GetGuild(_Realm, name, guildOptions);
+            return GetGuild(name, guildOptions, _Realm);
         }
 
-        public GuildRoot GetGuild(string realm, string name, GuildOptions guildOptions)
+        public GuildRoot GetGuild(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
             var url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
@@ -432,10 +433,10 @@ namespace SharprWowApi
         /// <returns></returns>
         public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions)
         {
-            return await GetGuildAsync(_Realm, name, guildOptions);
+            return await GetGuildAsync(name, guildOptions, _Realm);
         }
 
-        public async Task<GuildRoot> GetGuildAsync(string realm, string name, GuildOptions guildOptions)
+        public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
             var url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
@@ -449,6 +450,54 @@ namespace SharprWowApi
             guild = await json.GetDataFromURLAsync<GuildRoot>(url);
 
             return guild;
+        }
+
+        #endregion
+
+        //Needs testing
+        #region Items
+
+        /// <summary>
+        /// The item API provides detailed item information.
+        /// This includes item set information if this item is part of a set.
+        /// </summary>
+        /// <param name="itemID">the id of the item</param>
+        /// <returns>ItemRoot</returns>
+        public ItemRoot GetItem(string itemID)
+        {
+            var item = new ItemRoot();
+
+            var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
+                _Host,
+                itemID,
+                _Locale,
+                _APIKey);
+
+            item = json.GetDataFromURL<ItemRoot>(url);
+            return item;
+        }
+
+        /// <summary>
+        /// This data can also be found using GetItem if the item is part of a set. 
+        /// </summary>
+        /// <example>
+        /// You can use this if you already know the set ID, ie 1060. 
+        /// Can be a good choice if you don't need all stats for each item that you would get from the GetItem method.
+        /// </example>
+        /// <param name="itemSetID"></param>
+        /// <returns></returns>
+        public ItemSetRoot GetItemSet(string itemSetID)
+        {
+            var item = new ItemSetRoot();
+
+            var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
+                _Host,
+                itemSetID,
+                _Locale,
+                _APIKey);
+
+            item = json.GetDataFromURL<ItemSetRoot>(url);
+            return item;
         }
 
         #endregion
