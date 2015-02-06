@@ -150,6 +150,8 @@
     <Compile Include="Models\Item\ItemSetBonus.cs" />
     <Compile Include="Models\Item\ItemSetRoot.cs" />
     <Compile Include="Models\Item\ItemSource.cs" />
+    <Compile Include="Models\Item\ItemSpell.cs" />
+    <Compile Include="Models\Item\ItemSpellDesc.cs" />
     <Compile Include="Models\Item\ItemWeaponInfo.cs" />
     <Compile Include="Models\PVP\LeaderboardRoot.cs" />
     <Compile Include="Models\Quest\QuestRoot.cs" />

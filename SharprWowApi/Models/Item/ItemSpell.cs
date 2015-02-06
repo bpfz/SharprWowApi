@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SharprWowApi.Models.Item
 {
-    class ItemSpell
+    public class ItemSpell
     {
         public int SpellId { get; set; }
         public ItemSpellDesc Spell { get; set; }
