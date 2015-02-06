@@ -1,6 +1,10 @@
 ###SharprWowApi
-SharprWowApi is a strongly typed .NET library for accessing blizzards Wow API (https://dev.battle.net/).
+SharprWowApi is a strongly typed .NET library for accessing [Blizzards WoW API](https://dev.battle.net/).
 
+Install using [Nuget](https://www.nuget.org/packages/SharprWowApi/)
+````
+PM> Install-Package SharprWowApi
+````
 ## Usage example
 
 #####Get achievement By ID
@@ -16,8 +20,8 @@ Console.WriteLine(achievement.Title);
 ```c#
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var characterOne = client.GetCharacter("Realm", "CharacterName", CharacterOptions.None);
-var characterTwo = client.GetCharacter("Realm", "CharacterName", CharacterOptions.GetPvP);
+var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None, "Realm");
+var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.GetPvP, "Realm");
 
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -25,7 +29,7 @@ Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
 You can also set __realm__ in the _ApiClient_ and use extention methods if all characters you're getting are from the same realm.
 
 ```C#
-client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
+client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm");
 
 var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None);
 var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.None);
