@@ -550,7 +550,7 @@ namespace SharprWowApi
         /// </summary>
         /// <param name="achievementId">Quest ID</param>
         /// <returns>QuestRoot object</returns>
-        public QuestRoot getAchievement(int questId)
+        public QuestRoot GetQuest(int questId)
         {
             var quest = new QuestRoot();
 
@@ -648,6 +648,10 @@ namespace SharprWowApi
             return achievementsData;
         }
 
+        /// <summary>
+        /// Achievements attainable by individual characters (or accounts)
+        /// </summary>
+        /// <returns>DataAchievementRoot object</returns>
         public async Task<DataAchievementRoot> GetAchievementsDataAsync()
         {
             var achievementsData = new DataAchievementRoot();
@@ -845,7 +849,5 @@ namespace SharprWowApi
         #endregion
 
         #endregion
-
-
     }
 }
