@@ -12,6 +12,28 @@ namespace SharprWowApi.Utility
 {
     public class JsonUtility
     {
+        #region downloadstring
+        private string DownloadString(string url)
+        {
+            var webClient = new GzipWebClient();
+            webClient.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+            var downloadedString = webClient.DownloadString(url);
+
+            return downloadedString;
+        }
+
+        private async Task<String> DownloadStringAsync(string url)
+        {
+
+            var webClient = new GzipWebClient();
+            webClient.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+            var downloadedString = await webClient.DownloadStringTaskAsync(url);
+
+            return downloadedString;
+        }
+        #endregion
+
+        #region deserialize
         /// <summary>
         /// Takes json string, downloads it with webclient, 
         /// initializes memorystream, read stream w streamreader
@@ -21,28 +43,22 @@ namespace SharprWowApi.Utility
         /// <param name="url">Url for the json</param>
         /// <returns>Deserialized json object.
         /// </returns>
-        public T DeserializeJson<T>(string url) where T : class
+        private T DeserializeJson<T>(string url) where T : class
         {
             try
             {
-                using (var webClient = new WebClient())
+                var downloadedString = DownloadString(url);
+
+                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
                 {
+                    var sr = new StreamReader(memoryStream);
+                    var jsonTextReader = new JsonTextReader(sr);
 
-                    var jsonString = webClient.DownloadString(url);
-
-                    using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(jsonString)))
-                    {
-                        var sr = new StreamReader(memoryStream);
-
-                        var jsonTextReader = new JsonTextReader(sr);
-
-                        var serializer = new JsonSerializer();
-
-                        return serializer.Deserialize<T>(jsonTextReader);
-                    }
+                    var serializer = new JsonSerializer();
+                    return serializer.Deserialize<T>(jsonTextReader);
                 }
-
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.GetType().FullName);
@@ -51,33 +67,22 @@ namespace SharprWowApi.Utility
             }
         }
 
-
-        private async Task<String> DownloadStringAsync(string url)
+        private async Task<T> DeserializeJsonAsync<T>(string url) where T : class
         {
-            var downloadedString = await new WebClient().DownloadStringTaskAsync(url);
-
-            return downloadedString;
-        }
-        public async Task<T> DeserializeJsonAsync<T>(string url) where T : class
-        {
-            string downloadedString = await DownloadStringAsync(url);
-
             try
             {
-                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
-                {
-                    using (var sr = new StreamReader(memoryStream))
-                    {
-                        using (var jsonTextReader = new JsonTextReader(sr))
-                        {
-                            var serializer = new JsonSerializer();
-                            var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
-                            deserialize.Start();
-                            T apiResponseObject = await deserialize;
+                var downloadedString = await DownloadStringAsync(url);
 
-                            return apiResponseObject;
-                        }
-                    }
+                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
+                using (var sr = new StreamReader(memoryStream))
+                using (var jsonTextReader = new JsonTextReader(sr))
+                {
+                    var serializer = new JsonSerializer();
+                    var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
+                    deserialize.Start();
+                    T apiResponseObject = await deserialize;
+
+                    return apiResponseObject;
                 }
             }
             catch (Exception ex)
@@ -85,10 +90,11 @@ namespace SharprWowApi.Utility
                 throw ex;
             }
         }
+        #endregion
 
+        #region getData
         public T GetDataFromURL<T>(string url) where T : class
         {
-
             try
             {
                 return DeserializeJson<T>(url);
@@ -104,7 +110,6 @@ namespace SharprWowApi.Utility
 
         public async Task<T> GetDataFromURLAsync<T>(string url) where T : class
         {
-           
             try
             {
                 return await DeserializeJsonAsync<T>(url);
@@ -117,5 +122,6 @@ namespace SharprWowApi.Utility
                 throw ex;
             }
         }
+        #endregion
     }
 }
