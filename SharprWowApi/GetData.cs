@@ -11,9 +11,7 @@ using SharprWowApi.Models.RealmStatus;
 using SharprWowApi.Models.Recipe;
 using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
-using System;
 using System.Threading.Tasks;
-using SharprWowApi.Utility;
 
 namespace SharprWowApi
 {
@@ -21,11 +19,11 @@ namespace SharprWowApi
     {
         JsonUtility json = new JsonUtility();
 
-        public Region _Region { get; internal set; }
-        public Locale _Locale { get; internal set; }
-        public string _APIKey { get; internal set; }
-        public string _Host { get; internal set; }
-        public string _Realm { get; internal set; }
+        internal Region _Region { get; set; }
+        internal Locale _Locale { get; set; }
+        internal string _APIKey { get; set; }
+        internal string _Host { get; set; }
+        internal string _Realm { get; set; }
 
         //done
         #region achievement
