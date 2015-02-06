@@ -12,7 +12,7 @@ namespace SharprWowApi.Models.Item
         public int Stackable { get; set; }
         public int ItemBind { get; set; }
         public List<ItemBonusStat> BonusStats { get; set; }
-        public List<object> ItemSpells { get; set; }
+        public List<ItemSpell> ItemSpells { get; set; }
         public int BuyPrice { get; set; }
         public int ItemClass { get; set; }
         public int ItemSubClass { get; set; }
