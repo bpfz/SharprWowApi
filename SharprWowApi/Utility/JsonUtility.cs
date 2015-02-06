@@ -24,7 +24,11 @@ namespace SharprWowApi.Utility
 
         private async Task<String> DownloadStringAsync(string url)
         {
-            using (var httpClient = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip }))
+            using (var httpClient = new HttpClient(
+                new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+                }))
             {
                 var downloadedString = await httpClient.GetStringAsync(url);
                 return downloadedString;
