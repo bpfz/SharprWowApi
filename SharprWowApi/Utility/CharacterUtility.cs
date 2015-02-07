@@ -8,76 +8,114 @@ namespace SharprWowApi.Utility
 {
     public class CharacterUtility
     {
-
-        private const string AllOptions =
-        "guild,stats,talents,items,reputation,titles,professions,appearance,petSlots,mounts,pets,achievements,progression,feed,pvp,quests,hunterPets";
-
         public static string BuildOptionalFields(CharacterOptions characterOptions)
         {
-            var query = "&fields=";
+            var fields = "&fields=";
+            var fieldList = new List<object>();
 
-            switch (characterOptions)
+            if ((characterOptions & CharacterOptions.Guild) == CharacterOptions.Guild)
+            { fieldList.Add("guild"); }
+            if ((characterOptions & CharacterOptions.Stats) == CharacterOptions.Stats)
+            { fieldList.Add("stats"); }
+            if ((characterOptions & CharacterOptions.Talents) == CharacterOptions.Talents)
+            { fieldList.Add("talents"); }
+            if ((characterOptions & CharacterOptions.Items) == CharacterOptions.Items)
+            { fieldList.Add("items"); }
+            if ((characterOptions & CharacterOptions.Reputation) == CharacterOptions.Reputation)
+            { fieldList.Add("reputation"); }
+            if ((characterOptions & CharacterOptions.Titles) == CharacterOptions.Titles)
+            { fieldList.Add("titles"); }
+            if ((characterOptions & CharacterOptions.Professions) == CharacterOptions.Professions)
+            { fieldList.Add("professions"); }
+            if ((characterOptions & CharacterOptions.Appearance) == CharacterOptions.Appearance)
+            { fieldList.Add("appearance"); }
+            if ((characterOptions & CharacterOptions.PetSlots) == CharacterOptions.PetSlots)
+            { fieldList.Add("petSlots"); }
+            if ((characterOptions & CharacterOptions.Mounts) == CharacterOptions.Mounts)
+            { fieldList.Add("mounts"); }
+            if ((characterOptions & CharacterOptions.Pets) == CharacterOptions.Pets)
+            { fieldList.Add("pets"); }
+            if ((characterOptions & CharacterOptions.Achievements) == CharacterOptions.Achievements)
+            { fieldList.Add("achievements"); }
+            if ((characterOptions & CharacterOptions.Progression) == CharacterOptions.Progression)
+            { fieldList.Add("progression"); }
+            if ((characterOptions & CharacterOptions.Feed) == CharacterOptions.Feed)
+            { fieldList.Add("feed"); }
+            if ((characterOptions & CharacterOptions.PvP) == CharacterOptions.PvP)
+            { fieldList.Add("pvp"); }
+            if ((characterOptions & CharacterOptions.Quests) == CharacterOptions.Quests)
+            { fieldList.Add("quests"); }
+            if ((characterOptions & CharacterOptions.HunterPets) == CharacterOptions.HunterPets)
+            { fieldList.Add("hunterPets"); }
+
+            if (fieldList.Count == 0)
             {
-                case CharacterOptions.GetGuild:
-                    query += "guild";
-                    break;
-                case CharacterOptions.GetStats:
-                    query += "stats";
-                    break;
-                case CharacterOptions.GetTalents:
-                    query += "talents";
-                    break;
-                case CharacterOptions.GetItems:
-                    query += "items";
-                    break;
-                case CharacterOptions.GetReputation:
-                    query += "reputation";
-                    break;
-                case CharacterOptions.GetTitles:
-                    query += "titles";
-                    break;
-                case CharacterOptions.GetProfessions:
-                    query += "professions";
-                    break;
-                case CharacterOptions.GetAppearance:
-                    query += "appearance";
-                    break;
-                case CharacterOptions.GetPetSlots:
-                    query += "petSlots";
-                    break;
-                case CharacterOptions.GetMounts:
-                    query += "mounts";
-                    break;
-                case CharacterOptions.GetPets:
-                    query += "pets";
-                    break;
-                case CharacterOptions.GetAchievements:
-                    query += "achievements";
-                    break;
-                case CharacterOptions.GetProgression:
-                    query += "progression";
-                    break;
-                case CharacterOptions.GetFeed:
-                    query += "feed";
-                    break;
-                case CharacterOptions.GetPvP:
-                    query += "pvp";
-                    break;
-                case CharacterOptions.GetQuests:
-                    query += "quests";
-                    break;
-                case CharacterOptions.GetHunterPets:
-                    query += "hunterPets";
-                    break;
-                case CharacterOptions.GetEverything:
-                    query += AllOptions;
+                return string.Empty;
+            }
+            fields += string.Join(",", fieldList);
+            return fields;
 
-                    break;
-                default:
-                    return string.Empty;
-            };
-
-            return query;
+            /*  private const string AllOptions =
+       "guild,stats,talents,items,reputation,titles,professions,appearance,petSlots,mounts,pets,Achievements,progression,feed,pvp,quests,hunterPets";
+                       switch (characterOptions)
+                       {
+                           case CharacterOptions.Guild:
+                               fields += "guild";
+                               break;
+                           case CharacterOptions.Stats:
+                               fields += "stats";
+                               break;
+                           case CharacterOptions.Talents:
+                               fields += "talents";
+                               break;
+                           case CharacterOptions.Items:
+                               fields += "items";
+                               break;
+                           case CharacterOptions.Reputation:
+                               fields += "reputation";
+                               break;
+                           case CharacterOptions.Titles:
+                               fields += "titles";
+                               break;
+                           case CharacterOptions.Professions:
+                               fields += "professions";
+                               break;
+                           case CharacterOptions.Appearance:
+                               fields += "appearance";
+                               break;
+                           case CharacterOptions.PetSlots:
+                               fields += "petSlots";
+                               break;
+                           case CharacterOptions.Mounts:
+                               fields += "mounts";
+                               break;
+                           case CharacterOptions.Pets:
+                               fields += "pets";
+                               break;
+                           case CharacterOptions.Achievements:
+                               fields += "Achievements";
+                               break;
+                           case CharacterOptions.Progression:
+                               fields += "progression";
+                               break;
+                           case CharacterOptions.Feed:
+                               fields += "feed";
+                               break;
+                           case CharacterOptions.PvP:
+                               fields += "pvp";
+                               break;
+                           case CharacterOptions.Quests:
+                               fields += "quests";
+                               break;
+                           case CharacterOptions.HunterPets:
+                               fields += "hunterPets";
+                               break;
+                           case CharacterOptions.AllOptions:
+                               fields += AllOptions;
+                               break;
+                           default:
+                               return string.Empty;
+                       };*/
         }
     }
 }
