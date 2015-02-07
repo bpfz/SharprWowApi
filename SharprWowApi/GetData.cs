@@ -13,12 +13,13 @@ using SharprWowApi.Models.Recipe;
 using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SharprWowApi
 {
     public abstract class GetData
     {
-        JsonUtility json = new JsonUtility();
+        private JsonUtility json = new JsonUtility();
 
         internal Region _Region { get; set; }
         internal Locale _Locale { get; set; }
@@ -149,14 +150,12 @@ namespace SharprWowApi
             if (auctionFiles != null)
             {
                 var auctionUrl = "";
-
                 foreach (var auctionFile in auctionFiles.Files)
                 {
                     auctionUrl = auctionFile.Url;
                 }
 
                 var auctions = new AuctionsRoot();
-
                 auctions = await json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
 
                 return auctions;
