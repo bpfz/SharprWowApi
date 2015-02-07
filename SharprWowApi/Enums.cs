@@ -36,37 +36,42 @@ namespace SharprWowApi
         zh_CN
     }
 
+    [Flags]
     public enum CharacterOptions
     {
-        None,
-        GetGuild,
-        GetStats,
-        GetTalents,
-        GetItems,
-        GetReputation,
-        GetTitles,
-        GetProfessions,
-        GetAppearance,
-        GetPetSlots,
-        GetMounts,
-        GetPets,
-        GetAchievements,
-        GetProgression,
-        GetFeed,
-        GetPvP,
-        GetQuests,
-        GetHunterPets,
-        GetEverything
+        None = 0,
+        Guild = 1,
+        Stats = 2,
+        Talents = 4,
+        Items = 8,
+        Reputation = 16,
+        Titles =  32,
+        Professions = 64,
+        Appearance = 128,
+        PetSlots = 256,
+        Mounts = 512,
+        Pets = 1024,
+        Achievements = 2048,
+        Progression = 4096,
+        Feed =  8192,
+        PvP = 16384,
+        Quests = 32768,
+        HunterPets = 65536,
+        AllOptions = Guild | Stats | Talents | Items
+            | Reputation | Titles | Professions | Appearance
+            | PetSlots | Mounts | Pets | Achievements
+            | Progression | Feed | PvP | Quests | HunterPets
     }
 
+    [Flags]
     public enum GuildOptions
     {
-        None,
-        GetMembers,
-        GetAchievements,
-        GetNews,
-        GetChallenge,
-        GetEverything
+        None = 0,
+        Members = 1,
+        Achievements = 2,
+        News = 4,
+        Challenge = 8,
+        AllOptions = Members | Achievements | News | Challenge
     }
 
     public enum LeaderboardOptions
