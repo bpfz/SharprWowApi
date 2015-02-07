@@ -39,8 +39,14 @@ Console.WriteLine(characterOne.Name);
 Console.WriteLine(characterTwo.Name);
 Console.WriteLine(characterThree.Name);
 ```
-
-#####Usage example ASP.NET MVC
+#####Create your own Guild & CharacterOptions (v1.0.2)
+Can be useful if you need to retrieve more than a single field but less than all.
+```C#
+var options = GuildOptions.Members | GuildOptions.Challenge;
+var guild = client.GetGuild("GuildName", options, "Realm");
+...
+```
+####Usage example ASP.NET MVC
 Returns a strongly typed _GuildRoot_ object to the view.
 ```C#
 using SharprWowApi.Models.Guild;
