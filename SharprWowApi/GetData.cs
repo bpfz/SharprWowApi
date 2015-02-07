@@ -62,11 +62,13 @@ namespace SharprWowApi
         #endregion
 
         //needs testing
+        //Rare bug: Sometimes Unexpected character encountered while parsing value: <. Path '', line 0, position 0. 
         #region Auctions
 
         /// <summary>
         /// Realm from client
         /// </summary>
+
         /// <returns>AuctionFilesRoot</returns>
         public AuctionFilesRoot GetAuctionFile()
         {
@@ -96,6 +98,9 @@ namespace SharprWowApi
         /// <summary>
         /// Realm from client
         /// </summary>
+        ///<remarks>
+        ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+        ///</remarks>
         /// <returns>AuctionsRoot</returns>
         public AuctionsRoot GetAuctions()
         {
@@ -105,6 +110,9 @@ namespace SharprWowApi
         /// <summary>
         /// 
         /// </summary>
+        ///<remarks>
+        /// sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+        /// </remarks>
         /// <param name="realm"></param>
         /// <returns>AuctionsRoot</returns>
         public AuctionsRoot GetAuctions(string realm)
@@ -132,6 +140,9 @@ namespace SharprWowApi
         /// <summary>
         /// Gets Realm from client
         /// </summary>
+        ///<remarks>
+        ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+        ///</remarks>
         /// <returns>Task<AuctionsRoot></returns>
         public async Task<AuctionsRoot> GetAuctionsAsync()
         {
@@ -141,6 +152,9 @@ namespace SharprWowApi
         /// <summary>
         /// Does not block main thread.
         /// </summary>
+        ///<remarks>
+        ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+        ///</remarks>
         /// <param name="realm"></param>
         /// <returns>Task<AuctionsRoot></returns>
         public async Task<AuctionsRoot> GetAuctionsAsync(string realm)
@@ -240,7 +254,7 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// Leaderboard for challenge mode on "realm"
+        /// Leaderboard for Challenge mode on "realm"
         /// </summary>
         /// <param name="realm">realm to get CM leaderboard from</param>
         /// <returns>ChallengeRoot object</returns>
@@ -248,7 +262,7 @@ namespace SharprWowApi
         {
             var challenge = new ChallengeRoot();
 
-            string url = string.Format(@"{0}/wow/challenge/{1}?locale={2}&apikey={3}",
+            string url = string.Format(@"{0}/wow/Challenge/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
                 _Locale,
@@ -272,7 +286,7 @@ namespace SharprWowApi
         {
             var challenge = new ChallengeRoot();
 
-            var url = string.Format(@"{0}/wow/challenge/{1}?locale={2}&apikey={3}",
+            var url = string.Format(@"{0}/wow/Challenge/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
                 _Locale,
@@ -284,14 +298,14 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// Leaderboard for challenge mode for region (_Locale)
+        /// Leaderboard for Challenge mode for region (_Locale)
         /// </summary>
         /// <returns>ChallengeRoot object</returns>
         public ChallengeRoot GetChallengeModeLeaderboardForRegion()
         {
             var challenge = new ChallengeRoot();
 
-            var url = string.Format(@"{0}/wow/challenge/region?locale={1}&apikey={2}",
+            var url = string.Format(@"{0}/wow/Challenge/region?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
@@ -302,14 +316,14 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// Leaderboard for challenge mode for region (_Locale)
+        /// Leaderboard for Challenge mode for region (_Locale)
         /// </summary>
         /// <returns>ChallengeRoot object</returns>
         public async Task<ChallengeRoot> GetChallengeModeLeaderboardForRegionAsync()
         {
             var challenge = new ChallengeRoot();
 
-            var url = string.Format(@"{0}/wow/challenge/region?locale={1}&apikey={2}",
+            var url = string.Format(@"{0}/wow/Challenge/region?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
@@ -411,12 +425,12 @@ namespace SharprWowApi
         public GuildRoot GetGuild(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
-            var url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
+            var url = string.Format(@"{0}/wow/guild/{1}/{2}?{3}&locale={4}&apikey={5}",
                 _Host,
                 realm,
                 name,
-                _Locale,
                 GuildUtility.BuildOptionalFields(guildOptions),
+                _Locale,
                 _APIKey);
 
             guild = json.GetDataFromURL<GuildRoot>(url);
@@ -438,12 +452,12 @@ namespace SharprWowApi
         public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
-            var url = string.Format(@"{0}/wow/guild/{1}/{2}?locale={3}{4}&apikey={5}",
+            var url = string.Format(@"{0}/wow/guild/{1}/{2}?{3}&locale={4}&apikey={5}",
                 _Host,
                 realm,
                 name,
-                _Locale,
                 GuildUtility.BuildOptionalFields(guildOptions),
+                _Locale,
                 _APIKey);
 
             guild = await json.GetDataFromURLAsync<GuildRoot>(url);
@@ -710,7 +724,7 @@ namespace SharprWowApi
         //needs testing
         #region Guild Achivements
         /// <summary>
-        /// The guild achievements data API provides a list of all of the achievements 
+        /// The guild Achievements data API provides a list of all of the Achievements 
         /// that guilds can earn as well as the category structure and hierarchy.
         /// </summary>
         /// <returns>DataGuildAchivementRoot object</returns>
@@ -718,7 +732,7 @@ namespace SharprWowApi
         {
             var achievementData = new DataGuildAchivementRoot();
 
-            var url = string.Format(@"{0}/wow/data/guild/achievements?locale={1}&apikey={2}",
+            var url = string.Format(@"{0}/wow/data/guild/Achievements?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
@@ -731,7 +745,7 @@ namespace SharprWowApi
         {
             var achievementData = new DataGuildAchivementRoot();
 
-            var url = string.Format(@"{0}/wow/data/guild/achievements?locale={1}&apikey={2}",
+            var url = string.Format(@"{0}/wow/data/guild/Achievements?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
