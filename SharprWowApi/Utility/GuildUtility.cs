@@ -13,30 +13,28 @@ namespace SharprWowApi.Utility
         public static string BuildOptionalFields(GuildOptions realmOptions)
         {
             string query = "&fields=";
-            List<string> fields = new List<string>();
 
             switch (realmOptions)
             {
                 case GuildOptions.GetMembers:
-                    fields.Add("members");
+                    query += "members";
                     break;
                 case GuildOptions.GetAchievements:
-                    fields.Add("achievements");
+                    query += "achievements";
                     break;
                 case GuildOptions.GetNews:
-                    fields.Add("news");
+                    query += "news";
                     break;
                 case GuildOptions.GetChallenge:
-                    fields.Add("challenge");
+                    query += "challenge";
                     break;
                 case GuildOptions.GetEverything:
-                    fields.Add(AllOptions);
+                    query += AllOptions;
                     break;
                 default:
                     return string.Empty;
             }
 
-            query += fields[0];
             return query;
         }
     }
