@@ -50,7 +50,7 @@ namespace SharprWowApi
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
         /// <param name="locale">_Locale, en_gb, en_us etc. Use "_Locale" Property"</param>
         /// <param name="apiKey">Your API key (get one at dev.battle.net)</param>
-        public ApiClient(Region region, Locale locale, string realm, string apiKey)
+        public ApiClient(Region region, Locale locale, string apiKey, string realm)
         {
 
             if (!string.IsNullOrEmpty(apiKey))
