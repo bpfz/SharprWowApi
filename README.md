@@ -1,5 +1,5 @@
 ###SharprWowApi
-SharprWowApi is a strongly typed .NET library for accessing [Blizzards WoW API](https://dev.battle.net/).
+SharprWowApi is a strongly typed .NET wrapper library for accessing [Blizzards WoW API](https://dev.battle.net/).
 
 Install using [Nuget](https://www.nuget.org/packages/SharprWowApi/)
 ````
@@ -47,7 +47,7 @@ using SharprWowApi.Models.Guild;
 
 public ActionResult Members()
 {
-    var client = new ApiClient(Region.EU, Locale.en_GB, "Grim Batol", ApiKey.Value);
+    var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Grim Batol");
     var guild = client.GetGuild("GuildName", GuildOptions.GetEverything);
     
      return View(guild);
