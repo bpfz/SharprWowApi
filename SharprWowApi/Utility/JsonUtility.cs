@@ -92,7 +92,7 @@ namespace SharprWowApi.Utility
                 var downloadedString = await DownloadStringAsync(url);
 
                 //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
-                using (var memoryStream = new MemoryStream(downloadedString, true))
+                using (var memoryStream = new MemoryStream(downloadedString, false))
                 using (var sr = new StreamReader(memoryStream))
                 using (var jsonTextReader = new JsonTextReader(sr))
                 {
