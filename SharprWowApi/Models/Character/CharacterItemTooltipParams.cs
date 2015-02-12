@@ -8,6 +8,6 @@ namespace SharprWowApi.Models.Character
 {
     public class CharacterItemTooltipParams
     {
-        public int transmogItem { get; set; }
+        public int TransmogItem { get; set; }
     }
 }

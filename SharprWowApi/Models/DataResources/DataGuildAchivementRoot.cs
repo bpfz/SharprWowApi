@@ -8,13 +8,13 @@ namespace SharprWowApi.Models.DataResources
 {
 
     /// <summary>
-    /// The guild achievements data API provides a list of all of the achievements that
+    /// The guild Achievements data API provides a list of all of the Achievements that
     /// guilds can earn as well as the category structure and hierarchy.
     /// </summary>
     public class DataGuildAchivementRoot
     {
         /// <summary>
-        /// The guild achievements data API provides a list of all of the achievements
+        /// The guild Achievements data API provides a list of all of the Achievements
         /// that guilds can earn as well as the category structure and hierarchy.
         /// </summary>
         public List<Achievement> achievements { get; set; }

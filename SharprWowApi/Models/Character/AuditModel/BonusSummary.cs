@@ -8,8 +8,8 @@ namespace SharprWowApi.Models.Character.AuditModel
 {
     public class BonusSummary
     {
-        public List<object> defaultBonusLists { get; set; }
-        public List<object> chanceBonusLists { get; set; }
-        public List<object> bonusChances { get; set; }
+        public List<object> DefaultBonusLists { get; set; }
+        public List<object> ChanceBonusLists { get; set; }
+        public List<object> BonusChances { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace SharprWowApi.Models.Character.AuditModel
 {
     public class ItemSource
     {
-        public int sourceId { get; set; }
-        public string sourceType { get; set; }
+        public int SourceId { get; set; }
+        public string SourceType { get; set; }
     }
 }

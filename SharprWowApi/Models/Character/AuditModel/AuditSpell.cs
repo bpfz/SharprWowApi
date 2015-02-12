@@ -8,10 +8,10 @@ namespace SharprWowApi.Models.Character.AuditModel
 {
     public class AuditSpell
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string icon { get; set; }
-        public string description { get; set; }
-        public string castTime { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Icon { get; set; }
+        public string Description { get; set; }
+        public string CastTime { get; set; }
     }
 }
