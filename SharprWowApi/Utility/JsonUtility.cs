@@ -13,16 +13,19 @@ namespace SharprWowApi.Utility
     public class JsonUtility
     {
         #region downloadstring
+
         private string DownloadString(string url)
         {
-            var webClient = new GzipWebClient();
-            webClient.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-            var downloadedString = webClient.DownloadString(url);
+            using (var webClient = new GzipWebClient())
+            {
+                webClient.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+                var downloadedString = webClient.DownloadString(url);
 
-            return downloadedString;
+                return downloadedString;
+            }
         }
 
-        private async Task<String> DownloadStringAsync(string url)
+        private async Task<byte[]> DownloadStringAsync(string url)
         {
             using (var httpClient = new HttpClient(
                 new HttpClientHandler
@@ -30,13 +33,25 @@ namespace SharprWowApi.Utility
                     AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
                 }))
             {
-                var downloadedString = await httpClient.GetStringAsync(url);
-                return downloadedString;
+                // var downloadedString = await httpClient.GetStringAsync(url);
+                var download = ProcessURLAsync(url, httpClient);
+                var downloaded = await download;
+
+                return downloaded;
             }
         }
+
+        private async Task<byte[]> ProcessURLAsync(string url, HttpClient client)
+        {
+            var byteArray = await client.GetByteArrayAsync(url);
+
+            return byteArray;
+        }
+
         #endregion
 
         #region deserialize
+
         /// <summary>
         /// Takes json string, downloads it with webclient, 
         /// initializes memorystream, read stream w streamreader
@@ -76,7 +91,8 @@ namespace SharprWowApi.Utility
             {
                 var downloadedString = await DownloadStringAsync(url);
 
-                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
+                //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
+                using (var memoryStream = new MemoryStream(downloadedString, true))
                 using (var sr = new StreamReader(memoryStream))
                 using (var jsonTextReader = new JsonTextReader(sr))
                 {
@@ -93,10 +109,12 @@ namespace SharprWowApi.Utility
                 throw ex;
             }
         }
+
         #endregion
 
         #region getData
-        public T GetDataFromURL<T>(string url) where T : class
+
+        internal T GetDataFromURL<T>(string url) where T : class
         {
             try
             {
@@ -104,14 +122,14 @@ namespace SharprWowApi.Utility
             }
             catch (Exception ex)
             {
-                Console.WriteLine("GetDataFromURL");
+                Console.WriteLine("GetDataFromURL Exception ---");
                 Console.WriteLine(ex.GetType().FullName);
                 Console.WriteLine(ex.Message);
                 throw;
             }
         }
 
-        public async Task<T> GetDataFromURLAsync<T>(string url) where T : class
+        internal async Task<T> GetDataFromURLAsync<T>(string url) where T : class
         {
             try
             {
@@ -119,12 +137,13 @@ namespace SharprWowApi.Utility
             }
             catch (Exception ex)
             {
-                Console.WriteLine("GetDataFromURLAsync");
+                Console.WriteLine("GetDataFromURLAsync Exception ---");
                 Console.WriteLine(ex.GetType().FullName);
                 Console.WriteLine(ex.Message);
                 throw ex;
             }
         }
+
         #endregion
     }
 }
