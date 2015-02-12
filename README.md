@@ -76,9 +76,10 @@ public ActionResult Members()
 Since some of the data returned by blizzards wow API is quite big (especially auction data & PVP leaderboard), it can be a good idea to use the async methods even though the json parsing is not async. Since it offloads the json deserialization to a new thread.  (https://github.com/JamesNK/Newtonsoft.Json/issues/66). 
 
 ```C#
-var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
+var client = new ApiClientAsync(Region.EU, Locale.en_GB, ApiKey.Value);
 
-var getAuctionFile = client.GetAuctionFile("Realm");
+//await
+var getAuctionFile = await client.GetAuctionFileAsync("Realm");
 var someCachedValue = "...";
 
 //Check when the auctiondata was last modified (updated)
@@ -99,4 +100,21 @@ var lm = from f in getAuctionFile.Files
        });
   }
  ...
+```
+####Get all members from a guild as Character objects (1.1)
+An signifcant speed increase compared to a synchronous operation. It's Noteworthy that if you try to parse a guild with too many members (without setting how many members to take to a low enough number) and the amount of requests to the api gets too high, you will get an 403 (forbidden) error. 
+
+![Async vs Sync Test](http://i.imgur.com/nuCpGjQ.jpg)
+
+Both test cases used the same list of (64) members. They both get CharacterRoot based on those names and adds them to a list. 
+
+```C#
+var client = new ApiClientAsync(Region,Locale, apiKey)
+var guild = await client.GetGuildAsync("GuildName", GuildOptions.Members);
+
+var charc = await 
+    client.GetAllCharactersInGuildAsync(List of guild.Members, 
+        CharacterOptions.AllOptions,
+        int level, int HowManyMembersToTake);
+
 ```
