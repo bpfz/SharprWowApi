@@ -21,7 +21,7 @@ Console.WriteLine(achievement.Title);
 var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value);
 
 var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None, "Realm");
-var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.GetPvP, "Realm");
+var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.PvP, "Realm");
 
 Console.WriteLine(character.Name);
 Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -39,8 +39,14 @@ Console.WriteLine(characterOne.Name);
 Console.WriteLine(characterTwo.Name);
 Console.WriteLine(characterThree.Name);
 ```
-
-#####Usage example ASP.NET MVC
+#####Create your own Guild & CharacterOptions (v1.0.2)
+Can be useful if you need to retrieve more than a single field but less than all.
+```C#
+var options = GuildOptions.Members | GuildOptions.Challenge;
+var guild = client.GetGuild("GuildName", options, "Realm");
+...
+```
+####Usage example ASP.NET MVC
 Returns a strongly typed _GuildRoot_ object to the view.
 ```C#
 using SharprWowApi.Models.Guild;
@@ -48,7 +54,7 @@ using SharprWowApi.Models.Guild;
 public ActionResult Members()
 {
     var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Grim Batol");
-    var guild = client.GetGuild("GuildName", GuildOptions.GetEverything);
+    var guild = client.GetGuild("GuildName", GuildOptions.AllOptions);
     
      return View(guild);
 }
@@ -82,14 +88,14 @@ var lm = from f in getAuctionFile.Files
   if (!lm.Equals(someCachedValue))
   {
     //await here
-    var getAuction = await client.GetAuctionsAsync("Grim batol");
+    var getAuction = await client.GetAuctionsAsync("Realm");
     var auction = getAuction.Auctions.Auction;
     
   using (auction.GetEnumerator())
   {
-       Parallel.ForEach(auction.Take(5), a =>
+       Parallel.ForEach(auction, a =>
        {
-         Console.WriteLine(a.owner);
+         Console.WriteLine(a.Item);
        });
   }
  ...
