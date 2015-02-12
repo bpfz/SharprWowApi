@@ -13,39 +13,39 @@ namespace SharprWowApi.Utility
             var fields = "&fields=";
             var fieldList = new List<object>();
 
-            if ((characterOptions & CharacterOptions.Guild) == CharacterOptions.Guild)
+            if ((characterOptions & CharacterOptions.Guild).Equals(CharacterOptions.Guild))
             { fieldList.Add("guild"); }
-            if ((characterOptions & CharacterOptions.Stats) == CharacterOptions.Stats)
+            if ((characterOptions & CharacterOptions.Stats).Equals(CharacterOptions.Stats))
             { fieldList.Add("stats"); }
-            if ((characterOptions & CharacterOptions.Talents) == CharacterOptions.Talents)
+            if ((characterOptions & CharacterOptions.Talents).Equals(CharacterOptions.Talents))
             { fieldList.Add("talents"); }
-            if ((characterOptions & CharacterOptions.Items) == CharacterOptions.Items)
+            if ((characterOptions & CharacterOptions.Items).Equals(CharacterOptions.Items))
             { fieldList.Add("items"); }
-            if ((characterOptions & CharacterOptions.Reputation) == CharacterOptions.Reputation)
+            if ((characterOptions & CharacterOptions.Reputation).Equals(CharacterOptions.Reputation))
             { fieldList.Add("reputation"); }
-            if ((characterOptions & CharacterOptions.Titles) == CharacterOptions.Titles)
+            if ((characterOptions & CharacterOptions.Titles).Equals(CharacterOptions.Titles))
             { fieldList.Add("titles"); }
-            if ((characterOptions & CharacterOptions.Professions) == CharacterOptions.Professions)
+            if ((characterOptions & CharacterOptions.Professions).Equals(CharacterOptions.Professions))
             { fieldList.Add("professions"); }
-            if ((characterOptions & CharacterOptions.Appearance) == CharacterOptions.Appearance)
+            if ((characterOptions & CharacterOptions.Appearance).Equals(CharacterOptions.Appearance))
             { fieldList.Add("appearance"); }
-            if ((characterOptions & CharacterOptions.PetSlots) == CharacterOptions.PetSlots)
+            if ((characterOptions & CharacterOptions.PetSlots).Equals(CharacterOptions.PetSlots))
             { fieldList.Add("petSlots"); }
-            if ((characterOptions & CharacterOptions.Mounts) == CharacterOptions.Mounts)
+            if ((characterOptions & CharacterOptions.Mounts).Equals(CharacterOptions.Mounts))
             { fieldList.Add("mounts"); }
-            if ((characterOptions & CharacterOptions.Pets) == CharacterOptions.Pets)
+            if ((characterOptions & CharacterOptions.Pets).Equals(CharacterOptions.Pets))
             { fieldList.Add("pets"); }
-            if ((characterOptions & CharacterOptions.Achievements) == CharacterOptions.Achievements)
+            if ((characterOptions & CharacterOptions.Achievements).Equals(CharacterOptions.Achievements))
             { fieldList.Add("achievements"); }
-            if ((characterOptions & CharacterOptions.Progression) == CharacterOptions.Progression)
+            if ((characterOptions & CharacterOptions.Progression).Equals(CharacterOptions.Progression))
             { fieldList.Add("progression"); }
-            if ((characterOptions & CharacterOptions.Feed) == CharacterOptions.Feed)
+            if ((characterOptions & CharacterOptions.Feed).Equals(CharacterOptions.Feed))
             { fieldList.Add("feed"); }
-            if ((characterOptions & CharacterOptions.PvP) == CharacterOptions.PvP)
+            if ((characterOptions & CharacterOptions.PvP).Equals(CharacterOptions.PvP))
             { fieldList.Add("pvp"); }
-            if ((characterOptions & CharacterOptions.Quests) == CharacterOptions.Quests)
+            if ((characterOptions & CharacterOptions.Quests).Equals(CharacterOptions.Quests))
             { fieldList.Add("quests"); }
-            if ((characterOptions & CharacterOptions.HunterPets) == CharacterOptions.HunterPets)
+            if ((characterOptions & CharacterOptions.HunterPets).Equals(CharacterOptions.HunterPets))
             { fieldList.Add("hunterPets"); }
 
             if (fieldList.Count == 0)
