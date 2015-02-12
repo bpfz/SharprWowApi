@@ -48,8 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiClientAsync.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GetData.cs" />
+    <Compile Include="GetDataAsync.cs" />
+    <Compile Include="GetDataBase.cs" />
     <Compile Include="Models\Achievement\AchievementRoot.cs" />
     <Compile Include="Models\Achievement\AchievementRewardItem.cs" />
     <Compile Include="Models\Achievement\AchiviementCriterion.cs" />
