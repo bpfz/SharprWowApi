@@ -110,7 +110,7 @@ An signifcant speed increase compared to a synchronous operation. It's worth not
 
 ![Async vs Sync Test](http://i.imgur.com/nuCpGjQ.jpg)
 
-Both test cases used the same list of (64) members. They both Get Character (GetCharacterAsync & GetCharacterSync) and adds the result to a list.
+Both test cases used the same list of (64) members. They both Get Character (GetCharacterAsync & GetCharacter) and adds the result to a list.
 
 ```C#
 var client = new ApiClientAsync(Region,Locale, apiKey)
