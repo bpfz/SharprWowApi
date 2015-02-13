@@ -93,9 +93,10 @@ namespace SharprWowApi.Utility
 
                 //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
                 using (var memoryStream = new MemoryStream(downloadedString, false))
-                using (var sr = new StreamReader(memoryStream))
-                using (var jsonTextReader = new JsonTextReader(sr))
                 {
+                    var sr = new StreamReader(memoryStream);
+                    var jsonTextReader = new JsonTextReader(sr);
+
                     var serializer = new JsonSerializer();
                     var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
                     deserialize.Start();
@@ -106,7 +107,9 @@ namespace SharprWowApi.Utility
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.GetType().FullName);
+                Console.WriteLine(ex.Message);
+                throw;
             }
         }
 
@@ -140,7 +143,7 @@ namespace SharprWowApi.Utility
                 Console.WriteLine("GetDataFromURLAsync Exception ---");
                 Console.WriteLine(ex.GetType().FullName);
                 Console.WriteLine(ex.Message);
-                throw ex;
+                throw;
             }
         }
 
