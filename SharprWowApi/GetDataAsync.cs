@@ -247,6 +247,7 @@ namespace SharprWowApi
         /// <summary>
         /// Creates a list with CharacterRoot for every member in given guild.
         /// To avoid calling the wow api more than 100 times per second, this method limits the list of guildmembers to int take.
+        /// Adds delay on the task if members are over 95, and 280 (0.5s each).
         /// </summary>
         /// <param name="guildMembers">List with guildmembers</param>
         /// <param name="characterOptions">Options for CharacterRoot</param>
@@ -257,8 +258,8 @@ namespace SharprWowApi
             CharacterOptions characterOptions,
             int levelThreshold, int membersToTake)
         {
-            var characterList = new List<CharacterRoot>();
             //var guild = GetGuild(guildName, GuildOptions.Members, _Realm);
+            var characterList = new List<CharacterRoot>();
 
             var order = from guildMemberLevel in guildMembers
                         orderby guildMemberLevel.Character.Level descending
@@ -274,6 +275,12 @@ namespace SharprWowApi
 
             while (downloadTasks.Count > 0)
             {
+                if (downloadTasks.Count.Equals(95))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
+                if (downloadTasks.Count.Equals(280))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
                 var finishedTask = await Task.WhenAny(downloadTasks);
                 downloadTasks.Remove(finishedTask);
                 var character = await finishedTask;
@@ -281,6 +288,38 @@ namespace SharprWowApi
             }
 
             return characterList;
+        }
+
+        public async Task<HashSet<CharacterRoot>> GetAllCharactersInGuildAsync(string[] guildMembers,
+         CharacterOptions characterOptions)
+        {
+            var memberHash = new HashSet<string>(guildMembers);
+            var characterHash = new HashSet<CharacterRoot>();
+            //Task<CharacterRoot> character;
+
+            var downloadTasks = new HashSet<Task<CharacterRoot>>();
+
+
+            for (int i = 0; i < memberHash.Count; i++)
+            {
+                if (i.Equals(95))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
+                if (i.Equals(280))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
+                downloadTasks.Add(GetCharacterAsync(memberHash.ElementAt(i), characterOptions, _Realm));
+
+            }
+
+            while (downloadTasks.Count > 0)
+            {
+                var finishedTask = await Task.WhenAny(downloadTasks);
+                downloadTasks.Remove(finishedTask);
+                var finished = await finishedTask;
+                characterHash.Add(finished);
+            }
+            return characterHash;
         }
 
         #endregion
@@ -311,6 +350,28 @@ namespace SharprWowApi
             guild = await json.GetDataFromURLAsync<GuildRoot>(url);
 
             return guild;
+        }
+
+        /// <summary>
+        /// Gets all members in a guild above a set level threshold (>=) and adds them to a string that can be inserted into an array (manually).
+        /// Useful for doing fast (big) queries with GetAllCharactersInGuildAsync.
+        /// </summary>
+        /// <example>returns: {"name", "name2", "name3"};</example>
+        /// <param name="guildmembers">The guild you want to get members from.</param>
+        /// <param name="lvlThreshold">Gets all characters above or at this level.</param>
+        /// <returns>returns string[] with the names of all guildmembers over lvlThreshold (>=).</returns>
+        public string GetGuildMembers(GuildRoot guildmembers, int lvlThreshold)
+        {
+            var guildMembers = from members in guildmembers.Members
+                               where members.Character.Level >= lvlThreshold
+                               orderby members.Character.Level descending
+                               select members.Character.Name;
+
+            var memberArray = guildMembers.ToArray();
+            var format = string.Format("{0}, {1}", (char)34, (char)34);
+            string memberString = "{" + (char)34 + string.Join(format, memberArray) + (char)34 + "};";
+
+            return memberString;
         }
         #endregion
 
