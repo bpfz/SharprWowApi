@@ -55,7 +55,7 @@ using SharprWowApi.Models.Guild;
 
 public ActionResult Members()
 {
-    var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Grim Batol");
+    var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm);
     var guild = client.GetGuild("GuildName", GuildOptions.AllOptions);
     
      return View(guild);
@@ -117,7 +117,7 @@ var client = new ApiClientAsync(Region,Locale, apiKey)
 var guild = await client.GetGuildAsync("GuildName", GuildOptions.Members);
 
 var charc = await 
-    client.GetAllCharactersInGuildAsync(List of guild.Members, 
+    client.GetAllCharactersInGuildAsync(guild.Members, 
         CharacterOptions.AllOptions,
         int level, int HowManyMembersToTake);
 
