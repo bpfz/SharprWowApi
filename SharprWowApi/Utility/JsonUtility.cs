@@ -48,6 +48,31 @@ namespace SharprWowApi.Utility
             return byteArray;
         }
 
+
+        //uses this until I can figure out why
+        //Auction sometimes throws:
+        //Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+        private async Task<string> DownloadStringAsStringAsync(string url)
+        {
+            using (var httpClient = new HttpClient(
+                new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+                }))
+            {
+                // var downloadedString = await httpClient.GetStringAsync(url);
+                var download = ProcessURLAsStringAsync(url, httpClient);
+                var downloaded = await download;
+
+                return downloaded;
+            }
+        }
+        private async Task<string> ProcessURLAsStringAsync(string url, HttpClient client)
+        {
+            var byteArray = await client.GetStringAsync(url);
+            return byteArray;
+        }
+
         #endregion
 
         #region deserialize
@@ -89,10 +114,16 @@ namespace SharprWowApi.Utility
         {
             try
             {
-                var downloadedString = await DownloadStringAsync(url);
+                string downloadedString = await DownloadStringAsStringAsync(url);
 
-                //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
-                using (var memoryStream = new MemoryStream(downloadedString, false))
+                //ugly hack
+                if (downloadedString.StartsWith(@"<"))
+                {
+                    downloadedString = downloadedString.Replace(@"<", "");
+                }
+
+                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
+                //using (var memoryStream = new MemoryStream(downloadedString, false))
                 {
                     var sr = new StreamReader(memoryStream);
                     var jsonTextReader = new JsonTextReader(sr);
