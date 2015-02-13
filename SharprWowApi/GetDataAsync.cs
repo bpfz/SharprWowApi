@@ -105,7 +105,7 @@ namespace SharprWowApi
         /// <summary>
         /// This provides data about a individual battle pet ability ID.
         /// </summary>
-        /// <param name="achievementId">ID of the ability you want to retrieve</param>
+        /// <param name="abilityId">ID of the ability you want to retrieve</param>
         /// <returns>BattlePetAbilitiesRoot object</returns>
         public async Task<BattlePetAbilitiesRoot> GetBattlePetAbilitiesAsync(int abilityId)
         {
@@ -223,6 +223,7 @@ namespace SharprWowApi
         /// </summary>
         /// <param name="name">The Characters name</param>
         /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <param name="realm"></param>
         /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions, string realm)
         {
@@ -450,7 +451,7 @@ namespace SharprWowApi
         /// <summary>
         /// Get quest from quest ID
         /// </summary>
-        /// <param name="achievementId">Quest ID</param>
+        /// <param name="questId">Quest ID</param>
         /// <returns>QuestRoot object</returns>
         public async Task<QuestRoot> GetQuestAsync(int questId)
         {

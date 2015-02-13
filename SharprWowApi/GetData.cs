@@ -40,7 +40,7 @@ namespace SharprWowApi
         #endregion
 
         //needs testing
-        //Rare bug: Sometimes Unexpected character encountered while parsing value: <. Path '', line 0, position 0. 
+        //Bug: Sometimes Unexpected character encountered while parsing value: <. Path '', line 0, position 0. 
         #region Auctions
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace SharprWowApi
         /// <summary>
         /// This provides data about a individual battle pet ability ID.
         /// </summary>
-        /// <param name="achievementId">ID of the ability you want to retrieve</param>
+        /// <param name="abilityId">ID of the ability you want to retrieve</param>
         /// <returns>BattlePetAbilitiesRoot object</returns>
         public BattlePetAbilitiesRoot GetBattlePetAbilities(int abilityId)
         {
@@ -251,6 +251,7 @@ namespace SharprWowApi
         /// </summary>
         /// <param name="name">The Characters name</param>
         /// <param name="characterOptions">What characteroptions should be set (enum)</param>
+        /// <param name="realm"></param>
         /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions, string realm)
         {
@@ -382,7 +383,7 @@ namespace SharprWowApi
         /// <summary>
         /// Get quest from achievementId
         /// </summary>
-        /// <param name="achievementId">Quest ID</param>
+        /// <param name="questId">Quest ID</param>
         /// <returns>QuestRoot object</returns>
         public QuestRoot GetQuest(int questId)
         {
@@ -484,7 +485,7 @@ namespace SharprWowApi
 
         #endregion
 
-        ///needs testing
+        //needs testing
         #region Battlegroup
 
         ///<summary>
