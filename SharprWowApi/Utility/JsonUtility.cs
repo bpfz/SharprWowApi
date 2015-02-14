@@ -52,6 +52,8 @@ namespace SharprWowApi.Utility
         //uses this until I can figure out why
         //Auction sometimes throws:
         //Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
+        //Json2csharp throws the same exception so it's not only this code.
+        //also doesn't actually fix the bug...
         private async Task<string> DownloadStringAsStringAsync(string url)
         {
             using (var httpClient = new HttpClient(
@@ -114,16 +116,16 @@ namespace SharprWowApi.Utility
         {
             try
             {
-                string downloadedString = await DownloadStringAsStringAsync(url);
-
-                //ugly hack
-                if (downloadedString.StartsWith(@"<"))
+                //var downloadedString = await DownloadStringAsStringAsync(url);
+                var downloadedByte = await DownloadStringAsync(url);
+                //ugly hack that doesn't even work
+                /*if (downloadedString.StartsWith(@"<"))
                 {
                     downloadedString = downloadedString.Replace(@"<", "");
-                }
+                }*/
 
-                using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
-                //using (var memoryStream = new MemoryStream(downloadedString, false))
+                //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
+                using (var memoryStream = new MemoryStream(downloadedByte, false))
                 {
                     var sr = new StreamReader(memoryStream);
                     var jsonTextReader = new JsonTextReader(sr);
