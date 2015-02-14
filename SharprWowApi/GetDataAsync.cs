@@ -304,10 +304,16 @@ namespace SharprWowApi
             for (int i = 0; i < memberHash.Count; i++)
             {
                 if (i.Equals(95))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(800));
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
 
-                if (i.Equals(280))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(800));
+                if (i.Equals(180))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
+                if (i.Equals(275))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
+
+                if (i.Equals(370))
+                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
 
                 downloadTasks.Add(GetCharacterAsync(memberHash.ElementAt(i), characterOptions, _Realm));
 
