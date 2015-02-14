@@ -85,7 +85,7 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// A map of achievement data including completion timestamps and criteria information.
         /// </summary>
-        public CharacterAchivements Achievements { get; set; }
+        public CharacterAchievements Achievements { get; set; }
 
         /// <summary>
         /// A list of talent structures.
