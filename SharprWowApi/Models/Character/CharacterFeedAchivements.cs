@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.Models
+namespace SharprWowApi.Models.Character
 {
-    public class CharacterFeedAchivements
+    public class CharacterFeedAchievements
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SharprWowApi.Models
+namespace SharprWowApi.Models.Character
 {
-    public class CharacterAchivements
+    public class CharacterAchievements
     {
         public List<int> AchievementsCompleted { get; set; }
         public List<object> AchievementsCompletedTimestamp { get; set; }

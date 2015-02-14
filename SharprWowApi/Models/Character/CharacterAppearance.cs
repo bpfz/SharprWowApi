@@ -1,5 +1,5 @@
 ﻿
-namespace SharprWowApi.Models
+namespace SharprWowApi.Models.Character
 {
     public class CharacterAppearance
     {
