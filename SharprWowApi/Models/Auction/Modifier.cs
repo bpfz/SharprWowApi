@@ -8,7 +8,7 @@ namespace SharprWowApi.Models.Auction
 {
     public class Modifier
     {
-        public int type { get; set; }
-        public int value { get; set; }
+        public int Type { get; set; }
+        public int Value { get; set; }
     }
 }
