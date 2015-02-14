@@ -8,12 +8,12 @@ namespace SharprWowApi.Models.Auction
         public int Item { get; set; }
         public string Owner { get; set; }
         public string OwnerRealm { get; set; }
-        public string Bid { get; set; }
-        public string Buyout { get; set; }
+        public long Bid { get; set; }
+        public long Buyout { get; set; }
         public int Quantity { get; set; }
         public string TimeLeft { get; set; }
         public int Rand { get; set; }
-        public object Seed { get; set; }
+        public string Seed { get; set; }
         public int Context { get; set; }
         public List<BonusList> BonusLists { get; set; }
         public List<Modifier> Modifiers { get; set; }
