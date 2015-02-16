@@ -21,8 +21,17 @@ namespace SharprWowApi.Models.Guild
         public string Guild { get; set; }
         public string GuildRealm { get; set; }
 
-        public CharacterClass Class { get { return (CharacterClass)Enum.Parse(typeof(CharacterClass), Enum.GetName(typeof(CharacterClass),@class).Replace(' ', '_')); } }
-        public CharacterRace Race { get { return (CharacterRace)Enum.Parse(typeof(CharacterRace), Enum.GetName(typeof(CharacterRace), race).Replace(' ', '_')); } }
-        public CharacterGender Gender { get { return (CharacterGender)Enum.Parse(typeof(CharacterGender), Enum.GetName(typeof(CharacterGender), gender).Replace(' ', '_')); } }
+        /// <summary>
+        /// Class of this character (warrior, priest etc.) (string)
+        /// </summary>
+        public CharacterClass Class { get { return (CharacterClass)Enum.Parse(typeof(CharacterClass), Enum.GetName(typeof(CharacterClass), @class)); } }
+        /// <summary>
+        /// Race of this character (Human, Undead, Orc etc.) (string)
+        /// </summary>
+        public CharacterRace Race { get { return (CharacterRace)Enum.Parse(typeof(CharacterRace), Enum.GetName(typeof(CharacterRace), race)); } }
+        /// <summary>
+        /// Gender of this character (Male or female) (string)
+        /// </summary>
+        public CharacterGender Gender { get { return (CharacterGender)Enum.Parse(typeof(CharacterGender), Enum.GetName(typeof(CharacterGender), gender)); } }
     }
 }
