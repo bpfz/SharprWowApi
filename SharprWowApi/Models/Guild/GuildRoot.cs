@@ -1,7 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharprWowApi.Models.Guild
 {
+    [Flags]
+    public enum WoWFaction
+    {
+        Alliance = 0,
+        Horde = 1
+    }
+
     public class GuildRoot
     {
         public long LastModified { get; set; }
@@ -16,6 +24,9 @@ namespace SharprWowApi.Models.Guild
         public GuildEmblem Emblem { get; set; }
         public IEnumerable<GuildNews> News { get; set; }
         public IEnumerable<GuildChallenge> Challenge { get; set; }
+
+
+        public WoWFaction Faction { get { return (WoWFaction) Enum.Parse(typeof(WoWFaction), Enum.GetName(typeof(WoWFaction), Side));} }
     }
 }
 
