@@ -8,6 +8,6 @@ namespace SharprWowApi.Models.Auction
     /// </summary>
     public class AuctionFilesRoot
     {
-        public List<AuctionFile> Files { get; set; }
+        public IEnumerable<AuctionFile> Files { get; set; }
     }
 }
