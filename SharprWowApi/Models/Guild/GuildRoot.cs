@@ -12,10 +12,10 @@ namespace SharprWowApi.Models.Guild
         public int Side { get; set; }
         public int AchievementPoints { get; set; }
         public GuildAchievements Achievements { get; set; }
-        public List<GuildMember> Members { get; set; }
+        public IEnumerable<GuildMember> Members { get; set; }
         public GuildEmblem Emblem { get; set; }
-        public List<GuildNews> News { get; set; }
-        public List<GuildChallenge> Challenge { get; set; }
+        public IEnumerable<GuildNews> News { get; set; }
+        public IEnumerable<GuildChallenge> Challenge { get; set; }
     }
 }
 

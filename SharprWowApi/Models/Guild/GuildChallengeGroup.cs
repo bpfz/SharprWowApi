@@ -15,7 +15,7 @@ namespace SharprWowApi.Models.Guild
         public string medal { get; set; }
         public string faction { get; set; }
         public bool isRecurring { get; set; }
-        public List<GroupMember> members { get; set; }
+        public IEnumerable<GroupMember> members { get; set; }
         public ChallengeGuild guild { get; set; }
     }
 }
