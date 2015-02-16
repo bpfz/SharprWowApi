@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Utility.ExtensionMethods
 {
-    public static class StringExtension
+    public static class Extensions
     {
         /// <summary>
         /// Substrings set amount from the Tail. 
@@ -44,6 +44,20 @@ namespace SharprWowApi.Utility.ExtensionMethods
         public static string ToTitleCase(this string source)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(source.ToLower());
+        }
+
+        /// <summary>
+        /// From long gets unix time and returns datetime.
+        /// Divides by 1000 (blizzard added some zeros).
+        /// </summary>
+        /// <param name="unixTimeStamp"></param>
+        /// <returns></returns>
+        public static DateTime UnixLongTimeStampToDateTime(this long unixTimeStamp)
+        {
+            unixTimeStamp = unixTimeStamp / 1000;
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Local);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
         }
     }
 }
