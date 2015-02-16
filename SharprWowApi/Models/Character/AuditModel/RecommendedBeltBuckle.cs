@@ -14,8 +14,8 @@ namespace SharprWowApi.Models.Character.AuditModel
         public string icon { get; set; }
         public int stackable { get; set; }
         public int itemBind { get; set; }
-        public List<object> bonusStats { get; set; }
-        public List<ItemSpell> itemSpells { get; set; }
+        public IEnumerable<object> bonusStats { get; set; }
+        public IEnumerable<ItemSpell> itemSpells { get; set; }
         public int buyPrice { get; set; }
         public int itemClass { get; set; }
         public int itemSubClass { get; set; }
@@ -43,8 +43,8 @@ namespace SharprWowApi.Models.Character.AuditModel
         public bool upgradable { get; set; }
         public bool heroicTooltip { get; set; }
         public string context { get; set; }
-        public List<object> bonusLists { get; set; }
-        public List<string> availableContexts { get; set; }
+        public IEnumerable<object> bonusLists { get; set; }
+        public IEnumerable<string> availableContexts { get; set; }
         public BonusSummary bonusSummary { get; set; }
     }
 }

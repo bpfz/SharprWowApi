@@ -9,6 +9,6 @@ namespace SharprWowApi.Models.Character
         public string Icon { get; set; }
         public int Rank { get; set; }
         public int Max { get; set; }
-        public List<object> Recipes { get; set; }
+        public IEnumerable<int> Recipes { get; set; }
     }
 }

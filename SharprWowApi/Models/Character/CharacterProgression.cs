@@ -4,6 +4,6 @@ namespace SharprWowApi.Models.Character
 {
     public class CharacterProgression
     {
-        public List<CharacterProgressionRaid> Raids { get; set; }
+        public IEnumerable<CharacterProgressionRaid> Raids { get; set; }
     }
 }

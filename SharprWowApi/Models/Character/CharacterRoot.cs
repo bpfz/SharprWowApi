@@ -14,7 +14,7 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// Timestamp that shows when the character API was last updated.
         /// </summary>
-        public long LastModified { get; set; }
+        public string LastModified { get; set; }
 
         public string Name { get; set; }
         public string Realm { get; set; }
@@ -75,12 +75,12 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// A list of the factions that the character has an associated reputation with.
         /// </summary>
-        public List<CharacterReputation> Reputation { get; set; }
+        public IEnumerable<CharacterReputation> Reputation { get; set; }
 
         /// <summary>
         /// A list of the titles aquired by the character.
         /// </summary>
-        public List<CharacterTitles> Titles { get; set; }
+        public IEnumerable<CharacterTitles> Titles { get; set; }
 
         /// <summary>
         /// A map of achievement data including completion timestamps and criteria information.
@@ -110,7 +110,7 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// Data about the current battle pet slots on this characters account.
         /// </summary>
-        public List<CharacterPetSlot> PetSlots { get; set; }
+        public IEnumerable<CharacterPetSlot> PetSlots { get; set; }
 
         /// <summary>
         /// A list of raids and bosses indicating raid progression and completeness.
@@ -125,12 +125,12 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// A list of all of the combat pets obtained by the character.
         /// </summary>
-        public List<CharacterHunterPet> HunterPets { get; set; }
+        public IEnumerable<CharacterHunterPet> HunterPets { get; set; }
 
         /// <summary>
         /// A list of quests completed by the character.
         /// </summary>
-        public List<int> Quests { get; set; }
+        public IEnumerable<int> Quests { get; set; }
 
         /// <summary>
         /// Not 100% done

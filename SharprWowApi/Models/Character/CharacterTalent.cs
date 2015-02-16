@@ -4,7 +4,7 @@ namespace SharprWowApi.Models.Character
 {
     public class CharacterTalent
     {
-        public List<CharacterTalentSelectedTalent> Talents { get; set; }
+        public IEnumerable<CharacterTalentSelectedTalent> Talents { get; set; }
         public CharacterTalentGlyphs Glyphs { get; set; }
         public CharacterTalentSpec Spec { get; set; }
         public string CalcTalent { get; set; }

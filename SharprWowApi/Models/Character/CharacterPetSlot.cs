@@ -10,6 +10,6 @@ namespace SharprWowApi.Models.Character
         public int Slot { get; set; }
         public bool IsEmpty { get; set; }
         public bool IsLocked { get; set; }
-        public List<object> Abilities { get; set; }
+        public IEnumerable<int> Abilities { get; set; }
     }
 }

@@ -4,11 +4,11 @@ namespace SharprWowApi.Models.Character
 {
     public class CharacterAchievements
     {
-        public List<int> AchievementsCompleted { get; set; }
-        public List<object> AchievementsCompletedTimestamp { get; set; }
-        public List<int> Criteria { get; set; }
-        public List<object> CriteriaQuantity { get; set; }
-        public List<object> CriteriaTimestamp { get; set; }
-        public List<object> CriteriaCreated { get; set; }
+        public IEnumerable<int> AchievementsCompleted { get; set; }
+        public IEnumerable<string> AchievementsCompletedTimestamp { get; set; }
+        public IEnumerable<string> Criteria { get; set; }
+        public IEnumerable<string> CriteriaQuantity { get; set; }
+        public IEnumerable<string> CriteriaTimestamp { get; set; }
+        public IEnumerable<string> CriteriaCreated { get; set; }
     }
 }

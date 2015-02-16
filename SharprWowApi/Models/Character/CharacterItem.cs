@@ -10,9 +10,9 @@ namespace SharprWowApi.Models.Character
         public int Quality { get; set; }
         public int ItemLevel { get; set; }
         public CharacterItemTooltipParams TooltipParams { get; set; }
-        public List<CharacterItemStat> Stats { get; set; }
+        public IEnumerable<CharacterItemStat> Stats { get; set; }
         public int Armor { get; set; }
         public string Context { get; set; }
-        public List<int> BonusLists { get; set; }
+        public IEnumerable<int> BonusLists { get; set; }
     }
 }

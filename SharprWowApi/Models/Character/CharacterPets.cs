@@ -9,6 +9,6 @@ namespace SharprWowApi.Models.Character
     {
         public int NumCollected { get; set; }
         public int NumNotCollected { get; set; }
-        public List<CharacterPetsCollected> Collected { get; set; }
+        public IEnumerable<CharacterPetsCollected> Collected { get; set; }
     }
 }
