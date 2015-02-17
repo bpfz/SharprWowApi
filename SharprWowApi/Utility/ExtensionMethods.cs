@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Utility.ExtensionMethods
 {
-    public static class Extensions
+    public static class ExtensionMethods
     {
         /// <summary>
         /// Substrings set amount from the Tail. 
