@@ -15,6 +15,7 @@ using SharprWowApi.Utility;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace SharprWowApi
 {
@@ -228,7 +229,7 @@ namespace SharprWowApi
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions, string realm)
         {
             var character = new CharacterRoot();
-
+            
             var url = string.Format(@"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
                 _Host,
                 realm,
@@ -255,7 +256,7 @@ namespace SharprWowApi
         /// <param name="levelThreshold">Take only members above or equal to this integer</param>
         /// <param name="membersToTake">How many members should be returned (mind the 100 calls per second cap)</param>
         /// <returns>List filled with characterRoot</returns>
-        public async Task<List<CharacterRoot>> GetAllCharactersInGuildAsync(IEnumerable<GuildMember> guildMembers,
+        public async Task<List<CharacterRoot>> GetCharactersInGuildAsync(IEnumerable<GuildMember> guildMembers,
             CharacterOptions characterOptions,
             int levelThreshold, int membersToTake)
         {
@@ -291,32 +292,23 @@ namespace SharprWowApi
             return characterList;
         }
 
-        public async Task<HashSet<CharacterRoot>> GetAllCharactersInGuildAsync(string[] guildMembers,
+        /// <summary>
+        /// Creates a list with CharacterRoot for every member in given guild using an array with the names of those members.
+        /// </summary>
+        /// <param name="guildMembers">string array with guildmembers</param>
+        /// <param name="characterOptions"></param>
+        /// <returns>HashSet filled with characterRoot objects</returns>
+        public async Task<HashSet<CharacterRoot>> GetCharactersInGuildAsync(string[] guildMembers,
          CharacterOptions characterOptions)
         {
             var memberHash = new HashSet<string>(guildMembers);
             var characterHash = new HashSet<CharacterRoot>();
-            //Task<CharacterRoot> character;
 
             var downloadTasks = new HashSet<Task<CharacterRoot>>();
 
-
             for (int i = 0; i < memberHash.Count; i++)
             {
-                if (i.Equals(95))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
-                if (i.Equals(180))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
-                if (i.Equals(275))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
-                if (i.Equals(370))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
                 downloadTasks.Add(GetCharacterAsync(memberHash.ElementAt(i), characterOptions, _Realm));
-
             }
 
             while (downloadTasks.Count > 0)
@@ -332,6 +324,7 @@ namespace SharprWowApi
         #endregion
 
         #region guild
+
         /// <summary>
         /// Gets realm from client
         /// </summary>
@@ -380,6 +373,7 @@ namespace SharprWowApi
 
             return memberString;
         }
+
         #endregion
 
         #region items
