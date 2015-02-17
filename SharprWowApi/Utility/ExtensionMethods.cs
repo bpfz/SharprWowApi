@@ -52,7 +52,7 @@ namespace SharprWowApi.Utility.ExtensionMethods
         /// </summary>
         /// <param name="unixTimeStamp"></param>
         /// <returns></returns>
-        public static DateTime UnixLongTimeStampToDateTime(this long unixTimeStamp)
+        public static DateTime UnixTimestampToDateTime(this long unixTimeStamp)
         {
             unixTimeStamp = unixTimeStamp / 1000;
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Local);
