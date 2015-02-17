@@ -10,15 +10,15 @@ namespace SharprWowApi.Models.Guild
         public string Character { get; set; }
 
         /// <summary>
-        /// Unix timestamp (long number)
+        /// Gets or Sets Unix timestamp (long number)
         /// </summary>
         public long Timestamp { get; set; }
         public int ItemId { get; set; }
         public GuildAchievement Achievement { get; set; }
 
         /// <summary>
-        /// Timestamp datetime format. 
+        /// gets Timestamp in datetime format. 
         /// </summary>
-        public DateTime DateTimestamp { get { return Timestamp.UnixLongTimeStampToDateTime(); } }
+        public DateTime DateTimestamp { get { return Timestamp.UnixTimestampToDateTime(); } }
     }
 }
