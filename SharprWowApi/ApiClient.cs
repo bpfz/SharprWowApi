@@ -19,24 +19,7 @@ namespace SharprWowApi
                 _Locale = locale;
                 _APIKey = apiKey;
 
-                switch (_Region)
-                {
-                    case Region.EU:
-                        _Host = "https://eu.api.battle.net";
-                        break;
-                    case Region.KR:
-                        _Host = "https://kr.api.battle.net";
-                        break;
-                    case Region.TW:
-                        _Host = "https://tw.api.battle.net";
-                        break;
-                    case Region.CN:
-                        _Host = "https://www.battlenet.com.cn";
-                        break;
-                    case Region.US:
-                        _Host = "https://us.api.battle.net";
-                        break;
-                }
+                Host(region);
             }
             else
             {
@@ -61,28 +44,33 @@ namespace SharprWowApi
                 _APIKey = apiKey;
                 _Realm = realm;
 
-                switch (_Region)
-                {
-                    case Region.EU:
-                        _Host = "https://eu.api.battle.net";
-                        break;
-                    case Region.KR:
-                        _Host = "https://kr.api.battle.net";
-                        break;
-                    case Region.TW:
-                        _Host = "https://tw.api.battle.net";
-                        break;
-                    case Region.CN:
-                        _Host = "https://www.battlenet.com.cn";
-                        break;
-                    case Region.US:
-                        _Host = "https://us.api.battle.net";
-                        break;
-                }
+                Host(region);
             }
             else
             {
                 throw new Exception("Api key missing");
+            }
+        }
+
+        private void Host(Region region)
+        {
+            switch (region)
+            {
+                case Region.EU:
+                    _Host = "https://eu.api.battle.net";
+                    break;
+                case Region.KR:
+                    _Host = "https://kr.api.battle.net";
+                    break;
+                case Region.TW:
+                    _Host = "https://tw.api.battle.net";
+                    break;
+                case Region.CN:
+                    _Host = "https://www.battlenet.com.cn";
+                    break;
+                case Region.US:
+                    _Host = "https://us.api.battle.net";
+                    break;
             }
         }
     }
