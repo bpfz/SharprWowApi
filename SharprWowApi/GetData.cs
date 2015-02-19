@@ -381,7 +381,7 @@ namespace SharprWowApi
         #region Quest
 
         /// <summary>
-        /// Get quest from achievementId
+        /// Get quest from questID
         /// </summary>
         /// <param name="questId">Quest ID</param>
         /// <returns>QuestRoot object</returns>
@@ -426,6 +426,11 @@ namespace SharprWowApi
         //Needs testing
         #region Recipe
 
+        /// <summary>
+        /// Gets recipe from recipeID
+        /// </summary>
+        /// <param name="recipeId"></param>
+        /// <returns></returns>
         public RecipeRoot GetRecipe(int recipeId)
         {
             var recipe = new RecipeRoot();
@@ -444,6 +449,11 @@ namespace SharprWowApi
 
         //Needs testing
         #region Spells
+        /// <summary>
+        /// Gets spell from spellID
+        /// </summary>
+        /// <param name="spellId"></param>
+        /// <returns></returns>
         public SpellRoot GetSpell(int spellId)
         {
             var spell = new SpellRoot();
@@ -616,7 +626,7 @@ namespace SharprWowApi
         #region Pet Types
 
         /// <summary>
-        ///The different bat pet types (including what they are strong and weak against)
+        ///Gets the different battle pet types (including what they are strong and weak against)
         /// </summary>
         /// <returns>DataPetTypesRoot object</returns>
         public DataPetTypesRoot GetPetTypeData()
@@ -636,7 +646,7 @@ namespace SharprWowApi
         //needs testing
         #region Races
         /// <summary>
-        /// The character races data API provides a list of each race and their associated faction, name, unique ID, and skin.
+        /// Gets The character races data, a list of each race and their associated faction, name, unique ID, and skin.
         /// </summary>
         /// <returns>DataRacesRoot object</returns>
         public DataRacesRoot GetRaceData()
