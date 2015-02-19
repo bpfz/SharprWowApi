@@ -43,12 +43,27 @@ namespace SharprWowApi.Models.Auction
         /// <summary>
         /// Gets only gold
         /// </summary>
-        public string BidGold { get { if (Buyout.Length > 4)  return Bid.RemoveTail(4); else return "NA"; } }
+        public string BidGold
+        {
+            get
+            {
+                if (Buyout.Length > 4)
+                    return Bid.RemoveTail(4);
+                else
+                    return "NA";
+            }
+        }
 
         /// <summary>
         /// Gets only silver
         /// </summary>
-        public string BidSilver { get { return Bid.Tail(4).RemoveTail(2); } }
+        public string BidSilver
+        {
+            get
+            {
+                return Bid.Tail(4).RemoveTail(2);
+            }
+        }
         /// <summary>
         /// Gets only coppper
         /// </summary>
@@ -57,21 +72,49 @@ namespace SharprWowApi.Models.Auction
         /// <summary>
         /// Gets only gold
         /// </summary>
-        public string BuyoutGold { get { if (Buyout.Length > 4) return Buyout.RemoveTail(4); else return "NA"; } }
+        public string BuyoutGold
+        {
+            get
+            {
+                if (Buyout.Length > 4)
+                    return Buyout.RemoveTail(4);
+                else
+                    return "NA";
+            }
+        }
         /// <summary>
         /// Gets only silver
         /// </summary>
-        public string BuyoutSilver { get { return Buyout.Tail(4).RemoveTail(2); } }
+        public string BuyoutSilver
+        {
+            get
+            {
+                return Buyout.Tail(4).RemoveTail(2);
+            }
+        }
 
         /// <summary>
         /// Gets only coppper
         /// </summary>
-        public string BuyoutCopper { get { return Buyout.Tail(2); } }
+        public string BuyoutCopper
+        {
+            get
+            {
+                return Buyout.Tail(2);
+            }
+        }
 
         /// <summary>
         /// Get time left that's formatted to title case with underscores removed.
         /// </summary>
-        public string TimeLeftFormatted { get { return TimeLeft.ToTitleCase().Replace("_", " "); } }
+        public string TimeLeftFormatted
+        {
+            get
+            {
+                return
+                    TimeLeft.ToTitleCase().Replace("_", " ");
+            }
+        }
         #endregion
     }
 }
