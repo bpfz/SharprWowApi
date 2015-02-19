@@ -43,7 +43,7 @@ namespace SharprWowApi.Models.Auction
         /// <summary>
         /// Gets only gold
         /// </summary>
-        public string BidGold { get { return Bid.RemoveTail(4); } }
+        public string BidGold { get { if (Buyout.Length > 4)  return Bid.RemoveTail(4); else return "NA"; } }
 
         /// <summary>
         /// Gets only silver
@@ -57,7 +57,7 @@ namespace SharprWowApi.Models.Auction
         /// <summary>
         /// Gets only gold
         /// </summary>
-        public string BuyoutGold { get { return Buyout.RemoveTail(4); } }
+        public string BuyoutGold { get { if (Buyout.Length > 4) return Buyout.RemoveTail(4); else return "NA"; } }
         /// <summary>
         /// Gets only silver
         /// </summary>
