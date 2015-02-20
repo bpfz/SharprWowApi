@@ -105,7 +105,7 @@ namespace SharprWowApi.Models.Auction
         }
 
         /// <summary>
-        /// Get time left that's formatted to title case with underscores removed.
+        /// Get time left that's formatted to title case with underscores removed (Very long, Medium, Short etc.).
         /// </summary>
         public string TimeLeftFormatted
         {
