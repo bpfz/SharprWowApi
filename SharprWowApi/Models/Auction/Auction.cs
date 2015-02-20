@@ -50,7 +50,7 @@ namespace SharprWowApi.Models.Auction
                 if (Buyout.Length > 4)
                     return Bid.RemoveTail(4);
                 else
-                    return "NA";
+                    return string.Empty;
             }
         }
 
@@ -79,7 +79,7 @@ namespace SharprWowApi.Models.Auction
                 if (Buyout.Length > 4)
                     return Buyout.RemoveTail(4);
                 else
-                    return "NA";
+                    return string.Empty;
             }
         }
         /// <summary>
