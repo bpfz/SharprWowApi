@@ -8,9 +8,12 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataCharacterClass
     {
-        public int id { get; set; }
-        public int mask { get; set; }
-        public string powerType { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+
+        public int Mask { get; set; }
+
+        public string PowerType { get; set; }
+
+        public string Name { get; set; }
     }
 }

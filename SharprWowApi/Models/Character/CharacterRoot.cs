@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using SharprWowApi.Models.Character.AuditModel;
 
 namespace SharprWowApi.Models.Character
@@ -12,28 +13,15 @@ namespace SharprWowApi.Models.Character
     public class CharacterRoot
     {
         /// <summary>
-        /// Timestamp that shows when the character API was last updated.
+        /// Gets or setsTimestamp that shows when the character API was last updated.
         /// </summary>
         public string LastModified { get; set; }
 
         public string Name { get; set; }
+
         public string Realm { get; set; }
+
         public string Battlegroup { get; set; }
-
-        /// <summary>
-        /// int value of the characters class. Use Class for class string.
-        /// </summary>
-        public int @class { get; set; }
-
-        /// <summary>
-        /// int value of the characters race. Use Race for race string.
-        /// </summary>
-        public int race { get; set; }
-
-        /// <summary>
-        /// int value of gender the characters gender. Use Gender for gender string. 
-        /// </summary>
-        public int gender { get; set; }
 
         public int Level { get; set; }
 
@@ -47,112 +35,150 @@ namespace SharprWowApi.Models.Character
         public string CalcClass { get; set; }
 
         /// <summary>
-        /// A summary of the guild that the character belongs to. To get guild rank use the Guild API.
+        /// Gets or sets a character guild
         /// </summary>
         public CharacterGuild Guild { get; set; }
 
         /// <summary>
-        /// The activity feed of the character. Achievements and items.
+        /// Gets or sets the activity feed of the character. Achievements and items.
         /// </summary>
-        public List<CharacterFeed> Feed { get; set; }
+        public IEnumerable<CharacterFeed> Feed { get; set; }
 
         /// <summary>
-        /// A list of items equipped by the character. 
+        /// Gets or sets a list of items equipped by the character. 
         /// Use of this field will also include the average item level and average item level equipped for the character.
         /// </summary>
         public CharacterItems Items { get; set; }
 
         /// <summary>
-        /// A map of character attributes and stats.
+        /// Gets or sets a map of character attributes and stats.
         /// </summary>
         public CharacterStats Stats { get; set; }
 
         /// <summary>
-        /// A map containing list for both secondary and primary professions on this character.
+        /// Gets or sets a map containing list for both secondary and primary professions on this character.
         /// </summary>
         public CharacterProfessions Professions { get; set; }
 
         /// <summary>
-        /// A list of the factions that the character has an associated reputation with.
+        /// Gets or sets a list of the factions that the character has an associated reputation with.
         /// </summary>
         public IEnumerable<CharacterReputation> Reputation { get; set; }
 
         /// <summary>
-        /// A list of the titles aquired by the character.
+        /// Gets or sets a list of the titles acquired by the character.
         /// </summary>
         public IEnumerable<CharacterTitles> Titles { get; set; }
 
         /// <summary>
-        /// A map of achievement data including completion timestamps and criteria information.
+        /// Gets or sets a map of achievement data including completion timestamps and criteria information.
         /// </summary>
         public CharacterAchievements Achievements { get; set; }
 
         /// <summary>
-        /// A list of talent structures.
+        /// Gets or sets a list of talent structures.
         /// </summary>
         public List<CharacterTalent> Talents { get; set; }
 
         /// <summary>
-        /// A map of character appearance
+        /// Gets or sets a map of character appearance
         /// </summary>
         public CharacterAppearance Appearance { get; set; }
 
         /// <summary>
-        /// A list of all of the mounts obtained by the character.
+        /// Gets or sets a list of all of the mounts obtained by the character.
         /// </summary>
         public CharacterMounts Mounts { get; set; }
 
         /// <summary>
-        /// A list of the battle pets obtained by the character.
+        /// Gets or sets a list of the battle pets obtained by the character.
         /// </summary>
         public CharacterPets Pets { get; set; }
 
         /// <summary>
-        /// Data about the current battle pet slots on this characters account.
+        /// Gets or sets data about the current battle pet slots on this characters account.
         /// </summary>
         public IEnumerable<CharacterPetSlot> PetSlots { get; set; }
 
         /// <summary>
-        /// A list of raids and bosses indicating raid progression and completeness.
+        /// Gets or sets a list of raids and bosses indicating raid progression and completeness.
         /// </summary>
         public CharacterProgression Progression { get; set; }
 
         /// <summary>
-        /// A map of pvp information including arena team membership and rated battlegrounds information.
+        /// Gets or sets a map of player versus player information including arena team membership and rated battlegrounds information.
         /// </summary>
         public CharacterPVP Pvp { get; set; }
 
         /// <summary>
-        /// A list of all of the combat pets obtained by the character.
+        /// Gets or sets a list of all of the combat pets obtained by the character.
         /// </summary>
         public IEnumerable<CharacterHunterPet> HunterPets { get; set; }
 
         /// <summary>
-        /// A list of quests completed by the character.
+        /// Gets or sets a  list of quests completed by the character.
         /// </summary>
         public IEnumerable<int> Quests { get; set; }
 
         /// <summary>
-        /// Not 100% done
+        /// Gets or sets audit (Not 100% done, kinda broken on blizzards end as well)
         /// </summary>
         public Audit Audit { get; set; }
 
         /// <summary>
-        /// Total amount of honorable kills by the character.
+        /// Gets or sets total amount of honorable kills by the character.
         /// </summary>
         public int TotalHonorableKills { get; set; }
 
-          /// <summary>
-        /// Class of this character (warrior, priest etc.) (string)
-        /// </summary>
-        public CharacterClass Class { get { return (CharacterClass)Enum.Parse(typeof(CharacterClass), Enum.GetName(typeof(CharacterClass), @class)); } }
         /// <summary>
-        /// Race of this character (Human, Undead, Orc etc.) (string)
+        /// Gets class of this character (warrior, priest etc.)
         /// </summary>
-        public CharacterRace Race { get { return (CharacterRace)Enum.Parse(typeof(CharacterRace), Enum.GetName(typeof(CharacterRace), race)); } }
+        public CharacterClass Class
+        {
+            get
+            {
+                return (CharacterClass)Enum.Parse(typeof(CharacterClass), Enum.GetName(typeof(CharacterClass), this.ClassNumber));
+            }
+        }
+
         /// <summary>
-        /// Gender of this character (Male or female) (string)
+        /// Gets race of this character (Human, Undead, Orc etc.)
         /// </summary>
-        public CharacterGender Gender { get { return (CharacterGender)Enum.Parse(typeof(CharacterGender), Enum.GetName(typeof(CharacterGender), gender)); } }
+        public CharacterRace Race
+        {
+            get
+            {
+                return (CharacterRace)Enum.Parse(typeof(CharacterRace), Enum.GetName(typeof(CharacterRace), this.RaceNumber));
+            }
+        }
+
+        /// <summary>
+        /// Gets gender of this character (Male or female)
+        /// </summary>
+        public CharacterGender Gender
+        {
+            get
+            {
+                return (CharacterGender)Enum.Parse(typeof(CharacterGender), Enum.GetName(typeof(CharacterGender), this.GenderNumber));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets integer value of the characters class. Use Class for class string.
+        /// </summary>
+        [JsonProperty("class")]
+        internal int ClassNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets integer value of the characters race. Use Race for race string.
+        /// </summary>
+        [JsonProperty("race")]
+        internal int RaceNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets integer value of gender the characters gender. Use Gender for gender string. 
+        /// </summary>
+        [JsonProperty("gender")]
+        internal int GenderNumber { get; set; }
     }
 }

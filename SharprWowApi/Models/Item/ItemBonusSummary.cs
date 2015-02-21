@@ -4,8 +4,10 @@ namespace SharprWowApi.Models.Item
 {
     public class ItemBonusSummary
     {
-        public List<object> DefaultBonusLists { get; set; }
-        public List<object> ChanceBonusLists { get; set; }
-        public List<object> BonusChances { get; set; }
+        public IEnumerable<object> DefaultBonusLists { get; set; }
+
+        public IEnumerable<object> ChanceBonusLists { get; set; }
+
+        public IEnumerable<object> BonusChances { get; set; }
     }
 }

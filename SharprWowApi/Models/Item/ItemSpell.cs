@@ -8,11 +8,15 @@ namespace SharprWowApi.Models.Item
     public class ItemSpell
     {
         public int SpellId { get; set; }
-        public ItemSpellDesc Spell { get; set; }
-        public int NCharges { get; set; }
-        public bool Consumable { get; set; }
-        public int CategoryId { get; set; }
-        public string Trigger { get; set; }
 
+        public ItemSpellDesc Spell { get; set; }
+
+        public int NCharges { get; set; }
+
+        public bool Consumable { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public string Trigger { get; set; }
     }
 }

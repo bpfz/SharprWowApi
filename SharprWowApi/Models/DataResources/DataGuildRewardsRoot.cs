@@ -1,42 +1,61 @@
-﻿using SharprWowApi.Models.Achievement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharprWowApi.Models.Achievement;
 
 namespace SharprWowApi.Models.DataResources
 {
     public class DataGuildRewardsRoot
     {
-        public List<Reward> rewards { get; set; }
+        public IEnumerable<Reward> Rewards { get; set; }
     }
+
     public class RewardItem
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string icon { get; set; }
-        public int quality { get; set; }
-        public int itemLevel { get; set; }
-        public TooltipParams tooltipParams { get; set; }
-        public List<object> stats { get; set; }
-        public int armor { get; set; }
-        public string context { get; set; }
-        public List<object> bonusLists { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Icon { get; set; }
+
+        public int Quality { get; set; }
+
+        public int ItemLevel { get; set; }
+
+        public TooltipParams TooltipParams { get; set; }
+
+        public IEnumerable<object> Stats { get; set; }
+
+        public int Armor { get; set; }
+
+        public string Context { get; set; }
+
+        public IEnumerable<object> BonusLists { get; set; }
     }
 
     public class DataGuildAchievement
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public int points { get; set; }
-        public string description { get; set; }
-        public string reward { get; set; }
-        public List<RewardItem> rewardItems { get; set; }
-        public string icon { get; set; }
-        public List<object> criteria { get; set; }
-        public bool accountWide { get; set; }
-        public int factionId { get; set; }
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public int Points { get; set; }
+
+        public string Description { get; set; }
+
+        public string Reward { get; set; }
+
+        public IEnumerable<RewardItem> RewardItems { get; set; }
+
+        public string Icon { get; set; }
+
+        public IEnumerable<object> Criteria { get; set; }
+
+        public bool AccountWide { get; set; }
+
+        public int FactionId { get; set; }
     }
 
     /// <summary>
@@ -48,25 +67,37 @@ namespace SharprWowApi.Models.DataResources
 
     public class GuildItem
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string icon { get; set; }
-        public int quality { get; set; }
-        public int itemLevel { get; set; }
-        public TooltipParams2 tooltipParams { get; set; }
-        public List<object> stats { get; set; }
-        public int armor { get; set; }
-        public string context { get; set; }
-        public List<object> bonusLists { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Icon { get; set; }
+
+        public int Quality { get; set; }
+
+        public int ItemLevel { get; set; }
+
+        public TooltipParams2 TooltipParams { get; set; }
+
+        public IEnumerable<object> Stats { get; set; }
+
+        public int Armor { get; set; }
+
+        public string Context { get; set; }
+
+        public IEnumerable<object> BonusLists { get; set; }
     }
 
     public class Reward
     {
-        public int minGuildLevel { get; set; }
-        public int minGuildRepLevel { get; set; }
-        public DataGuildAchievement achievement { get; set; }
-        public GuildItem item { get; set; }
-        public List<int?> races { get; set; }
-    }
+        public int MinGuildLevel { get; set; }
 
+        public int MinGuildRepLevel { get; set; }
+
+        public DataGuildAchievement Achievement { get; set; }
+
+        public GuildItem Item { get; set; }
+
+        public IEnumerable<int?> Races { get; set; }
+    }
 }

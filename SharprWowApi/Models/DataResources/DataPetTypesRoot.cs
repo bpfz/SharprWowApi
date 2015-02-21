@@ -8,15 +8,21 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataPetTypesRoot
     {
-        public List<PetType> petTypes { get; set; }
+        public IEnumerable<PetType> PetTypes { get; set; }
     }
+
     public class PetType
     {
-        public int id { get; set; }
-        public string key { get; set; }
-        public string name { get; set; }
-        public int typeAbilityId { get; set; }
-        public int strongAgainstId { get; set; }
-        public int weakAgainstId { get; set; }
+        public int Id { get; set; }
+
+        public string Key { get; set; }
+
+        public string Name { get; set; }
+
+        public int TypeAbilityId { get; set; }
+
+        public int StrongAgainstId { get; set; }
+
+        public int WeakAgainstId { get; set; }
     }
 }

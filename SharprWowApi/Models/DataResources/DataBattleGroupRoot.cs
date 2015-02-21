@@ -8,11 +8,13 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataBattleGroupRoot
     {
-        public List<Battlegroup> battlegroups { get; set; }
+        public IEnumerable<Battlegroup> Battlegroups { get; set; }
     }
+
     public class Battlegroup
     {
-        public string name { get; set; }
-        public string slug { get; set; }
+        public string Name { get; set; }
+
+        public string Slug { get; set; }
     }
 }

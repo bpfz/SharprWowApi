@@ -21,7 +21,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Debug\SharprWowApi.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,7 +52,9 @@
   <ItemGroup>
     <Compile Include="ApiClientAsync.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="GetData.cs" />
+    <Compile Include="GetData.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="GetDataAsync.cs" />
     <Compile Include="GetDataBase.cs" />
     <Compile Include="Models\Achievement\AchievementRoot.cs" />
@@ -87,9 +90,13 @@
     <Compile Include="Models\Character\AuditModel\ItemSpell.cs" />
     <Compile Include="Models\Character\AuditModel\ItemsWithEmptySockets.cs" />
     <Compile Include="Models\Character\AuditModel\LowLevelItems.cs" />
-    <Compile Include="Models\Character\AuditModel\MissingEnchants.cs" />
+    <Compile Include="Models\Character\AuditModel\MissingEnchants.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Models\Character\AuditModel\MissingExtraSockets.cs" />
-    <Compile Include="Models\Character\AuditModel\RecommendedBeltBuckle.cs" />
+    <Compile Include="Models\Character\AuditModel\RecommendedBeltBuckle.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Models\Character\AuditModel\Slots.cs" />
     <Compile Include="Models\Character\CharacterHunterPet.cs" />
     <Compile Include="Models\Character\CharacterHunterPetSpec.cs" />
@@ -173,7 +180,9 @@
     </Compile>
     <Compile Include="Utility\JsonUtility.cs" />
     <Compile Include="Utility\LeaderboardUtility.cs" />
-    <Compile Include="ApiClient.cs" />
+    <Compile Include="ApiClient.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -186,4 +195,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.targets" />
 </Project>

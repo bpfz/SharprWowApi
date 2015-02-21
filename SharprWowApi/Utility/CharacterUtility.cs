@@ -14,44 +14,95 @@ namespace SharprWowApi.Utility
             var fieldList = new List<object>();
 
             if ((characterOptions & CharacterOptions.Guild).Equals(CharacterOptions.Guild))
-            { fieldList.Add("guild"); }
+            {
+                fieldList.Add("guild");
+            }
+
             if ((characterOptions & CharacterOptions.Stats).Equals(CharacterOptions.Stats))
-            { fieldList.Add("stats"); }
+            {
+                fieldList.Add("stats");
+            }
+
             if ((characterOptions & CharacterOptions.Talents).Equals(CharacterOptions.Talents))
-            { fieldList.Add("talents"); }
+            {
+                fieldList.Add("talents");
+            }
+
             if ((characterOptions & CharacterOptions.Items).Equals(CharacterOptions.Items))
-            { fieldList.Add("items"); }
+            {
+                fieldList.Add("items");
+            }
+
             if ((characterOptions & CharacterOptions.Reputation).Equals(CharacterOptions.Reputation))
-            { fieldList.Add("reputation"); }
+            {
+                fieldList.Add("reputation");
+            }
+
             if ((characterOptions & CharacterOptions.Titles).Equals(CharacterOptions.Titles))
-            { fieldList.Add("titles"); }
+            {
+                fieldList.Add("titles");
+            }
+
             if ((characterOptions & CharacterOptions.Professions).Equals(CharacterOptions.Professions))
-            { fieldList.Add("professions"); }
+            {
+                fieldList.Add("professions");
+            }
+
             if ((characterOptions & CharacterOptions.Appearance).Equals(CharacterOptions.Appearance))
-            { fieldList.Add("appearance"); }
+            {
+                fieldList.Add("appearance");
+            }
+
             if ((characterOptions & CharacterOptions.PetSlots).Equals(CharacterOptions.PetSlots))
-            { fieldList.Add("petSlots"); }
+            {
+                fieldList.Add("petSlots");
+            }
+
             if ((characterOptions & CharacterOptions.Mounts).Equals(CharacterOptions.Mounts))
-            { fieldList.Add("mounts"); }
+            {
+                fieldList.Add("mounts");
+            }
+
             if ((characterOptions & CharacterOptions.Pets).Equals(CharacterOptions.Pets))
-            { fieldList.Add("pets"); }
+            {
+                fieldList.Add("pets");
+            }
+
             if ((characterOptions & CharacterOptions.Achievements).Equals(CharacterOptions.Achievements))
-            { fieldList.Add("achievements"); }
+            {
+                fieldList.Add("achievements");
+            }
+
             if ((characterOptions & CharacterOptions.Progression).Equals(CharacterOptions.Progression))
-            { fieldList.Add("progression"); }
+            {
+                fieldList.Add("progression");
+            }
+
             if ((characterOptions & CharacterOptions.Feed).Equals(CharacterOptions.Feed))
-            { fieldList.Add("feed"); }
+            {
+                fieldList.Add("feed");
+            }
+
             if ((characterOptions & CharacterOptions.PvP).Equals(CharacterOptions.PvP))
-            { fieldList.Add("pvp"); }
+            {
+                fieldList.Add("pvp");
+            }
+
             if ((characterOptions & CharacterOptions.Quests).Equals(CharacterOptions.Quests))
-            { fieldList.Add("quests"); }
+            {
+                fieldList.Add("quests");
+            }
+
             if ((characterOptions & CharacterOptions.HunterPets).Equals(CharacterOptions.HunterPets))
-            { fieldList.Add("hunterPets"); }
+            {
+                fieldList.Add("hunterPets");
+            }
 
             if (fieldList.Count == 0)
             {
                 return string.Empty;
             }
+
             fields += string.Join(",", fieldList);
             return fields;
 

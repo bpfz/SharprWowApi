@@ -1,4 +1,7 @@
-﻿using SharprWowApi.Models.Achievement;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using SharprWowApi.Models.Achievement;
 using SharprWowApi.Models.Auction;
 using SharprWowApi.Models.BattlePet;
 using SharprWowApi.Models.ChallengeMode;
@@ -12,10 +15,6 @@ using SharprWowApi.Models.RealmStatus;
 using SharprWowApi.Models.Recipe;
 using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace SharprWowApi
 {
@@ -28,13 +27,15 @@ namespace SharprWowApi
         {
             var achievement = new AchievementRoot();
 
-            var url = string.Format(@"{0}/wow/achievement/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(
+                @"{0}/wow/achievement/{1}?locale={2}&apikey={3}",
                 _Host,
                 achievementId,
                 _Locale,
                 _APIKey);
 
-            achievement = await json.GetDataFromURLAsync<AchievementRoot>(url);
+            achievement = await this.json.GetDataFromURLAsync<AchievementRoot>(url);
 
             return achievement;
         }
@@ -43,7 +44,7 @@ namespace SharprWowApi
         #region auctions
         public async Task<AuctionFilesRoot> GetAuctionFileAsync()
         {
-            return await GetAuctionFileAsync(_Realm);
+            return await this.GetAuctionFileAsync(this._Realm);
         }
 
         public async Task<AuctionFilesRoot> GetAuctionFileAsync(string realm)
@@ -51,58 +52,62 @@ namespace SharprWowApi
             var auctionFiles = new AuctionFilesRoot();
             realm.ToLower().Replace(' ', '-');
 
-            var url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(
+                @"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
                 _Locale,
                 _APIKey);
 
-            auctionFiles = await json.GetDataFromURLAsync<AuctionFilesRoot>(url);
+            auctionFiles = await this.json.GetDataFromURLAsync<AuctionFilesRoot>(url);
             return auctionFiles;
         }
+
         /// <summary>
-        /// Does not block main thread.
         /// Gets Realm from client
         /// </summary>
-        ///<remarks>
-        ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
-        ///</remarks>
-        /// <returns>AuctionsRoot</returns>
+        /// <remarks>
+        /// sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0. (First run only)
+        /// </remarks>
+        /// <returns>AuctionsRoot object</returns>
         public async Task<AuctionsRoot> GetAuctionsAsync()
         {
-            return await GetAuctionsAsync(_Realm);
+            return await this.GetAuctionsAsync(this._Realm);
         }
 
         /// <summary>
         /// Does not block main thread.
         /// </summary>
-        ///<remarks>
-        ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
-        ///</remarks>
+        /// <remarks>
+        /// Sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
+        /// </remarks>
         /// <param name="realm"></param>
-        /// <returns>AuctionsRoot</returns>
+        /// <returns>AuctionsRoot object</returns>
         public async Task<AuctionsRoot> GetAuctionsAsync(string realm)
         {
-            var auctionFiles = await GetAuctionFileAsync(realm);
+            var auctionFiles = await this.GetAuctionFileAsync(realm);
 
             if (auctionFiles != null)
             {
-                var auctionUrl = "";
+                var auctionUrl = string.Empty;
                 foreach (var auctionFile in auctionFiles.Files)
                 {
                     auctionUrl = auctionFile.Url;
                 }
 
                 var auctions = new AuctionsRoot();
-                auctions = await json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
+                auctions = await this.json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
 
                 return auctions;
             }
+
             return null;
         }
         #endregion
 
         #region battlePet
+
         /// <summary>
         /// This provides data about a individual battle pet ability ID.
         /// </summary>
@@ -112,13 +117,15 @@ namespace SharprWowApi
         {
             var battlePetAbility = new BattlePetAbilitiesRoot();
 
-            var url = string.Format(@"{0}/wow/battlepet/ability/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(
+                @"{0}/wow/battlepet/ability/{1}?locale={2}&apikey={3}",
                 _Host,
                 abilityId,
                 _Locale,
                 _APIKey);
 
-            battlePetAbility = await json.GetDataFromURLAsync<BattlePetAbilitiesRoot>(url);
+            battlePetAbility = await this.json.GetDataFromURLAsync<BattlePetAbilitiesRoot>(url);
             return battlePetAbility;
         }
 
@@ -131,13 +138,14 @@ namespace SharprWowApi
         {
             var battlePetSpecies = new BattlePetSpeciesRoot();
 
-            var url = string.Format(@"{0}/wow/battlepet/species/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/battlepet/species/{1}?locale={2}&apikey={3}",
                 _Host,
                 speciesId,
                 _Locale,
                 _APIKey);
 
-            battlePetSpecies = await json.GetDataFromURLAsync<BattlePetSpeciesRoot>(url);
+            battlePetSpecies = await this.json.GetDataFromURLAsync<BattlePetSpeciesRoot>(url);
             return battlePetSpecies;
         }
 
@@ -150,13 +158,15 @@ namespace SharprWowApi
         {
             var battlePetStats = new BattlePetStatsRoot();
 
-            var url = string.Format(@"{0}/wow/battlepet/FollowerStats/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(
+                @"{0}/wow/battlepet/FollowerStats/{1}?locale={2}&apikey={3}",
                 _Host,
                 speciesId,
                 _Locale,
                 _APIKey);
 
-            battlePetStats = await json.GetDataFromURLAsync<BattlePetStatsRoot>(url);
+            battlePetStats = await this.json.GetDataFromURLAsync<BattlePetStatsRoot>(url);
             return battlePetStats;
         }
 
@@ -165,25 +175,27 @@ namespace SharprWowApi
         #region challenge
 
         /// <summary>
-        /// Uses realm from apiclient.
+        /// Uses realm from ApiClient.
         /// </summary>
         /// <returns></returns>
         public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync()
         {
-            return await GetChallengeModeLeaderboardAsync(_Realm);
+            return await this.GetChallengeModeLeaderboardAsync(this._Realm);
         }
 
         public async Task<ChallengeRoot> GetChallengeModeLeaderboardAsync(string realm)
         {
             var challenge = new ChallengeRoot();
 
-            var url = string.Format(@"{0}/wow/Challenge/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(
+                @"{0}/wow/Challenge/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
                 _Locale,
                 _APIKey);
 
-            challenge = await json.GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await this.json.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -196,18 +208,21 @@ namespace SharprWowApi
         {
             var challenge = new ChallengeRoot();
 
-            var url = string.Format(@"{0}/wow/Challenge/region?locale={1}&apikey={2}",
+            var url =
+                string.Format(
+                @"{0}/wow/Challenge/region?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            challenge = await json.GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await this.json.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
         #endregion
 
         #region character
+
         /// <summary>
         /// Get character. Use this if you have set the realm in ApiClient.
         /// </summary>
@@ -216,7 +231,7 @@ namespace SharprWowApi
         /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions)
         {
-            return await GetCharacterAsync(name, characterOptions, _Realm);
+            return await this.GetCharacterAsync(name, characterOptions, this._Realm);
         }
 
         /// <summary>
@@ -229,8 +244,10 @@ namespace SharprWowApi
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions, string realm)
         {
             var character = new CharacterRoot();
-            
-            var url = string.Format(@"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
+
+            var url =
+                string.Format(
+                @"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
                 _Host,
                 realm,
                 name,
@@ -238,7 +255,7 @@ namespace SharprWowApi
                 CharacterUtility.BuildOptionalFields(characterOptions),
                 _APIKey);
 
-            character = await json.GetDataFromURLAsync<CharacterRoot>(url);
+            character = await this.json.GetDataFromURLAsync<CharacterRoot>(url);
 
             return character;
         }
@@ -246,9 +263,10 @@ namespace SharprWowApi
         #endregion
 
         #region GetGuildCharactersAsync
+
         /// <summary>
         /// Creates a list with CharacterRoot for every member in given guild.
-        /// To avoid calling the wow api more than 100 times per second, this method limits the list of guildmembers to int take.
+        /// To avoid calling the wow api more than 100 times per second, this method limits the list of guild members (integer) to take.
         /// Adds delay on the task if members are over 95, and 280 (0.5s each).
         /// </summary>
         /// <param name="guildMembers">List with guildmembers</param>
@@ -256,11 +274,13 @@ namespace SharprWowApi
         /// <param name="levelThreshold">Take only members above or equal to this integer</param>
         /// <param name="membersToTake">How many members should be returned (mind the 100 calls per second cap)</param>
         /// <returns>List filled with characterRoot</returns>
-        public async Task<List<CharacterRoot>> GetCharactersInGuildAsync(IEnumerable<GuildMember> guildMembers,
+        public async Task<List<CharacterRoot>> GetCharactersInGuildAsync(
+            IEnumerable<GuildMember> guildMembers,
             CharacterOptions characterOptions,
-            int levelThreshold, int membersToTake)
+            int levelThreshold,
+            int membersToTake)
         {
-            //var guild = GetGuild(guildName, GuildOptions.Members, _Realm);
+            ////var guild = GetGuild(guildName, GuildOptions.Members, _Realm);
             var characterList = new List<CharacterRoot>();
 
             var order = from guildMemberLevel in guildMembers
@@ -269,7 +289,8 @@ namespace SharprWowApi
 
             var downloadTasksQuery = from member in order.Take(membersToTake)
                                      where member.Character.Level >= levelThreshold
-                                     select GetCharacterAsync(member.Character.Name,
+                                     select this.GetCharacterAsync(
+                                     member.Character.Name,
                                      characterOptions,
                                      _Realm);
 
@@ -277,12 +298,6 @@ namespace SharprWowApi
 
             while (downloadTasks.Count > 0)
             {
-                if (downloadTasks.Count.Equals(95))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
-                if (downloadTasks.Count.Equals(280))
-                    await Task.Delay(System.TimeSpan.FromMilliseconds(500));
-
                 var finishedTask = await Task.WhenAny(downloadTasks);
                 downloadTasks.Remove(finishedTask);
                 var character = await finishedTask;
@@ -298,7 +313,8 @@ namespace SharprWowApi
         /// <param name="guildMembers">string array with guildmembers</param>
         /// <param name="characterOptions"></param>
         /// <returns>HashSet filled with characterRoot objects</returns>
-        public async Task<HashSet<CharacterRoot>> GetCharactersInGuildAsync(string[] guildMembers,
+        public async Task<HashSet<CharacterRoot>> GetCharactersInGuildAsync(
+            string[] guildMembers,
          CharacterOptions characterOptions)
         {
             var memberHash = new HashSet<string>(guildMembers);
@@ -308,7 +324,7 @@ namespace SharprWowApi
 
             for (int i = 0; i < memberHash.Count; i++)
             {
-                downloadTasks.Add(GetCharacterAsync(memberHash.ElementAt(i), characterOptions, _Realm));
+                downloadTasks.Add(this.GetCharacterAsync(memberHash.ElementAt(i), characterOptions, this._Realm));
             }
 
             while (downloadTasks.Count > 0)
@@ -318,6 +334,7 @@ namespace SharprWowApi
                 var finished = await finishedTask;
                 characterHash.Add(finished);
             }
+
             return characterHash;
         }
 
@@ -333,13 +350,14 @@ namespace SharprWowApi
         /// <returns></returns>
         public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions)
         {
-            return await GetGuildAsync(name, guildOptions, _Realm);
+            return await this.GetGuildAsync(name, guildOptions, this._Realm);
         }
 
         public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
-            var url = string.Format(@"{0}/wow/guild/{1}/{2}?{3}&locale={4}&apikey={5}",
+            var url = string.Format(
+                @"{0}/wow/guild/{1}/{2}?{3}&locale={4}&apikey={5}",
                 _Host,
                 realm,
                 name,
@@ -347,7 +365,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guild = await json.GetDataFromURLAsync<GuildRoot>(url);
+            guild = await this.json.GetDataFromURLAsync<GuildRoot>(url);
 
             return guild;
         }
@@ -383,18 +401,19 @@ namespace SharprWowApi
         /// This includes item set information if this item is part of a set.
         /// </summary>
         /// <param name="itemID">the id of the item</param>
-        /// <returns>ItemRoot</returns>
+        /// <returns>ItemRoot object</returns>
         public async Task<ItemRoot> GetItemAsync(string itemID)
         {
             var item = new ItemRoot();
 
-            var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/item/{1}?locale={2}&apikey={3}",
                 _Host,
                 itemID,
                 _Locale,
                 _APIKey);
 
-            item = await json.GetDataFromURLAsync<ItemRoot>(url);
+            item = await this.json.GetDataFromURLAsync<ItemRoot>(url);
             return item;
         }
 
@@ -411,13 +430,14 @@ namespace SharprWowApi
         {
             var item = new ItemSetRoot();
 
-            var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/item/{1}?locale={2}&apikey={3}",
                 _Host,
                 itemSetID,
                 _Locale,
                 _APIKey);
 
-            item = await json.GetDataFromURLAsync<ItemSetRoot>(url);
+            item = await this.json.GetDataFromURLAsync<ItemSetRoot>(url);
             return item;
         }
 
@@ -433,13 +453,14 @@ namespace SharprWowApi
         {
             var leaderboard = new LeaderboardRoot();
 
-            var url = string.Format(@"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
                 _Host,
-               LeaderboardUtility.buildOptionalQuery(leaderboardOptions),
+               LeaderboardUtility.BuildOptionalQuery(leaderboardOptions),
                _Locale,
                _APIKey);
 
-            leaderboard = await json.GetDataFromURLAsync<LeaderboardRoot>(url);
+            leaderboard = await this.json.GetDataFromURLAsync<LeaderboardRoot>(url);
 
             return leaderboard;
         }
@@ -457,13 +478,14 @@ namespace SharprWowApi
         {
             var quest = new QuestRoot();
 
-            var url = string.Format(@"{0}/wow/quest/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/quest/{1}?locale={2}&apikey={3}",
                 _Host,
                 questId,
                 _Locale,
                 _APIKey);
 
-            quest = await json.GetDataFromURLAsync<QuestRoot>(url);
+            quest = await this.json.GetDataFromURLAsync<QuestRoot>(url);
             return quest;
         }
 
@@ -475,13 +497,14 @@ namespace SharprWowApi
         {
             var recipe = new RecipeRoot();
 
-            var url = string.Format(@"{0}/wow/Recipe/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/Recipe/{1}?locale={2}&apikey={3}",
                 _Host,
                 recipeId,
                 _Locale,
                 _APIKey);
 
-            recipe = await json.GetDataFromURLAsync<RecipeRoot>(url);
+            recipe = await this.json.GetDataFromURLAsync<RecipeRoot>(url);
             return recipe;
         }
 
@@ -497,12 +520,13 @@ namespace SharprWowApi
         {
             var realm = new RealmRoot();
 
-            var url = string.Format(@"{0}/wow/realm/status?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/realm/status?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            realm = await json.GetDataFromURLAsync<RealmRoot>(url);
+            realm = await this.json.GetDataFromURLAsync<RealmRoot>(url);
             return realm;
         }
 
@@ -513,13 +537,14 @@ namespace SharprWowApi
         {
             var spell = new SpellRoot();
 
-            var url = string.Format(@"{0}/wow/spell/{1}?locale={2}&apikey={3}",
+            var url = string.Format(
+                @"{0}/wow/spell/{1}?locale={2}&apikey={3}",
                 _Host,
                 spellId,
                 _Locale,
                 _APIKey);
 
-            spell = await json.GetDataFromURLAsync<SpellRoot>(url);
+            spell = await this.json.GetDataFromURLAsync<SpellRoot>(url);
             return spell;
         }
 
@@ -536,32 +561,34 @@ namespace SharprWowApi
         {
             var achievementsData = new DataAchievementRoot();
 
-            var url = string.Format(@"{0}/wow/data/Character/Achievements?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/Character/Achievements?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            achievementsData = await json.GetDataFromURLAsync<DataAchievementRoot>(url);
+            achievementsData = await this.json.GetDataFromURLAsync<DataAchievementRoot>(url);
             return achievementsData;
         }
         #endregion
 
         #region Battlegroup
 
-        ///<summary>
-        ///The battlegroups data API provides the list of battlegroups for this region
+        /// <summary>
+        /// The battlegroups data API provides the list of battlegroups for this region
         /// </summary>
         /// <returns>DataBattleGroupRoot object</returns>
         public async Task<DataBattleGroupRoot> GetBattlegroupDataAsync()
         {
             var battlegroupData = new DataBattleGroupRoot();
 
-            var url = string.Format(@"{0}/wow/data/battlegroups/?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/battlegroups/?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            battlegroupData = await json.GetDataFromURLAsync<DataBattleGroupRoot>(url);
+            battlegroupData = await this.json.GetDataFromURLAsync<DataBattleGroupRoot>(url);
             return battlegroupData;
         }
 
@@ -576,12 +603,13 @@ namespace SharprWowApi
         {
             var classData = new DataCharacterClassesRoot();
 
-            var url = string.Format(@"{0}/wow/data/character/classes?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/character/classes?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            classData = await json.GetDataFromURLAsync<DataCharacterClassesRoot>(url);
+            classData = await this.json.GetDataFromURLAsync<DataCharacterClassesRoot>(url);
             return classData;
         }
         #endregion
@@ -592,12 +620,13 @@ namespace SharprWowApi
         {
             var achievementData = new DataGuildAchivementRoot();
 
-            var url = string.Format(@"{0}/wow/data/guild/Achievements?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/guild/Achievements?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            achievementData = await json.GetDataFromURLAsync<DataGuildAchivementRoot>(url);
+            achievementData = await this.json.GetDataFromURLAsync<DataGuildAchivementRoot>(url);
             return achievementData;
         }
 
@@ -606,19 +635,20 @@ namespace SharprWowApi
         #region Guild Perks
 
         /// <summary>
-        ///The guild perks data API provides a list of all guild perks.
+        /// The guild perks data API provides a list of all guild perks.
         /// </summary>
         /// <returns>DataGuildPerksRoot object</returns>
         public async Task<DataGuildPerksRoot> GetGuildPerkDataAsync()
         {
             var guildPerksData = new DataGuildPerksRoot();
 
-            var url = string.Format(@"{0}/wow/data/guild/perks?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/guild/perks?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            guildPerksData = await json.GetDataFromURLAsync<DataGuildPerksRoot>(url);
+            guildPerksData = await this.json.GetDataFromURLAsync<DataGuildPerksRoot>(url);
             return guildPerksData;
         }
         #endregion
@@ -626,19 +656,20 @@ namespace SharprWowApi
         #region Guild Rewards
 
         /// <summary>
-        ///The guild rewards data API provides a list of all guild rewards.
+        /// The guild rewards data API provides a list of all guild rewards.
         /// </summary>
         /// <returns>DataGuildRewardsRoot object</returns>
         public async Task<DataGuildRewardsRoot> GetGuildRewardDataAsync()
         {
             var guildRewardsData = new DataGuildRewardsRoot();
 
-            var url = string.Format(@"{0}/wow/data/guild/rewards?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/guild/rewards?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            guildRewardsData = await json.GetDataFromURLAsync<DataGuildRewardsRoot>(url);
+            guildRewardsData = await this.json.GetDataFromURLAsync<DataGuildRewardsRoot>(url);
             return guildRewardsData;
         }
 
@@ -647,19 +678,20 @@ namespace SharprWowApi
         #region Item classes
 
         /// <summary>
-        ///The item classes data API provides a list of item classes 
+        /// The item classes data API provides a list of item classes 
         /// </summary>
         /// <returns>DataItemClassRoot object</returns>
         public async Task<DataItemClassRoot> GetItemClassDataAsync()
         {
             var itemData = new DataItemClassRoot();
 
-            var url = string.Format(@"{0}/wow/data/item/classes?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/item/classes?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            itemData = await json.GetDataFromURLAsync<DataItemClassRoot>(url);
+            itemData = await this.json.GetDataFromURLAsync<DataItemClassRoot>(url);
             return itemData;
         }
         #endregion
@@ -667,19 +699,20 @@ namespace SharprWowApi
         #region Pet Types
 
         /// <summary>
-        ///The different bat pet types (including what they are strong and weak against)
+        /// The different bat pet types (including what they are strong and weak against)
         /// </summary>
         /// <returns>DataPetTypesRoot object</returns>
         public async Task<DataPetTypesRoot> GetPetTypeDataAsync()
         {
             var petData = new DataPetTypesRoot();
 
-            var url = string.Format(@"{0}/wow/data/pet/types?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/pet/types?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            petData = await json.GetDataFromURLAsync<DataPetTypesRoot>(url);
+            petData = await this.json.GetDataFromURLAsync<DataPetTypesRoot>(url);
             return petData;
         }
         #endregion
@@ -693,12 +726,13 @@ namespace SharprWowApi
         {
             var raceData = new DataRacesRoot();
 
-            var url = string.Format(@"{0}/wow/data/character/races?locale={1}&apikey={2}",
+            var url = string.Format(
+                @"{0}/wow/data/character/races?locale={1}&apikey={2}",
                 _Host,
                 _Locale,
                 _APIKey);
 
-            raceData = await json.GetDataFromURLAsync<DataRacesRoot>(url);
+            raceData = await this.json.GetDataFromURLAsync<DataRacesRoot>(url);
             return raceData;
         }
 

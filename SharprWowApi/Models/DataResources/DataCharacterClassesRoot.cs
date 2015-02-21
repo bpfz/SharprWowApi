@@ -8,6 +8,6 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataCharacterClassesRoot
     {
-        public List<DataCharacterClass> classes { get; set; }
+        public IEnumerable<DataCharacterClass> Classes { get; set; }
     }
 }

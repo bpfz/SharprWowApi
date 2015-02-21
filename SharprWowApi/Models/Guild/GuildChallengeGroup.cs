@@ -1,21 +1,28 @@
-﻿using SharprWowApi.Models.ChallengeMode;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharprWowApi.Models.ChallengeMode;
 
 namespace SharprWowApi.Models.Guild
 {
     public class GuildChallengeGroup
     {
-        public int ranking { get; set; }
-        public ChallengeTime time { get; set; }
-        public string date { get; set; }
-        public string medal { get; set; }
-        public string faction { get; set; }
-        public bool isRecurring { get; set; }
-        public IEnumerable<GroupMember> members { get; set; }
-        public ChallengeGuild guild { get; set; }
+        public int Ranking { get; set; }
+
+        public ChallengeTime Time { get; set; }
+
+        public string Date { get; set; }
+
+        public string Medal { get; set; }
+
+        public string Faction { get; set; }
+
+        public bool IsRecurring { get; set; }
+
+        public IEnumerable<GroupMember> Members { get; set; }
+
+        public ChallengeGuild Guild { get; set; }
     }
 }

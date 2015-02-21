@@ -8,6 +8,5 @@ namespace SharprWowApi.Models.Character.AuditModel
 {
     public class InappropriateArmorType
     {
-
     }
 }

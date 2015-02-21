@@ -8,14 +8,23 @@ namespace SharprWowApi.Models.Achievement
     public class AchievementRoot
     {
         public int Id { get; set; }
+
         public string Title { get; set; }
+
         public int Points { get; set; }
+
         public string Description { get; set; }
+
         public string Reward { get; set; }
+
         public List<AchievementRewardItem> RewardItems { get; set; }
+
         public string Icon { get; set; }
+
         public List<AchiviementCriteria> Criteria { get; set; }
+
         public bool AccountWide { get; set; }
+
         public int FactionId { get; set; }
     }
 

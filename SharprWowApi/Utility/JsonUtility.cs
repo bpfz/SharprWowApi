@@ -1,18 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.IO;
-using System.Net;
-using System.Net.Http;
+using SharprWowApi.Models.Character;
+using SharprWowApi.Models.Quest;
 
 namespace SharprWowApi.Utility
 {
     public class JsonUtility
     {
-        #region downloadstring
+        internal T GetDataFromURL<T>(string url) where T : class
+        {
+            try
+            {
+                return this.DeserializeJson<T>(url);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal async Task<T> GetDataFromURLAsync<T>(string url) where T : class
+        {
+            try
+            {
+                return await this.DeserializeJsonAsync<T>(url);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         private string DownloadString(string url)
         {
@@ -30,11 +55,10 @@ namespace SharprWowApi.Utility
             using (var httpClient = new HttpClient(
                 new HttpClientHandler
                 {
-                    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+                    AutomaticDecompression = DecompressionMethods.GZip
                 }))
             {
-                // var downloadedString = await httpClient.GetStringAsync(url);
-                var download = ProcessURLAsync(url, httpClient);
+                var download = this.ProcessURLAsync(url, httpClient);
                 var downloaded = await download;
 
                 return downloaded;
@@ -48,51 +72,20 @@ namespace SharprWowApi.Utility
             return byteArray;
         }
 
-
-        //uses this until I can figure out why
-        //Auction sometimes throws:
-        //Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: <. Path '', line 0, position 0.
-        //Json2csharp throws the same exception so it's not only this code.
-        //also doesn't actually fix the bug...
-        private async Task<string> DownloadStringAsStringAsync(string url)
-        {
-            using (var httpClient = new HttpClient(
-                new HttpClientHandler
-                {
-                    AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
-                }))
-            {
-                // var downloadedString = await httpClient.GetStringAsync(url);
-                var download = ProcessURLAsStringAsync(url, httpClient);
-                var downloaded = await download;
-
-                return downloaded;
-            }
-        }
-        private async Task<string> ProcessURLAsStringAsync(string url, HttpClient client)
-        {
-            var byteArray = await client.GetStringAsync(url);
-            return byteArray;
-        }
-
-        #endregion
-
-        #region deserialize
-
         /// <summary>
-        /// Takes json string, downloads it with webclient, 
+        /// Takes a json string, downloads it with webclient, 
         /// initializes memorystream, read stream w streamreader
-        /// returns deserliazed object.
+        /// returns deserialized object.
         /// </summary>
         /// <typeparam name="T">Class model</typeparam>
         /// <param name="url">Url for the json</param>
-        /// <returns>Deserialized json object.
+        /// <returns>Deserialized object
         /// </returns>
         private T DeserializeJson<T>(string url) where T : class
         {
             try
             {
-                var downloadedString = DownloadString(url);
+                var downloadedString = this.DownloadString(url);
 
                 using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
                 {
@@ -103,11 +96,8 @@ namespace SharprWowApi.Utility
                     return serializer.Deserialize<T>(jsonTextReader);
                 }
             }
-
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
                 throw;
             }
         }
@@ -116,70 +106,25 @@ namespace SharprWowApi.Utility
         {
             try
             {
-                //var downloadedString = await DownloadStringAsStringAsync(url);
-                var downloadedByte = await DownloadStringAsync(url);
-                //ugly hack that doesn't even work
-                /*if (downloadedString.StartsWith(@"<"))
-                {
-                    downloadedString = downloadedString.Replace(@"<", "");
-                }*/
+                var downloadedByte = await this.DownloadStringAsync(url);
 
-                //using (var memoryStream = new MemoryStream(Encoding.Default.GetBytes(downloadedString)))
                 using (var memoryStream = new MemoryStream(downloadedByte, false))
                 {
                     var sr = new StreamReader(memoryStream);
                     var jsonTextReader = new JsonTextReader(sr);
-
                     var serializer = new JsonSerializer();
                     var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
+
                     deserialize.Start();
-                    T apiResponseObject = await deserialize;
+                    var apiResponseObject = await deserialize;
 
                     return apiResponseObject;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
                 throw;
             }
         }
-
-        #endregion
-
-        #region getData
-
-        internal T GetDataFromURL<T>(string url) where T : class
-        {
-            try
-            {
-                return DeserializeJson<T>(url);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("GetDataFromURL Exception ---");
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-        }
-
-        internal async Task<T> GetDataFromURLAsync<T>(string url) where T : class
-        {
-            try
-            {
-                return await DeserializeJsonAsync<T>(url);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("GetDataFromURLAsync Exception ---");
-                Console.WriteLine(ex.GetType().FullName);
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-        }
-
-        #endregion
     }
 }

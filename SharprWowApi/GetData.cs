@@ -1,20 +1,20 @@
-﻿using SharprWowApi.Models.Achievement;
-using SharprWowApi.Models.Auction;
-using SharprWowApi.Models.BattlePet;
-using SharprWowApi.Models.ChallengeMode;
-using SharprWowApi.Models.Character;
-using SharprWowApi.Models.DataResources;
-using SharprWowApi.Models.Guild;
-using SharprWowApi.Models.Item;
-using SharprWowApi.Models.PVP;
-using SharprWowApi.Models.Quest;
-using SharprWowApi.Models.RealmStatus;
-using SharprWowApi.Models.Recipe;
-using SharprWowApi.Models.Spells;
-using SharprWowApi.Utility;
-
-namespace SharprWowApi
+﻿namespace SharprWowApi
 {
+    using SharprWowApi.Models.Achievement;
+    using SharprWowApi.Models.Auction;
+    using SharprWowApi.Models.BattlePet;
+    using SharprWowApi.Models.ChallengeMode;
+    using SharprWowApi.Models.Character;
+    using SharprWowApi.Models.DataResources;
+    using SharprWowApi.Models.Guild;
+    using SharprWowApi.Models.Item;
+    using SharprWowApi.Models.PVP;
+    using SharprWowApi.Models.Quest;
+    using SharprWowApi.Models.RealmStatus;
+    using SharprWowApi.Models.Recipe;
+    using SharprWowApi.Models.Spells;
+    using SharprWowApi.Utility;
+
     public abstract class GetData : GetDataBase
     {
         private JsonUtility json = new JsonUtility();
@@ -22,12 +22,12 @@ namespace SharprWowApi
         //done
         #region achievement
 
-
         public AchievementRoot GetAchievement(int achievementId)
         {
             var achievement = new AchievementRoot();
 
-            var url = string.Format(@"{0}/wow/achievement/{1}?locale={2}&apikey={3}",
+            var url =
+                string.Format(@"{0}/wow/achievement/{1}?locale={2}&apikey={3}",
                 _Host,
                 achievementId,
                 _Locale,
@@ -46,23 +46,24 @@ namespace SharprWowApi
         /// <summary>
         /// Realm from client
         /// </summary>
-        /// <returns>AuctionFilesRoot</returns>
+        /// <returns>AuctionFilesRoot object</returns>
         public AuctionFilesRoot GetAuctionFile()
         {
-            return GetAuctionFile(_Realm);
+            return this.GetAuctionFile(_Realm);
         }
 
         /// <summary>
-        /// Use to get value of "lastmodified".
+        /// Use to get value of last modified.
         /// </summary>
-        /// <param name="realm"></param>
-        /// <returns></returns>
+        /// <param name="realm">Realm of the auction house</param>
+        /// <returns>AuctionFilesRoot object</returns>
         public AuctionFilesRoot GetAuctionFile(string realm)
         {
             var auctionFiles = new AuctionFilesRoot();
             realm.ToLower().Replace(' ', '-');
 
-            var url = string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
+            var url = 
+                string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,
                 _Locale,
@@ -78,10 +79,10 @@ namespace SharprWowApi
         ///<remarks>
         ///sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
         ///</remarks>
-        /// <returns>AuctionsRoot</returns>
+        /// <returns>AuctionsRoot object</returns>
         public AuctionsRoot GetAuctions()
         {
-            return GetAuctions(_Realm);
+            return this.GetAuctions(_Realm);
         }
 
         /// <summary>
@@ -91,15 +92,15 @@ namespace SharprWowApi
         /// sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
         /// </remarks>
         /// <param name="realm"></param>
-        /// <returns>AuctionsRoot</returns>
+        /// <returns>AuctionsRoot object</returns>
         public AuctionsRoot GetAuctions(string realm)
         {
-            var auctionFiles = GetAuctionFile(realm); ;
+            var auctionFiles = this.GetAuctionFile(realm); ;
 
             if (auctionFiles != null)
             {
                 var auctions = new AuctionsRoot();
-                var auctionUrl = "";
+                var auctionUrl = string.Empty;
 
                 foreach (var auctionFile in auctionFiles.Files)
                 {
@@ -113,8 +114,6 @@ namespace SharprWowApi
 
             return null;
         }
-
-
 
         #endregion
 
@@ -184,12 +183,12 @@ namespace SharprWowApi
         #region Challenge Mode
 
         /// <summary>
-        /// Uses realm from apiclient.
+        /// Uses realm from ApiClient.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ChallengeRoot object</returns>
         public ChallengeRoot GetChallengeModeLeaderboard()
         {
-            return GetChallengeModeLeaderboard(_Realm);
+            return this.GetChallengeModeLeaderboard(_Realm);
         }
 
         /// <summary>
@@ -211,7 +210,7 @@ namespace SharprWowApi
 
             return challenge;
         }
- 
+
         /// <summary>
         /// Leaderboard for Challenge mode for region (_Locale)
         /// </summary>
@@ -243,7 +242,7 @@ namespace SharprWowApi
         /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions)
         {
-            return GetCharacter(name, characterOptions, _Realm);
+            return this.GetCharacter(name, characterOptions, _Realm);
         }
 
         /// <summary>
@@ -280,10 +279,10 @@ namespace SharprWowApi
         /// </summary>
         /// <param name="name"></param>
         /// <param name="guildOptions"></param>
-        /// <returns></returns>
+        /// <returns>GuildRoot object</returns>
         public GuildRoot GetGuild(string name, GuildOptions guildOptions)
         {
-            return GetGuild(name, guildOptions, _Realm);
+            return this.GetGuild(name, guildOptions, _Realm);
         }
 
         public GuildRoot GetGuild(string name, GuildOptions guildOptions, string realm)
@@ -335,7 +334,7 @@ namespace SharprWowApi
         /// Can be a good choice if you don't need all stats for each item that you would get from the GetItem method.
         /// </example>
         /// <param name="itemSetID"></param>
-        /// <returns></returns>
+        /// <returns>ItemSetRoot object</returns>
         public ItemSetRoot GetItemSet(string itemSetID)
         {
             var item = new ItemSetRoot();
@@ -366,7 +365,7 @@ namespace SharprWowApi
 
             var url = string.Format(@"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
                 _Host,
-               LeaderboardUtility.buildOptionalQuery(leaderboardOptions),
+               LeaderboardUtility.BuildOptionalQuery(leaderboardOptions),
                _Locale,
                _APIKey);
 
@@ -430,7 +429,7 @@ namespace SharprWowApi
         /// Gets recipe from recipeID
         /// </summary>
         /// <param name="recipeId"></param>
-        /// <returns></returns>
+        /// <returns>RecipeRoot object</returns>
         public RecipeRoot GetRecipe(int recipeId)
         {
             var recipe = new RecipeRoot();
@@ -452,8 +451,8 @@ namespace SharprWowApi
         /// <summary>
         /// Gets spell from spellID
         /// </summary>
-        /// <param name="spellId"></param>
-        /// <returns></returns>
+        /// <param name="spellId">The ID of the spell</param>
+        /// <returns>SpellRoot object</returns>
         public SpellRoot GetSpell(int spellId)
         {
             var spell = new SpellRoot();

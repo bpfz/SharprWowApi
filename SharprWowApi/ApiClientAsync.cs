@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharprWowApi
+﻿namespace SharprWowApi
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Client to use to get data from the api.
+    /// </summary>
     public class ApiClientAsync : GetDataAsync
     {
         /// <summary>
+        /// Initializes a new instance of the ApiClientAsync class.
         /// Set region, locale, your API key and optional Realm
         /// </summary>
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
@@ -18,11 +22,11 @@ namespace SharprWowApi
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
-                _Region = region;
-                _Locale = locale;
-                _APIKey = apiKey;
+                this._Region = region;
+                this._Locale = locale;
+                this._APIKey = apiKey;
 
-                Host(_Region);
+                this.Host(this._Region);
             }
             else
             {
@@ -31,6 +35,7 @@ namespace SharprWowApi
         }
 
         /// <summary>
+        /// Initializes a new instance of the ApiClientAsync class.
         /// Set region, locale, your API key and optional Realm
         /// </summary>
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
@@ -39,15 +44,14 @@ namespace SharprWowApi
         /// <param name="realm"></param>
         public ApiClientAsync(Region region, Locale locale, string apiKey, string realm)
         {
-
             if (!string.IsNullOrEmpty(apiKey))
             {
-                _Region = region;
-                _Locale = locale;
-                _APIKey = apiKey;
-                _Realm = realm;
+                this._Region = region;
+                this._Locale = locale;
+                this._APIKey = apiKey;
+                this._Realm = realm;
 
-                Host(_Region);
+                this.Host(this._Region);
             }
             else
             {
@@ -60,19 +64,19 @@ namespace SharprWowApi
             switch (region)
             {
                 case Region.EU:
-                    _Host = "https://eu.api.battle.net";
+                    this._Host = "https://eu.api.battle.net";
                     break;
                 case Region.KR:
-                    _Host = "https://kr.api.battle.net";
+                    this._Host = "https://kr.api.battle.net";
                     break;
                 case Region.TW:
-                    _Host = "https://tw.api.battle.net";
+                    this._Host = "https://tw.api.battle.net";
                     break;
                 case Region.CN:
-                    _Host = "https://www.battlenet.com.cn";
+                    this._Host = "https://www.battlenet.com.cn";
                     break;
                 case Region.US:
-                    _Host = "https://us.api.battle.net";
+                    this._Host = "https://us.api.battle.net";
                     break;
             }
         }

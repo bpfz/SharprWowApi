@@ -8,8 +8,9 @@ namespace SharprWowApi.Models.Character
     public class CharacterMounts
     {
         public int NumCollected { get; set; }
+
         public int NumNotCollected { get; set; }
+
         public IEnumerable<CharacterMountsCollected> Collected { get; set; }
     }
-
 }

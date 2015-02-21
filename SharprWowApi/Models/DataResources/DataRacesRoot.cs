@@ -8,13 +8,17 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataRacesRoot
     {
-        public List<Race> races { get; set; }
+        public IEnumerable<Race> Races { get; set; }
     }
+
     public class Race
     {
-        public int id { get; set; }
-        public int mask { get; set; }
-        public string side { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+
+        public int Mask { get; set; }
+
+        public string Side { get; set; }
+
+        public string Name { get; set; }
     }
 }

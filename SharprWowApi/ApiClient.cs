@@ -2,10 +2,10 @@
 
 namespace SharprWowApi
 {
-
     public class ApiClient : GetData
     {
         /// <summary>
+        /// Initializes a new instance of the ApiClient class.
         /// Set region, locale, your API key and optional Realm
         /// </summary>
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
@@ -19,7 +19,7 @@ namespace SharprWowApi
                 _Locale = locale;
                 _APIKey = apiKey;
 
-                Host(region);
+                this.Host(region);
             }
             else
             {
@@ -28,6 +28,7 @@ namespace SharprWowApi
         }
 
         /// <summary>
+        /// Initializes a new instance of the ApiClient class.
         /// Set region, locale, your API key and optional Realm
         /// </summary>
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
@@ -36,7 +37,6 @@ namespace SharprWowApi
         /// <param name="realm"></param>
         public ApiClient(Region region, Locale locale, string apiKey, string realm)
         {
-
             if (!string.IsNullOrEmpty(apiKey))
             {
                 _Region = region;
@@ -44,7 +44,7 @@ namespace SharprWowApi
                 _APIKey = apiKey;
                 _Realm = realm;
 
-                Host(region);
+                this.Host(region);
             }
             else
             {

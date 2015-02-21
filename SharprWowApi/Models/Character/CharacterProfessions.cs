@@ -4,7 +4,8 @@ namespace SharprWowApi.Models.Character
 {
     public class CharacterProfessions
     {
-        public IEnumerable<CharacterProfession> primary { get; set; }
-        public IEnumerable<CharacterProfession> secondary { get; set; }
+        public IEnumerable<CharacterProfession> Primary { get; set; }
+
+        public IEnumerable<CharacterProfession> Secondary { get; set; }
     }
 }

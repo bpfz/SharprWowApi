@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharprWowApi
+﻿namespace SharprWowApi
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
     public enum Region
     {
-        US,     //us.api.battle.net/
-        EU,     //eu.api.battle.net/
-        KR,     //kr.api.battle.net/
-        TW,     //tw.api.battle.net/
-        CN,     //https://battlenet.com.cn/api/
-        SEA     //sea.api.battle.net/
+        US,     ////us.api.battle.net/
+        EU,     ////eu.api.battle.net/
+        KR,     ////kr.api.battle.net/
+        TW,     ////tw.api.battle.net/
+        CN,     ////https://battlenet.com.cn/api/
+        SEA     ////sea.api.battle.net/
     }
 
     public enum Locale
@@ -45,7 +44,7 @@ namespace SharprWowApi
         Talents = 4,
         Items = 8,
         Reputation = 16,
-        Titles =  32,
+        Titles = 32,
         Professions = 64,
         Appearance = 128,
         PetSlots = 256,
@@ -53,7 +52,7 @@ namespace SharprWowApi
         Pets = 1024,
         Achievements = 2048,
         Progression = 4096,
-        Feed =  8192,
+        Feed = 8192,
         PvP = 16384,
         Quests = 32768,
         HunterPets = 65536,

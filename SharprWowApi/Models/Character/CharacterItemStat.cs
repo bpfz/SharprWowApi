@@ -9,6 +9,7 @@ namespace SharprWowApi.Models.Character
     public class CharacterItemStat
     {
         public int Stat { get; set; }
+
         public int Amount { get; set; }
     }
 }

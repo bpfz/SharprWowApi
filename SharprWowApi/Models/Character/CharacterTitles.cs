@@ -1,5 +1,4 @@
-﻿
-namespace SharprWowApi.Models.Character
+﻿namespace SharprWowApi.Models.Character
 {
     /// <summary>
     /// A list of the titles obtained by the character including the currently selected title.
@@ -7,7 +6,9 @@ namespace SharprWowApi.Models.Character
     public class CharacterTitles
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
+
         public bool? Selected { get; set; }
     }
 }

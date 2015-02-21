@@ -5,8 +5,11 @@ namespace SharprWowApi.Models.Item
     public class ItemSetRoot
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public List<ItemSetBonus> SetBonuses { get; set; }
-        public List<int> Items { get; set; }
+
+        public IEnumerable<ItemSetBonus> SetBonuses { get; set; }
+
+        public IEnumerable<int> Items { get; set; }
     }
 }

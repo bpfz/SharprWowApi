@@ -3,7 +3,7 @@ using System.Net;
 
 namespace SharprWowApi.Utility
 {
-    class GzipWebClient : WebClient
+    internal class GzipWebClient : WebClient
     {
         protected override WebRequest GetWebRequest(Uri address)
         {

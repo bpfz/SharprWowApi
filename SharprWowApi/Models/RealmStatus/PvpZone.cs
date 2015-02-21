@@ -1,5 +1,4 @@
-﻿
-namespace SharprWowApi.Models.RealmStatus
+﻿namespace SharprWowApi.Models.RealmStatus
 {
     public class PvpZone
     {
@@ -22,6 +21,5 @@ namespace SharprWowApi.Models.RealmStatus
         /// timestamp of when next battle starts
         /// </summary>
         public object Next { get; set; }
-
     }
 }

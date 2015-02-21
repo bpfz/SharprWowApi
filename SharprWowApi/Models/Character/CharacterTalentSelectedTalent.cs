@@ -9,7 +9,9 @@ namespace SharprWowApi.Models.Character
     public class CharacterTalentSelectedTalent
     {
         public int Tier { get; set; }
+
         public int Column { get; set; }
+
         public CharacterTalentSpell Spell { get; set; }
     }
 }

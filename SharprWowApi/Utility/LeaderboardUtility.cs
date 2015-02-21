@@ -8,8 +8,7 @@ namespace SharprWowApi.Utility
 {
     public class LeaderboardUtility
     {
-
-        public static string buildOptionalQuery(LeaderboardOptions leaderboardOptions)
+        public static string BuildOptionalQuery(LeaderboardOptions leaderboardOptions)
         {
             string query = "&fields=";
 

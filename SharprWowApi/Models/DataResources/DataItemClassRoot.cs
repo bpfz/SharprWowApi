@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SharprWowApi.Models.DataResources
 {
     public class DataItemClassRoot
     {
-        public List<ItemClass> classes { get; set; }
+        public IEnumerable<ItemClass> Classes { get; set; }
     }
+
     public class ItemSubclass
     {
-        public int subclass { get; set; }
-        public string name { get; set; }
+        public int Subclass { get; set; }
+
+        public string Name { get; set; }
     }
 
     public class ItemClass
     {
-        public int itemClass { get; set; }
-        public string name { get; set; }
-        public List<ItemSubclass> subclasses { get; set; }
+        [JsonProperty("itemClass")]
+        public int ClassOfItem { get; set; }
+
+        public string Name { get; set; }
+
+        public IEnumerable<ItemSubclass> Subclasses { get; set; }
     }
 }

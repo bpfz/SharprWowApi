@@ -8,8 +8,11 @@ namespace SharprWowApi.Models.Character
     public class CharacterPetSlot
     {
         public int Slot { get; set; }
+
         public bool IsEmpty { get; set; }
+
         public bool IsLocked { get; set; }
+
         public IEnumerable<int> Abilities { get; set; }
     }
 }

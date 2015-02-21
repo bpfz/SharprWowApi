@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using SharprWowApi.Utility.ExtensionMethods;
+
 namespace SharprWowApi.Models.Character
 {
     public class CharacterFeed
@@ -19,19 +19,29 @@ namespace SharprWowApi.Models.Character
         /// Gets or sets ID of the item
         /// </summary>
         public int ItemId { get; set; }
+
         public CharacterFeedAchievements Achievement { get; set; }
 
         /// <summary>
         /// Gets or Sets if it was a feat of strength
         /// </summary>
         public bool? FeatOfStrength { get; set; }
+
         public CharacterFeedAchievementCriteria Criteria { get; set; }
-        public int? Quantity { get; set; }
+
+        public int Quantity { get; set; }
+
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets Timestamp in datetime format. 
+        /// Gets Timestamp in date time format. 
         /// </summary>
-        public DateTime DateTimestamp { get { return Timestamp.UnixTimestampToDateTime(); } }
+        public DateTime DateTimestamp
+        {
+            get
+            {
+                return this.Timestamp.UnixTimestampToDateTime();
+            }
+        }
     }
 }

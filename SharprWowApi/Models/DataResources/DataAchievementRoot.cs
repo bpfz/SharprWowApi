@@ -8,53 +8,72 @@ namespace SharprWowApi.Models.DataResources
 {
     public class DataAchievementRoot
     {
-        public List<Achievement> achievements { get; set; }
+        public IEnumerable<Achievement> Achievements { get; set; }
     }
 
     public class Achievement
     {
-        public int id { get; set; }
-        public List<SubAchievement> achievements { get; set; }
-        public string name { get; set; }
-        public List<Category> categories { get; set; }
+        public int Id { get; set; }
+
+        public IEnumerable<SubAchievement> Achievements { get; set; }
+
+        public string Name { get; set; }
+
+        public IEnumerable<Category> Categories { get; set; }
     }
 
     public class SubAchievement
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public int points { get; set; }
-        public string description { get; set; }
-        public List<object> rewardItems { get; set; }
-        public string icon { get; set; }
-        public List<object> criteria { get; set; }
-        public bool accountWide { get; set; }
-        public int factionId { get; set; }
-        public string reward { get; set; }
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public int Points { get; set; }
+
+        public string Description { get; set; }
+
+        public IEnumerable<object> RewardItems { get; set; }
+
+        public string Icon { get; set; }
+
+        public IEnumerable<object> Criteria { get; set; }
+
+        public bool AccountWide { get; set; }
+
+        public int FactionId { get; set; }
+
+        public string Reward { get; set; }
     }
 
     public class SubSubAchievement
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public int points { get; set; }
-        public string description { get; set; }
-        public List<object> rewardItems { get; set; }
-        public string icon { get; set; }
-        public List<object> criteria { get; set; }
-        public bool accountWide { get; set; }
-        public int factionId { get; set; }
-        public string reward { get; set; }
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public int Points { get; set; }
+
+        public string Description { get; set; }
+
+        public IEnumerable<object> RewardItems { get; set; }
+
+        public string Icon { get; set; }
+
+        public IEnumerable<object> Criteria { get; set; }
+
+        public bool AccountWide { get; set; }
+
+        public int FactionId { get; set; }
+
+        public string Reward { get; set; }
     }
 
     public class Category
     {
-        public int id { get; set; }
-        public List<SubSubAchievement> achievements { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+
+        public IEnumerable<SubSubAchievement> Achievements { get; set; }
+
+        public string Name { get; set; }
     }
-
-
-
-
 }

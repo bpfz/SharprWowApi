@@ -1,8 +1,7 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+
 namespace SharprWowApi.Models.Character
 {
-
     public class CharacterPVPBrackets
     {
         [JsonProperty("Arena_Bracket_2v2")]
