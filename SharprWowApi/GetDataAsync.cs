@@ -104,6 +104,14 @@ namespace SharprWowApi
 
             return null;
         }
+
+        public async Task<AuctionsRoot> GetAuctionsAsync(string realm, string auctionUrl)
+        {
+            var auctions = new AuctionsRoot();
+            auctions = await this.json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
+
+            return auctions;
+        }
         #endregion
 
         #region battlePet
