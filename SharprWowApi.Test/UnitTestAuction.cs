@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SharprWowApi.Test
 {
@@ -13,9 +14,7 @@ namespace SharprWowApi.Test
         public void Test_Get_EU_AuctionData()
         {
             var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
             var getAuctionFile = client.GetAuctionFile(TestConstants.EU_en_GB_Realm);
-
             var someCachedValue = "14218549882000";
 
             var lm = from f in getAuctionFile.Files
@@ -35,20 +34,24 @@ namespace SharprWowApi.Test
                     Assert.IsNotNull(a.Context);
                     Assert.IsNotNull(a.Item);
 
+                    Console.WriteLine(a.Item);
+                    Console.WriteLine(a.Bid);
+                    Console.WriteLine(a.BidGold);
+                    Console.WriteLine(a.BidSilver);
+                    Console.WriteLine(a.BidCopper);
+                    Console.WriteLine("-------------------");
+
+
                     owner = a.Owner;
-
                 }
-                Console.WriteLine(owner);
-
             }
         }
 
         [TestMethod]
         public async Task Test_Get_EU_AuctionDataAsync()
         {
-            var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
-            var getAuctionFile = client.GetAuctionFile(TestConstants.EU_en_GB_Realm);
+            var client = new ApiClientAsync(Region.EU, Locale.en_GB, TestConstants.ApiKey);
+            var getAuctionFile = await client.GetAuctionFileAsync(TestConstants.EU_en_GB_Realm);
             var someCachedValue = "14218549882000";
 
             var lm = from f in getAuctionFile.Files
@@ -61,10 +64,9 @@ namespace SharprWowApi.Test
                 var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
-
                 using (auction.GetEnumerator())
                 {
-                    Parallel.ForEach(auction.Take(5), a =>
+                    Parallel.ForEach(auction.Take(1), a =>
                     {
                         Assert.IsNotNull(a.Auc);
                         Assert.IsNotNull(a.Bid);
@@ -72,10 +74,13 @@ namespace SharprWowApi.Test
                         Assert.IsNotNull(a.Context);
                         Assert.IsNotNull(a.Item);
                         owner = a.Owner;
-                        Console.WriteLine(owner);
+
+                        Console.WriteLine(a.BidGold);
+                        Console.WriteLine(a.BidSilver);
+                        Console.WriteLine(a.BidCopper);
+
                     });
                 }
-
             }
         }
     }
