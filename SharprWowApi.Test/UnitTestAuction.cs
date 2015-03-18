@@ -66,7 +66,7 @@ namespace SharprWowApi.Test
                 string owner = "";
                 using (auction.GetEnumerator())
                 {
-                    Parallel.ForEach(auction.Take(1), a =>
+                    Parallel.ForEach(auction.Take(5), a =>
                     {
                         Assert.IsNotNull(a.Auc);
                         Assert.IsNotNull(a.Bid);
