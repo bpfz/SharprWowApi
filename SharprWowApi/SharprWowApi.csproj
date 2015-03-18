@@ -59,7 +59,7 @@
     <Compile Include="GetDataBase.cs" />
     <Compile Include="Models\Achievement\AchievementRoot.cs" />
     <Compile Include="Models\Achievement\AchievementRewardItem.cs" />
-    <Compile Include="Models\Achievement\AchiviementCriterion.cs" />
+    <Compile Include="Models\Achievement\AchiviementCriteria.cs" />
     <Compile Include="Models\Auction\Auction.cs" />
     <Compile Include="Models\Auction\AuctionFilesRoot.cs" />
     <Compile Include="Models\Auction\AuctionRealm.cs" />
