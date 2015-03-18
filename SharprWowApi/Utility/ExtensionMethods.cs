@@ -11,35 +11,35 @@ namespace SharprWowApi.Utility.ExtensionMethods
     {
         /// <summary>
         /// Substrings set amount from the Tail. 
-        /// IE from the word 'Hello' with tail_length set to 2 it would return 'lo'.
+        /// IE from the word 'Hello' with tailLength set to 2 it would return 'lo'.
         /// </summary>
         /// <param name="source">string to modify</param>
-        /// <param name="tail_length">length to take</param>
+        /// <param name="tailLength">length to take</param>
         /// <returns>Substring of string</returns>
-        public static string Tail(this string source, int tail_length)
+        public static string Tail(this string source, int tailLength)
         {
-            if (tail_length >= source.Length)
+            if (tailLength >= source.Length)
             {
                 return source;
             }
 
-            return source.Substring(source.Length - tail_length);
+            return source.Substring(source.Length - tailLength);
         }
 
         /// <summary>
         /// Removes set amount from the tail of the string.
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="tail_length">Length to remove</param>
+        /// <param name="tailLength">Length to remove</param>
         /// <returns>String with removed tail.</returns>
-        public static string RemoveTail(this string source, int tail_length)
+        public static string RemoveTail(this string source, int tailLength)
         {
-            if (tail_length >= source.Length)
+            if (tailLength >= source.Length)
             {
                 return source;
             }
 
-            return source.Remove(source.Length - tail_length);
+            return source.Remove(source.Length - tailLength);
         }
 
         /// <summary>
