@@ -20,7 +20,7 @@ namespace SharprWowApi
 {
     public abstract class GetDataAsync : GetDataBase
     {
-        private JsonUtility json = new JsonUtility();
+        private JsonUtility jsonUtility = new JsonUtility();
 
         #region Achievement
         public async Task<AchievementRoot> GetAchievementAsync(int achievementId)
@@ -35,7 +35,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievement = await this.json.GetDataFromURLAsync<AchievementRoot>(url);
+            achievement = await this.jsonUtility.GetDataFromURLAsync<AchievementRoot>(url);
 
             return achievement;
         }
@@ -60,7 +60,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            auctionFiles = await this.json.GetDataFromURLAsync<AuctionFilesRoot>(url);
+            auctionFiles = await this.jsonUtility.GetDataFromURLAsync<AuctionFilesRoot>(url);
             return auctionFiles;
         }
 
@@ -97,7 +97,7 @@ namespace SharprWowApi
                 }
 
                 var auctions = new AuctionsRoot();
-                auctions = await this.json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
+                auctions = await this.jsonUtility.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
 
                 return auctions;
             }
@@ -108,7 +108,7 @@ namespace SharprWowApi
         public async Task<AuctionsRoot> GetAuctionsAsync(string realm, string auctionUrl)
         {
             var auctions = new AuctionsRoot();
-            auctions = await this.json.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
+            auctions = await this.jsonUtility.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
 
             return auctions;
         }
@@ -133,7 +133,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlePetAbility = await this.json.GetDataFromURLAsync<BattlePetAbilitiesRoot>(url);
+            battlePetAbility = await this.jsonUtility.GetDataFromURLAsync<BattlePetAbilitiesRoot>(url);
             return battlePetAbility;
         }
 
@@ -153,7 +153,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlePetSpecies = await this.json.GetDataFromURLAsync<BattlePetSpeciesRoot>(url);
+            battlePetSpecies = await this.jsonUtility.GetDataFromURLAsync<BattlePetSpeciesRoot>(url);
             return battlePetSpecies;
         }
 
@@ -174,7 +174,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlePetStats = await this.json.GetDataFromURLAsync<BattlePetStatsRoot>(url);
+            battlePetStats = await this.jsonUtility.GetDataFromURLAsync<BattlePetStatsRoot>(url);
             return battlePetStats;
         }
 
@@ -203,7 +203,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = await this.json.GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await this.jsonUtility.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -223,7 +223,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            challenge = await this.json.GetDataFromURLAsync<ChallengeRoot>(url);
+            challenge = await this.jsonUtility.GetDataFromURLAsync<ChallengeRoot>(url);
 
             return challenge;
         }
@@ -263,7 +263,7 @@ namespace SharprWowApi
                 CharacterUtility.BuildOptionalFields(characterOptions),
                 _APIKey);
 
-            character = await this.json.GetDataFromURLAsync<CharacterRoot>(url);
+            character = await this.jsonUtility.GetDataFromURLAsync<CharacterRoot>(url);
 
             return character;
         }
@@ -325,14 +325,14 @@ namespace SharprWowApi
             string[] guildMembers,
          CharacterOptions characterOptions)
         {
-            var memberHash = new HashSet<string>(guildMembers);
-            var characterHash = new HashSet<CharacterRoot>();
+            var memberHashSet = new HashSet<string>(guildMembers);
+            var characterHashSet = new HashSet<CharacterRoot>();
 
             var downloadTasks = new HashSet<Task<CharacterRoot>>();
 
-            for (int i = 0; i < memberHash.Count; i++)
+            for (int i = 0; i < memberHashSet.Count; i++)
             {
-                downloadTasks.Add(this.GetCharacterAsync(memberHash.ElementAt(i), characterOptions, this._Realm));
+                downloadTasks.Add(this.GetCharacterAsync(memberHashSet.ElementAt(i), characterOptions, this._Realm));
             }
 
             while (downloadTasks.Count > 0)
@@ -340,10 +340,10 @@ namespace SharprWowApi
                 var finishedTask = await Task.WhenAny(downloadTasks);
                 downloadTasks.Remove(finishedTask);
                 var finished = await finishedTask;
-                characterHash.Add(finished);
+                characterHashSet.Add(finished);
             }
 
-            return characterHash;
+            return characterHashSet;
         }
 
         #endregion
@@ -373,7 +373,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guild = await this.json.GetDataFromURLAsync<GuildRoot>(url);
+            guild = await this.jsonUtility.GetDataFromURLAsync<GuildRoot>(url);
 
             return guild;
         }
@@ -421,7 +421,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            item = await this.json.GetDataFromURLAsync<ItemRoot>(url);
+            item = await this.jsonUtility.GetDataFromURLAsync<ItemRoot>(url);
             return item;
         }
 
@@ -445,7 +445,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            item = await this.json.GetDataFromURLAsync<ItemSetRoot>(url);
+            item = await this.jsonUtility.GetDataFromURLAsync<ItemSetRoot>(url);
             return item;
         }
 
@@ -468,7 +468,7 @@ namespace SharprWowApi
                _Locale,
                _APIKey);
 
-            leaderboard = await this.json.GetDataFromURLAsync<LeaderboardRoot>(url);
+            leaderboard = await this.jsonUtility.GetDataFromURLAsync<LeaderboardRoot>(url);
 
             return leaderboard;
         }
@@ -493,7 +493,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            quest = await this.json.GetDataFromURLAsync<QuestRoot>(url);
+            quest = await this.jsonUtility.GetDataFromURLAsync<QuestRoot>(url);
             return quest;
         }
 
@@ -506,13 +506,13 @@ namespace SharprWowApi
             var recipe = new RecipeRoot();
 
             var url = string.Format(
-                @"{0}/wow/Recipe/{1}?locale={2}&apikey={3}",
+                @"{0}/wow/recipe/{1}?locale={2}&apikey={3}",
                 _Host,
                 recipeId,
                 _Locale,
                 _APIKey);
 
-            recipe = await this.json.GetDataFromURLAsync<RecipeRoot>(url);
+            recipe = await this.jsonUtility.GetDataFromURLAsync<RecipeRoot>(url);
             return recipe;
         }
 
@@ -534,7 +534,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            realm = await this.json.GetDataFromURLAsync<RealmRoot>(url);
+            realm = await this.jsonUtility.GetDataFromURLAsync<RealmRoot>(url);
             return realm;
         }
 
@@ -552,7 +552,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            spell = await this.json.GetDataFromURLAsync<SpellRoot>(url);
+            spell = await this.jsonUtility.GetDataFromURLAsync<SpellRoot>(url);
             return spell;
         }
 
@@ -575,7 +575,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementsData = await this.json.GetDataFromURLAsync<DataAchievementRoot>(url);
+            achievementsData = await this.jsonUtility.GetDataFromURLAsync<DataAchievementRoot>(url);
             return achievementsData;
         }
         #endregion
@@ -596,7 +596,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            battlegroupData = await this.json.GetDataFromURLAsync<DataBattleGroupRoot>(url);
+            battlegroupData = await this.jsonUtility.GetDataFromURLAsync<DataBattleGroupRoot>(url);
             return battlegroupData;
         }
 
@@ -617,7 +617,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            classData = await this.json.GetDataFromURLAsync<DataCharacterClassesRoot>(url);
+            classData = await this.jsonUtility.GetDataFromURLAsync<DataCharacterClassesRoot>(url);
             return classData;
         }
         #endregion
@@ -634,7 +634,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            achievementData = await this.json.GetDataFromURLAsync<DataGuildAchivementRoot>(url);
+            achievementData = await this.jsonUtility.GetDataFromURLAsync<DataGuildAchivementRoot>(url);
             return achievementData;
         }
 
@@ -656,7 +656,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guildPerksData = await this.json.GetDataFromURLAsync<DataGuildPerksRoot>(url);
+            guildPerksData = await this.jsonUtility.GetDataFromURLAsync<DataGuildPerksRoot>(url);
             return guildPerksData;
         }
         #endregion
@@ -677,7 +677,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            guildRewardsData = await this.json.GetDataFromURLAsync<DataGuildRewardsRoot>(url);
+            guildRewardsData = await this.jsonUtility.GetDataFromURLAsync<DataGuildRewardsRoot>(url);
             return guildRewardsData;
         }
 
@@ -699,7 +699,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            itemData = await this.json.GetDataFromURLAsync<DataItemClassRoot>(url);
+            itemData = await this.jsonUtility.GetDataFromURLAsync<DataItemClassRoot>(url);
             return itemData;
         }
         #endregion
@@ -720,7 +720,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            petData = await this.json.GetDataFromURLAsync<DataPetTypesRoot>(url);
+            petData = await this.jsonUtility.GetDataFromURLAsync<DataPetTypesRoot>(url);
             return petData;
         }
         #endregion
@@ -740,7 +740,7 @@ namespace SharprWowApi
                 _Locale,
                 _APIKey);
 
-            raceData = await this.json.GetDataFromURLAsync<DataRacesRoot>(url);
+            raceData = await this.jsonUtility.GetDataFromURLAsync<DataRacesRoot>(url);
             return raceData;
         }
 

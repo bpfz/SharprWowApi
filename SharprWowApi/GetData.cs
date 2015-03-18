@@ -434,7 +434,7 @@
         {
             var recipe = new RecipeRoot();
 
-            var url = string.Format(@"{0}/wow/Recipe/{1}?locale={2}&apikey={3}",
+            var url = string.Format(@"{0}/wow/recipe/{1}?locale={2}&apikey={3}",
                 _Host,
                 recipeId,
                 _Locale,
