@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharprWowApi.Models.Item
 {
@@ -46,6 +47,9 @@ namespace SharprWowApi.Models.Item
 
         public int MinReputation { get; set; }
 
+        /// <summary>
+        /// Gets or sets numerical value of the item (1 white... 5 legendary)
+        /// </summary>
         public int Quality { get; set; }
 
         public int SellPrice { get; set; }
@@ -85,5 +89,16 @@ namespace SharprWowApi.Models.Item
         public ItemBonusSummary BonusSummary { get; set; }
 
         public ItemSetRoot ItemSet { get; set; }
+
+        /// <summary>
+        /// Gets String value (from enum) of item quality
+        /// </summary>
+        public ItemQuality ItemQuality
+        {
+            get
+            {
+                return (ItemQuality)Enum.Parse(typeof(ItemQuality), Enum.GetName(typeof(ItemQuality), this.Quality));
+            }
+        }
     }
 }
