@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SharprWowApi.Utility.ExtensionMethods;
 namespace SharprWowApi.Models.Item
 {
     public class ItemRoot
@@ -23,7 +23,7 @@ namespace SharprWowApi.Models.Item
 
         public IEnumerable<ItemSpell> ItemSpells { get; set; }
 
-        public int BuyPrice { get; set; }
+        public string BuyPrice { get; set; }
 
         public int ItemClass { get; set; }
 
@@ -52,7 +52,7 @@ namespace SharprWowApi.Models.Item
         /// </summary>
         public int Quality { get; set; }
 
-        public int SellPrice { get; set; }
+        public string SellPrice { get; set; }
 
         public int RequiredSkill { get; set; }
 
@@ -89,6 +89,69 @@ namespace SharprWowApi.Models.Item
         public ItemBonusSummary BonusSummary { get; set; }
 
         public ItemSetRoot ItemSet { get; set; }
+
+        public string BuyPriceGold
+        {
+            get
+            {
+                if (this.BuyPrice.Length > 4)
+                {
+                    return this.BuyPrice.RemoveTail(4);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public string BuyPriceSilver
+        {
+            get
+            {
+                return this.BuyPrice.Tail(4).RemoveTail(2);
+            }
+        }
+
+        public string BuyPriceCopper
+        {
+            get
+            {
+                return this.BuyPrice.Tail(2);
+            }
+        }
+
+        public string SellPriceGold
+        {
+            get
+            {
+                if (this.SellPrice.Length > 4)
+                {
+                    return this.SellPrice.RemoveTail(4);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public string SellPriceSilver
+        {
+            get
+            {
+                return this.SellPrice.Tail(4).RemoveTail(2);
+            }
+        }
+
+        public string SellPriceCopper
+        {
+            get
+            {
+                return this.SellPrice.Tail(2);
+            }
+        }
+
 
         /// <summary>
         /// Gets String value (from enum) of item quality
