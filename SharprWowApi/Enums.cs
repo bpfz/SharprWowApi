@@ -36,6 +36,27 @@
     }
 
     [Flags]
+    public enum CharacterClass
+    {
+        Warrior = 1,
+        Paladin = 2,
+        Hunter = 3,
+        Rogue = 4,
+        Priest = 5,
+        Death_Knight = 6,
+        Shaman = 7,
+        Mage = 8,
+        Warlock = 9,
+        Monk = 10,
+        Druid = 11
+    }
+
+    public enum CharacterGender
+    {
+        Male = 0,
+        Female = 1,
+    }
+
     public enum CharacterOptions
     {
         None = 0,
@@ -62,40 +83,6 @@
             | Progression | Feed | PvP | Quests | HunterPets
     }
 
-    [Flags]
-    public enum GuildOptions
-    {
-        None = 0,
-        Members = 1,
-        Achievements = 2,
-        News = 4,
-        Challenge = 8,
-        AllOptions = Members | Achievements | News | Challenge
-    }
-
-    public enum LeaderboardOptions
-    {
-        TwoVersusTwo,
-        ThreeVersusThree,
-        FiveVersusFive,
-        RBG
-    }
-
-    public enum CharacterClass
-    {
-        Warrior = 1,
-        Paladin = 2,
-        Hunter = 3,
-        Rogue = 4,
-        Priest = 5,
-        Death_Knight = 6,
-        Shaman = 7,
-        Mage = 8,
-        Warlock = 9,
-        Monk = 10,
-        Druid = 11
-    }
-
     public enum CharacterRace
     {
         Human = 1,
@@ -115,9 +102,41 @@
         Pandaren_Horde = 26
     }
 
-    public enum CharacterGender
+    [Flags]
+    public enum GuildOptions
     {
-        Male = 0,
-        Female = 1,
+        None = 0,
+        Members = 1,
+        Achievements = 2,
+        News = 4,
+        Challenge = 8,
+        AllOptions = Members | Achievements | News | Challenge
+    }
+
+    public enum LeaderboardOptions
+    {
+        TwoVersusTwo,
+        ThreeVersusThree,
+        FiveVersusFive,
+        RBG
+    }
+
+    [Flags]
+    public enum ItemQuality
+    {
+        Grey = 0,
+        White = 1,
+        Green = 2,
+        Blue = 3,
+        Epic = 4,
+        Legendary = 5
+    }
+
+    [Flags]
+    public enum WoWFaction
+    {
+        Alliance = 0,
+        Horde = 1,
+        Both = 2
     }
 }
