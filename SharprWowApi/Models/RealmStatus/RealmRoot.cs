@@ -4,6 +4,6 @@ namespace SharprWowApi.Models.RealmStatus
 {
     public class RealmRoot
     {
-        public List<Realm> Realms { get; set; }
+        public IEnumerable<Realm> Realms { get; set; }
     }
 }
