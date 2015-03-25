@@ -27,7 +27,7 @@ namespace SharprWowApi.Test
                 var auction = getAuction.Auctions.Auction;
 
                 string owner = "";
-                foreach (var a in auction.Take(5))
+                foreach (var a in auction.Take(51))
                 {
                     Assert.IsNotNull(a.Bid);
                     Assert.IsNotNull(a.Buyout);
@@ -66,7 +66,7 @@ namespace SharprWowApi.Test
                 string owner = "";
                 using (auction.GetEnumerator())
                 {
-                    Parallel.ForEach(auction.Take(5), a =>
+                    Parallel.ForEach(auction.Take(51), a =>
                     {
                         Assert.IsNotNull(a.Auc);
                         Assert.IsNotNull(a.Bid);
