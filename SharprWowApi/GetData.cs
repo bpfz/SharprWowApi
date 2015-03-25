@@ -1,20 +1,20 @@
-﻿namespace SharprWowApi
-{
-    using SharprWowApi.Models.Achievement;
-    using SharprWowApi.Models.Auction;
-    using SharprWowApi.Models.BattlePet;
-    using SharprWowApi.Models.ChallengeMode;
-    using SharprWowApi.Models.Character;
-    using SharprWowApi.Models.DataResources;
-    using SharprWowApi.Models.Guild;
-    using SharprWowApi.Models.Item;
-    using SharprWowApi.Models.PVP;
-    using SharprWowApi.Models.Quest;
-    using SharprWowApi.Models.RealmStatus;
-    using SharprWowApi.Models.Recipe;
-    using SharprWowApi.Models.Spells;
-    using SharprWowApi.Utility;
+﻿using SharprWowApi.Models.Achievement;
+using SharprWowApi.Models.Auction;
+using SharprWowApi.Models.BattlePet;
+using SharprWowApi.Models.ChallengeMode;
+using SharprWowApi.Models.Character;
+using SharprWowApi.Models.DataResources;
+using SharprWowApi.Models.Guild;
+using SharprWowApi.Models.Item;
+using SharprWowApi.Models.PVP;
+using SharprWowApi.Models.Quest;
+using SharprWowApi.Models.RealmStatus;
+using SharprWowApi.Models.Recipe;
+using SharprWowApi.Models.Spells;
+using SharprWowApi.Utility;
 
+namespace SharprWowApi
+{
     public abstract class GetData : GetDataBase
     {
         private JsonUtility json = new JsonUtility();
@@ -40,7 +40,7 @@
         #endregion
 
         //needs testing
-        //Bug: Sometimes Unexpected character encountered while parsing value: <. Path '', line 0, position 0. 
+        //Bug: Sometimes: Unexpected character encountered while parsing value: <. Path '', line 0, position 0. 
         #region Auctions
 
         /// <summary>
@@ -62,7 +62,7 @@
             var auctionFiles = new AuctionFilesRoot();
             realm.ToLower().Replace(' ', '-');
 
-            var url = 
+            var url =
                 string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
                 _Host,
                 realm,

@@ -1,11 +1,11 @@
-﻿namespace SharprWowApi
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace SharprWowApi
+{
     /// <summary>
     /// Client to use to get data from the api.
     /// </summary>
