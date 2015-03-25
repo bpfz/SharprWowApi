@@ -5,6 +5,9 @@ Install using [Nuget](https://www.nuget.org/packages/SharprWowApi/)
 ````
 PM> Install-Package SharprWowApi
 ````
+<a href="http://nugetstatus.com/packages/<package>">
+    <img src="http://nugetstatus.com/<package>.png">
+</a>
 [Small example website](http://sharpr.azurewebsites.net/)
 
 ## Usage example
