@@ -232,7 +232,7 @@ namespace SharprWowApi
         #region character
 
         /// <summary>
-        /// Get character. Use this if you have set the realm in ApiClient.
+        /// Gets data about a character. Use this if you have set the realm in ApiClient.
         /// </summary>
         /// <param name="name">The Characters name</param>
         /// <param name="characterOptions">What characteroptions should be set (enum)</param>
@@ -243,11 +243,11 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// 
+        /// Gets data about a character.
         /// </summary>
-        /// <param name="name">The Characters name</param>
-        /// <param name="characterOptions">What characteroptions should be set (enum)</param>
-        /// <param name="realm"></param>
+        /// <param name="name">The Characters name.</param>
+        /// <param name="characterOptions">What characteroptions should be set (enum).</param>
+        /// <param name="realm">The realm this character exists on.</param>
         /// <returns>CharacterRoot object</returns>
         public async Task<CharacterRoot> GetCharacterAsync(string name, CharacterOptions characterOptions, string realm)
         {
@@ -275,7 +275,6 @@ namespace SharprWowApi
         /// <summary>
         /// Creates a list with CharacterRoot for every member in given guild.
         /// To avoid calling the wow api more than 100 times per second, this method limits the list of guild members (integer) to take.
-        /// Adds delay on the task if members are over 95, and 280 (0.5s each).
         /// </summary>
         /// <param name="guildMembers">List with guildmembers</param>
         /// <param name="characterOptions">Options for CharacterRoot</param>
@@ -380,7 +379,7 @@ namespace SharprWowApi
 
         /// <summary>
         /// Gets all members in a guild above a set level threshold (>=) and adds them to a string that can be inserted into an array (manually).
-        /// Useful for doing fast (big) queries with GetAllCharactersInGuildAsync.
+        /// Used for testing.
         /// </summary>
         /// <example>returns: {"name", "name2", "name3"};</example>
         /// <param name="guildmembers">The guild you want to get members from.</param>
