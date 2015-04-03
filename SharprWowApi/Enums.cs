@@ -78,10 +78,7 @@ namespace SharprWowApi
         PvP = 16384,
         Quests = 32768,
         HunterPets = 65536,
-        AllOptions = Guild | Stats | Talents | Items
-            | Reputation | Titles | Professions | Appearance
-            | PetSlots | Mounts | Pets | Achievements
-            | Progression | Feed | PvP | Quests | HunterPets
+        AllOptions = 131071
     }
 
     public enum CharacterRace
@@ -111,7 +108,7 @@ namespace SharprWowApi
         Achievements = 2,
         News = 4,
         Challenge = 8,
-        AllOptions = Members | Achievements | News | Challenge
+        AllOptions = 15
     }
 
     public enum LeaderboardOptions

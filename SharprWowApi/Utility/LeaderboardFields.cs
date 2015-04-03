@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Utility
 {
-    public class LeaderboardUtility
+    public class LeaderboardFields
     {
         public static string BuildOptionalQuery(LeaderboardOptions leaderboardOptions)
         {

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Utility
 {
-    public class GuildUtility
+    public class GuildFields
     {
+        //http://stackoverflow.com/questions/1285986/flags-enum-bitwise-operations-vs-string-of-bits
+        //http://www.codeproject.com/Articles/396851/Ending-the-Great-Debate-on-Enum-Flags
         public static string BuildOptionalFields(GuildOptions guildOptions)
         {
             string fields = "fields=";
