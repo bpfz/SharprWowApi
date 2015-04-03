@@ -3,13 +3,6 @@ using System.Collections.Generic;
 
 namespace SharprWowApi.Models.Guild
 {
-    [Flags]
-    public enum WoWFaction
-    {
-        Alliance = 0,
-        Horde = 1
-    }
-
     public class GuildRoot
     {
         public long LastModified { get; set; }

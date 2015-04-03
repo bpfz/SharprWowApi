@@ -167,18 +167,18 @@ namespace SharprWowApi.Models.Character
         /// Gets or sets integer value of the characters class. Use Class for class string.
         /// </summary>
         [JsonProperty("class")]
-        internal int ClassNumber { get; set; }
+        public int ClassNumber { get; set; }
 
         /// <summary>
         /// Gets or sets integer value of the characters race. Use Race for race string.
         /// </summary>
         [JsonProperty("race")]
-        internal int RaceNumber { get; set; }
+        public int RaceNumber { get; set; }
 
         /// <summary>
         /// Gets or sets integer value of gender the characters gender. Use Gender for gender string. 
         /// </summary>
         [JsonProperty("gender")]
-        internal int GenderNumber { get; set; }
+        public int GenderNumber { get; set; }
     }
 }

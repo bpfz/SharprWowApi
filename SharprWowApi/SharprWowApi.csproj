@@ -172,14 +172,14 @@
     <Compile Include="Models\Recipe\RecipeRoot.cs" />
     <Compile Include="Models\Spells\SpellRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\CharacterUtility.cs" />
+    <Compile Include="Utility\CharacterFields.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
-    <Compile Include="Utility\GuildUtility.cs" />
+    <Compile Include="Utility\GuildFields.cs" />
     <Compile Include="Utility\GzipWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\JsonUtility.cs" />
-    <Compile Include="Utility\LeaderboardUtility.cs" />
+    <Compile Include="Utility\LeaderboardFields.cs" />
     <Compile Include="ApiClient.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
