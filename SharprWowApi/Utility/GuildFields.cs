@@ -15,22 +15,22 @@ namespace SharprWowApi.Utility
             string fields = "fields=";
             var fieldList = new List<string>();
 
-            if ((guildOptions & GuildOptions.Members).Equals(GuildOptions.Members))
+            if ((guildOptions & GuildOptions.Members) == GuildOptions.Members)
             {
                 fieldList.Add("members");
             }
 
-            if ((guildOptions & GuildOptions.Achievements).Equals(GuildOptions.Achievements))
+            if ((guildOptions & GuildOptions.Achievements) == GuildOptions.Achievements)
             {
                 fieldList.Add("achivements");
             }
 
-            if ((guildOptions & GuildOptions.News).Equals(GuildOptions.News))
+            if ((guildOptions & GuildOptions.News) == GuildOptions.News)
             {
                 fieldList.Add("news");
             }
 
-            if ((guildOptions & GuildOptions.Challenge).Equals(GuildOptions.Challenge))
+            if ((guildOptions & GuildOptions.Challenge) == GuildOptions.Challenge)
             {
                 fieldList.Add("challenge");
             }

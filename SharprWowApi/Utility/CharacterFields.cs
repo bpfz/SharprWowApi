@@ -15,87 +15,87 @@ namespace SharprWowApi.Utility
             var fields = "&fields=";
             var fieldList = new List<object>();
 
-            if ((characterOptions & CharacterOptions.Guild).Equals(CharacterOptions.Guild))
+            if ((characterOptions & CharacterOptions.Guild) == CharacterOptions.Guild)
             {
                 fieldList.Add("guild");
             }
 
-            if ((characterOptions & CharacterOptions.Stats).Equals(CharacterOptions.Stats))
+            if ((characterOptions & CharacterOptions.Stats) == CharacterOptions.Stats)
             {
                 fieldList.Add("stats");
             }
 
-            if ((characterOptions & CharacterOptions.Talents).Equals(CharacterOptions.Talents))
+            if ((characterOptions & CharacterOptions.Talents) == CharacterOptions.Talents)
             {
                 fieldList.Add("talents");
             }
 
-            if ((characterOptions & CharacterOptions.Items).Equals(CharacterOptions.Items))
+            if ((characterOptions & CharacterOptions.Items) == CharacterOptions.Items)
             {
                 fieldList.Add("items");
             }
 
-            if ((characterOptions & CharacterOptions.Reputation).Equals(CharacterOptions.Reputation))
+            if ((characterOptions & CharacterOptions.Reputation) == CharacterOptions.Reputation)
             {
                 fieldList.Add("reputation");
             }
 
-            if ((characterOptions & CharacterOptions.Titles).Equals(CharacterOptions.Titles))
+            if ((characterOptions & CharacterOptions.Titles) == CharacterOptions.Titles)
             {
                 fieldList.Add("titles");
             }
 
-            if ((characterOptions & CharacterOptions.Professions).Equals(CharacterOptions.Professions))
+            if ((characterOptions & CharacterOptions.Professions) == CharacterOptions.Professions)
             {
                 fieldList.Add("professions");
             }
 
-            if ((characterOptions & CharacterOptions.Appearance).Equals(CharacterOptions.Appearance))
+            if ((characterOptions & CharacterOptions.Appearance) == CharacterOptions.Appearance)
             {
                 fieldList.Add("appearance");
             }
 
-            if ((characterOptions & CharacterOptions.PetSlots).Equals(CharacterOptions.PetSlots))
+            if ((characterOptions & CharacterOptions.PetSlots) == CharacterOptions.PetSlots)
             {
                 fieldList.Add("petSlots");
             }
 
-            if ((characterOptions & CharacterOptions.Mounts).Equals(CharacterOptions.Mounts))
+            if ((characterOptions & CharacterOptions.Mounts) == CharacterOptions.Mounts)
             {
                 fieldList.Add("mounts");
             }
 
-            if ((characterOptions & CharacterOptions.Pets).Equals(CharacterOptions.Pets))
+            if ((characterOptions & CharacterOptions.Pets) == CharacterOptions.Pets)
             {
                 fieldList.Add("pets");
             }
 
-            if ((characterOptions & CharacterOptions.Achievements).Equals(CharacterOptions.Achievements))
+            if ((characterOptions & CharacterOptions.Achievements) == CharacterOptions.Achievements)
             {
                 fieldList.Add("achievements");
             }
 
-            if ((characterOptions & CharacterOptions.Progression).Equals(CharacterOptions.Progression))
+            if ((characterOptions & CharacterOptions.Progression) == CharacterOptions.Progression)
             {
                 fieldList.Add("progression");
             }
 
-            if ((characterOptions & CharacterOptions.Feed).Equals(CharacterOptions.Feed))
+            if ((characterOptions & CharacterOptions.Feed) == CharacterOptions.Feed)
             {
                 fieldList.Add("feed");
             }
 
-            if ((characterOptions & CharacterOptions.PvP).Equals(CharacterOptions.PvP))
+            if ((characterOptions & CharacterOptions.PvP) == CharacterOptions.PvP)
             {
                 fieldList.Add("pvp");
             }
 
-            if ((characterOptions & CharacterOptions.Quests).Equals(CharacterOptions.Quests))
+            if ((characterOptions & CharacterOptions.Quests) == CharacterOptions.Quests)
             {
                 fieldList.Add("quests");
             }
 
-            if ((characterOptions & CharacterOptions.HunterPets).Equals(CharacterOptions.HunterPets))
+            if ((characterOptions & CharacterOptions.HunterPets) == CharacterOptions.HunterPets)
             {
                 fieldList.Add("hunterPets");
             }
