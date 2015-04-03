@@ -18,5 +18,6 @@ namespace SharprWowApi
         internal string _Host { get; set; }
 
         internal string _Realm { get; set; }
+
     }
 }

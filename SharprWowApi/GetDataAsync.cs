@@ -260,7 +260,7 @@ namespace SharprWowApi
                 realm,
                 name,
                 _Locale,
-                CharacterUtility.BuildOptionalFields(characterOptions),
+                CharacterFields.BuildOptionalFields(characterOptions),
                 _APIKey);
 
             character = await this.jsonUtility.GetDataFromURLAsync<CharacterRoot>(url);
@@ -360,6 +360,7 @@ namespace SharprWowApi
             return await this.GetGuildAsync(name, guildOptions, this._Realm);
         }
 
+        //realm in getGuildAsync does not work (404 not found), why? setting realm in apiclient constructor works.
         public async Task<GuildRoot> GetGuildAsync(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
@@ -368,7 +369,7 @@ namespace SharprWowApi
                 _Host,
                 realm,
                 name,
-                GuildUtility.BuildOptionalFields(guildOptions),
+                GuildFields.BuildOptionalFields(guildOptions),
                 _Locale,
                 _APIKey);
 
@@ -463,7 +464,7 @@ namespace SharprWowApi
             var url = string.Format(
                 @"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
                 _Host,
-               LeaderboardUtility.BuildOptionalQuery(leaderboardOptions),
+               LeaderboardFields.BuildOptionalQuery(leaderboardOptions),
                _Locale,
                _APIKey);
 

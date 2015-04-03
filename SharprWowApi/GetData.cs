@@ -261,7 +261,7 @@ namespace SharprWowApi
                 realm,
                 name,
                 _Locale,
-                CharacterUtility.BuildOptionalFields(characterOptions),
+                CharacterFields.BuildOptionalFields(characterOptions),
                 _APIKey);
 
             character = json.GetDataFromURL<CharacterRoot>(url);
@@ -292,7 +292,7 @@ namespace SharprWowApi
                 _Host,
                 realm,
                 name,
-                GuildUtility.BuildOptionalFields(guildOptions),
+                GuildFields.BuildOptionalFields(guildOptions),
                 _Locale,
                 _APIKey);
 
@@ -365,7 +365,7 @@ namespace SharprWowApi
 
             var url = string.Format(@"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
                 _Host,
-               LeaderboardUtility.BuildOptionalQuery(leaderboardOptions),
+               LeaderboardFields.BuildOptionalQuery(leaderboardOptions),
                _Locale,
                _APIKey);
 
