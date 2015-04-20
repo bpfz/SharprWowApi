@@ -59,7 +59,7 @@ public ActionResult Members()
     var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm");
     var guild = client.GetGuild("GuildName", GuildOptions.AllOptions);
     
-     return View(guild);
+    return View(guild);
 }
 ```
 ```html
