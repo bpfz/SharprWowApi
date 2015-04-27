@@ -114,13 +114,15 @@ An signifcant speed increase compared to a synchronous operation. It's worth not
 Both test cases used the same list of (64) members. They both Get Character (GetCharacterAsync & GetCharacter) and adds the result to a list.
 
 ```C#
-var client = new ApiClientAsync(Region,Locale, apiKey)
+var client = new ApiClientAsync(Region, Locale, apiKey)
 var guild = await client.GetGuildAsync("GuildName", GuildOptions.Members);
 
 var charc = await 
-    client.GetAllCharactersInGuildAsync(guild.Members, 
+    client.GetAllCharactersInGuildAsync(
+        guild.Members, 
         CharacterOptions.AllOptions,
-        int level, int HowManyMembersToTake);
+        int level,
+        int HowManyMembersToTake);
 
 ```
 The method sorts users by level first and then takes the set amount.
