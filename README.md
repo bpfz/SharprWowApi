@@ -27,9 +27,9 @@ var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None, "
 var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.PvP, "Realm");
 
 Console.WriteLine(character.Name);
-Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
+Console.WriteLine(characterTwo.Pvp.Brackets.ArenaBracket2v2.Rating);
 ```
-You can also set __realm__ in the _ApiClient_ and use extention methods if all characters you're getting are from the same realm.
+You can also set __realm__ in the _ApiClient_ and use overloaded methods if all characters you're getting are from the same realm.
 
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm");
