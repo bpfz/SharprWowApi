@@ -27,9 +27,9 @@ var characterOne = client.GetCharacter("CharacterName", CharacterOptions.None, "
 var characterTwo = client.GetCharacter("CharacterName", CharacterOptions.PvP, "Realm");
 
 Console.WriteLine(character.Name);
-Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
+Console.WriteLine(characterTwo.Pvp.Brackets.ArenaBracket2v2.Rating);
 ```
-You can also set __realm__ in the _ApiClient_ and use extention methods if all characters you're getting are from the same realm.
+You can also set __realm__ in the _ApiClient_ and use overloaded methods if all characters you're getting are from the same realm.
 
 ```C#
 client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm");
@@ -59,7 +59,7 @@ public ActionResult Members()
     var client = new ApiClient(Region.EU, Locale.en_GB, ApiKey.Value, "Realm");
     var guild = client.GetGuild("GuildName", GuildOptions.AllOptions);
     
-     return View(guild);
+    return View(guild);
 }
 ```
 ```html
@@ -114,13 +114,15 @@ An signifcant speed increase compared to a synchronous operation. It's worth not
 Both test cases used the same list of (64) members. They both Get Character (GetCharacterAsync & GetCharacter) and adds the result to a list.
 
 ```C#
-var client = new ApiClientAsync(Region,Locale, apiKey)
+var client = new ApiClientAsync(Region, Locale, apiKey)
 var guild = await client.GetGuildAsync("GuildName", GuildOptions.Members);
 
 var charc = await 
-    client.GetAllCharactersInGuildAsync(guild.Members, 
+    client.GetAllCharactersInGuildAsync(
+        guild.Members, 
         CharacterOptions.AllOptions,
-        int level, int HowManyMembersToTake);
+        int level,
+        int HowManyMembersToTake);
 
 ```
 The method sorts users by level first and then takes the set amount.
