@@ -15,6 +15,9 @@ namespace SharprWowApi.Models.Guild
 
         public int Level { get; set; }
 
+        /// <summary>
+        /// Gets or sets faction side (0, 1, 2)
+        /// </summary>
         public int Side { get; set; }
 
         public int AchievementPoints { get; set; }
