@@ -1,4 +1,5 @@
-﻿namespace SharprWowApi.Models.RealmStatus
+﻿using System;
+namespace SharprWowApi.Models.RealmStatus
 {
     public class PvpZone
     {
@@ -21,5 +22,16 @@
         /// timestamp of when next battle starts
         /// </summary>
         public object Next { get; set; }
+
+        /// <summary>
+        /// Gets the name of the faction for the controlling faction (Alliance, Horde)
+        /// </summary>
+        public WoWFaction ControllingFactionString
+        {
+            get
+            {
+                return (WoWFaction)Enum.Parse(typeof(WoWFaction), Enum.GetName(typeof(WoWFaction), this.ControllingFaction));
+            }
+        }
     }
 }
