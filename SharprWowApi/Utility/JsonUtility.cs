@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using SharprWowApi.Models.Character;
-using SharprWowApi.Models.Quest;
 
 namespace SharprWowApi.Utility
 {
@@ -62,12 +57,13 @@ namespace SharprWowApi.Utility
                     return serializer.Deserialize<T>(jsonTextReader);
                 }
             }
-            catch (Exception)
+            catch (ArgumentNullException)
             {
                 throw;
             }
         }
 
+        #region async
         internal async Task<T> GetDataFromURLAsync<T>(string url) where T : class
         {
             try
@@ -109,10 +105,9 @@ namespace SharprWowApi.Utility
                 var downloadedByte = await this.DownloadBytesAsync(url);
 
                 using (var memoryStream = new MemoryStream(downloadedByte, false))
+                using (var sr = new StreamReader(memoryStream))
+                using (var jsonTextReader = new JsonTextReader(sr))
                 {
-                    var sr = new StreamReader(memoryStream);
-                    var jsonTextReader = new JsonTextReader(sr);
-
                     var serializer = new JsonSerializer();
                     var deserialize = new Task<T>(() => serializer.Deserialize<T>(jsonTextReader));
                     deserialize.Start();
@@ -120,10 +115,11 @@ namespace SharprWowApi.Utility
                     return apiResponseObject;
                 }
             }
-            catch (Exception)
+            catch (ArgumentNullException)
             {
                 throw;
             }
         }
+        #endregion
     }
 }
