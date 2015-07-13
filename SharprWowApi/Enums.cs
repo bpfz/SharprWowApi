@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharprWowApi
 {
@@ -78,7 +74,11 @@ namespace SharprWowApi
         PvP = 16384,
         Quests = 32768,
         HunterPets = 65536,
-        AllOptions = 131071
+        AllOptions = Guild | Stats | Talents |
+                    Items | Reputation | Titles |
+                    Professions | Appearance | PetSlots |
+                    Mounts | Pets | Achievements | Progression |
+                    Feed | PvP | Quests | HunterPets
     }
 
     public enum CharacterRace
@@ -108,7 +108,7 @@ namespace SharprWowApi
         Achievements = 2,
         News = 4,
         Challenge = 8,
-        AllOptions = 15
+        AllOptions = Members | Achievements | News | Challenge
     }
 
     public enum LeaderboardOptions
@@ -130,6 +130,9 @@ namespace SharprWowApi
         Legendary = 5
     }
 
+    /// <summary>
+    /// Both can also mean neutral (for example in pvp zones)
+    /// </summary>
     [Flags]
     public enum WoWFaction
     {
