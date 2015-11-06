@@ -15,11 +15,11 @@ namespace SharprWowApi
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
-                _Region = region;
-                _Locale = locale;
-                _APIKey = apiKey;
+                Region = region;
+                Locale = locale;
+                APIKey = apiKey;
 
-                this.Host(region);
+                this.SetHost(region);
             }
             else
             {
@@ -39,12 +39,12 @@ namespace SharprWowApi
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
-                _Region = region;
-                _Locale = locale;
-                _APIKey = apiKey;
-                _Realm = realm;
+                Region = region;
+                Locale = locale;
+                APIKey = apiKey;
+                Realm = realm;
 
-                this.Host(region);
+                this.SetHost(region);
             }
             else
             {
@@ -52,24 +52,24 @@ namespace SharprWowApi
             }
         }
 
-        private void Host(Region region)
+        private void SetHost(Region region)
         {
             switch (region)
             {
                 case Region.EU:
-                    _Host = "https://eu.api.battle.net";
+                    base.Host = "https://eu.api.battle.net";
                     break;
                 case Region.KR:
-                    _Host = "https://kr.api.battle.net";
+                    base.Host = "https://kr.api.battle.net";
                     break;
                 case Region.TW:
-                    _Host = "https://tw.api.battle.net";
+                    base.Host = "https://tw.api.battle.net";
                     break;
                 case Region.CN:
-                    _Host = "https://www.battlenet.com.cn";
+                    base.Host = "https://www.battlenet.com.cn";
                     break;
                 case Region.US:
-                    _Host = "https://us.api.battle.net";
+                    base.Host = "https://us.api.battle.net";
                     break;
             }
         }

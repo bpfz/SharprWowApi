@@ -22,11 +22,11 @@ namespace SharprWowApi
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
-                this._Region = region;
-                this._Locale = locale;
-                this._APIKey = apiKey;
+                this.Region = region;
+                this.Locale = locale;
+                this.APIKey = apiKey;
 
-                this.Host(this._Region);
+                this.SetHost(this.Region);
             }
             else
             {
@@ -46,12 +46,12 @@ namespace SharprWowApi
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
-                this._Region = region;
-                this._Locale = locale;
-                this._APIKey = apiKey;
-                this._Realm = realm;
+                this.Region = region;
+                this.Locale = locale;
+                this.APIKey = apiKey;
+                this.Realm = realm;
 
-                this.Host(this._Region);
+                this.SetHost(this.Region);
             }
             else
             {
@@ -59,24 +59,24 @@ namespace SharprWowApi
             }
         }
 
-        private void Host(Region region)
+        private void SetHost(Region region)
         {
             switch (region)
             {
                 case Region.EU:
-                    this._Host = "https://eu.api.battle.net";
+                    this.Host = "https://eu.api.battle.net";
                     break;
                 case Region.KR:
-                    this._Host = "https://kr.api.battle.net";
+                    this.Host = "https://kr.api.battle.net";
                     break;
                 case Region.TW:
-                    this._Host = "https://tw.api.battle.net";
+                    this.Host = "https://tw.api.battle.net";
                     break;
                 case Region.CN:
-                    this._Host = "https://www.battlenet.com.cn";
+                    this.Host = "https://www.battlenet.com.cn";
                     break;
                 case Region.US:
-                    this._Host = "https://us.api.battle.net";
+                    this.Host = "https://us.api.battle.net";
                     break;
             }
         }
