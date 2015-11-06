@@ -28,10 +28,10 @@ namespace SharprWowApi
 
             var url =
                 string.Format(@"{0}/wow/achievement/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 achievementId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             achievement = json.GetDataFromURL<AchievementRoot>(url);
             return achievement;
@@ -49,7 +49,7 @@ namespace SharprWowApi
         /// <returns>AuctionFilesRoot object</returns>
         public AuctionFilesRoot GetAuctionFile()
         {
-            return this.GetAuctionFile(_Realm);
+            return this.GetAuctionFile(Realm);
         }
 
         /// <summary>
@@ -64,10 +64,10 @@ namespace SharprWowApi
 
             var url =
                 string.Format(@"{0}/wow/auction/data/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 realm,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             auctionFiles = json.GetDataFromURL<AuctionFilesRoot>(url);
             return auctionFiles;
@@ -82,7 +82,7 @@ namespace SharprWowApi
         /// <returns>AuctionsRoot object</returns>
         public AuctionsRoot GetAuctions()
         {
-            return this.GetAuctions(_Realm);
+            return this.GetAuctions(Realm);
         }
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace SharprWowApi
             var battlePetAbility = new BattlePetAbilitiesRoot();
 
             var url = string.Format(@"{0}/wow/battlepet/ability/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 abilityId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             battlePetAbility = json.GetDataFromURL<BattlePetAbilitiesRoot>(url);
             return battlePetAbility;
@@ -149,10 +149,10 @@ namespace SharprWowApi
             var battlePetSpecies = new BattlePetSpeciesRoot();
 
             var url = string.Format(@"{0}/wow/battlepet/species/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 speciesId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             battlePetSpecies = json.GetDataFromURL<BattlePetSpeciesRoot>(url);
             return battlePetSpecies;
@@ -168,10 +168,10 @@ namespace SharprWowApi
             var battlePetStats = new BattlePetStatsRoot();
 
             var url = string.Format(@"{0}/wow/battlepet/FollowerStats/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 speciesId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             battlePetStats = json.GetDataFromURL<BattlePetStatsRoot>(url);
             return battlePetStats;
@@ -188,7 +188,7 @@ namespace SharprWowApi
         /// <returns>ChallengeRoot object</returns>
         public ChallengeRoot GetChallengeModeLeaderboard()
         {
-            return this.GetChallengeModeLeaderboard(_Realm);
+            return this.GetChallengeModeLeaderboard(Realm);
         }
 
         /// <summary>
@@ -201,10 +201,10 @@ namespace SharprWowApi
             var challenge = new ChallengeRoot();
 
             string url = string.Format(@"{0}/wow/Challenge/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 realm,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             challenge = json.GetDataFromURL<ChallengeRoot>(url);
 
@@ -220,9 +220,9 @@ namespace SharprWowApi
             var challenge = new ChallengeRoot();
 
             var url = string.Format(@"{0}/wow/Challenge/region?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             challenge = json.GetDataFromURL<ChallengeRoot>(url);
 
@@ -242,7 +242,7 @@ namespace SharprWowApi
         /// <returns>CharacterRoot object</returns>
         public CharacterRoot GetCharacter(string name, CharacterOptions characterOptions)
         {
-            return this.GetCharacter(name, characterOptions, _Realm);
+            return this.GetCharacter(name, characterOptions, Realm);
         }
 
         /// <summary>
@@ -257,12 +257,12 @@ namespace SharprWowApi
             var character = new CharacterRoot();
 
             var url = string.Format(@"{0}/wow/character/{1}/{2}?locale={3}{4}&apikey={5}",
-                _Host,
+                Host,
                 realm,
                 name,
-                _Locale,
+                Locale,
                 CharacterFields.BuildOptionalFields(characterOptions),
-                _APIKey);
+                APIKey);
 
             character = json.GetDataFromURL<CharacterRoot>(url);
 
@@ -282,19 +282,19 @@ namespace SharprWowApi
         /// <returns>GuildRoot object</returns>
         public GuildRoot GetGuild(string name, GuildOptions guildOptions)
         {
-            return this.GetGuild(name, guildOptions, _Realm);
+            return this.GetGuild(name, guildOptions, Realm);
         }
 
         public GuildRoot GetGuild(string name, GuildOptions guildOptions, string realm)
         {
             var guild = new GuildRoot();
             var url = string.Format(@"{0}/wow/guild/{1}/{2}?{3}&locale={4}&apikey={5}",
-                _Host,
+                Host,
                 realm,
                 name,
                 GuildFields.BuildOptionalFields(guildOptions),
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             guild = json.GetDataFromURL<GuildRoot>(url);
 
@@ -317,10 +317,10 @@ namespace SharprWowApi
             var item = new ItemRoot();
 
             var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 itemID,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             item = json.GetDataFromURL<ItemRoot>(url);
             return item;
@@ -340,10 +340,10 @@ namespace SharprWowApi
             var item = new ItemSetRoot();
 
             var url = string.Format(@"{0}/wow/item/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 itemSetID,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             item = json.GetDataFromURL<ItemSetRoot>(url);
             return item;
@@ -364,10 +364,10 @@ namespace SharprWowApi
             var leaderboard = new LeaderboardRoot();
 
             var url = string.Format(@"{0}/wow/leaderboard/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                LeaderboardFields.BuildOptionalQuery(leaderboardOptions),
-               _Locale,
-               _APIKey);
+               Locale,
+               APIKey);
 
             leaderboard = json.GetDataFromURL<LeaderboardRoot>(url);
 
@@ -389,10 +389,10 @@ namespace SharprWowApi
             var quest = new QuestRoot();
 
             var url = string.Format(@"{0}/wow/quest/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 questId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             quest = json.GetDataFromURL<QuestRoot>(url);
             return quest;
@@ -412,9 +412,9 @@ namespace SharprWowApi
             var realm = new RealmRoot();
 
             var url = string.Format(@"{0}/wow/realm/status?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             realm = json.GetDataFromURL<RealmRoot>(url);
             return realm;
@@ -435,10 +435,10 @@ namespace SharprWowApi
             var recipe = new RecipeRoot();
 
             var url = string.Format(@"{0}/wow/recipe/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 recipeId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             recipe = json.GetDataFromURL<RecipeRoot>(url);
             return recipe;
@@ -458,10 +458,10 @@ namespace SharprWowApi
             var spell = new SpellRoot();
 
             var url = string.Format(@"{0}/wow/spell/{1}?locale={2}&apikey={3}",
-                _Host,
+                Host,
                 spellId,
-                _Locale,
-                _APIKey);
+                Locale,
+                APIKey);
 
             spell = json.GetDataFromURL<SpellRoot>(url);
             return spell;
@@ -484,9 +484,9 @@ namespace SharprWowApi
             var achievementsData = new DataAchievementRoot();
 
             var url = string.Format(@"{0}/wow/data/Character/Achievements?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             achievementsData = json.GetDataFromURL<DataAchievementRoot>(url);
             return achievementsData;
@@ -506,9 +506,9 @@ namespace SharprWowApi
             var battlegroupData = new DataBattleGroupRoot();
 
             var url = string.Format(@"{0}/wow/data/battlegroups/?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             battlegroupData = json.GetDataFromURL<DataBattleGroupRoot>(url);
             return battlegroupData;
@@ -526,9 +526,9 @@ namespace SharprWowApi
             var classData = new DataCharacterClassesRoot();
 
             var url = string.Format(@"{0}/wow/data/character/classes?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             classData = json.GetDataFromURL<DataCharacterClassesRoot>(url);
             return classData;
@@ -547,9 +547,9 @@ namespace SharprWowApi
             var achievementData = new DataGuildAchivementRoot();
 
             var url = string.Format(@"{0}/wow/data/guild/Achievements?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             achievementData = json.GetDataFromURL<DataGuildAchivementRoot>(url);
             return achievementData;
@@ -569,9 +569,9 @@ namespace SharprWowApi
             var guildPerksData = new DataGuildPerksRoot();
 
             var url = string.Format(@"{0}/wow/data/guild/perks?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             guildPerksData = json.GetDataFromURL<DataGuildPerksRoot>(url);
             return guildPerksData;
@@ -590,9 +590,9 @@ namespace SharprWowApi
             var guildRewardsData = new DataGuildRewardsRoot();
 
             var url = string.Format(@"{0}/wow/data/guild/rewards?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             guildRewardsData = json.GetDataFromURL<DataGuildRewardsRoot>(url);
             return guildRewardsData;
@@ -612,9 +612,9 @@ namespace SharprWowApi
             var itemData = new DataItemClassRoot();
 
             var url = string.Format(@"{0}/wow/data/item/classes?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             itemData = json.GetDataFromURL<DataItemClassRoot>(url);
             return itemData;
@@ -633,9 +633,9 @@ namespace SharprWowApi
             var petData = new DataPetTypesRoot();
 
             var url = string.Format(@"{0}/wow/data/pet/types?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             petData = json.GetDataFromURL<DataPetTypesRoot>(url);
             return petData;
@@ -653,9 +653,9 @@ namespace SharprWowApi
             var raceData = new DataRacesRoot();
 
             var url = string.Format(@"{0}/wow/data/character/races?locale={1}&apikey={2}",
-                _Host,
-                _Locale,
-                _APIKey);
+                Host,
+                Locale,
+                APIKey);
 
             raceData = json.GetDataFromURL<DataRacesRoot>(url);
             return raceData;

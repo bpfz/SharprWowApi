@@ -9,15 +9,15 @@ namespace SharprWowApi
 {
     public abstract class GetDataBase
     {
-        internal Region _Region { get; set; }
+        internal Region Region { get; set; }
 
-        internal Locale _Locale { get; set; }
+        internal Locale Locale { get; set; }
 
-        internal string _APIKey { get; set; }
+        internal string APIKey { get; set; }
 
-        internal string _Host { get; set; }
+        internal string Host { get; set; }
 
-        internal string _Realm { get; set; }
+        internal string Realm { get; set; }
 
     }
 }
