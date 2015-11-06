@@ -24,7 +24,7 @@ namespace SharprWowApi.Test
             {
 
                 var getAuction = client.GetAuctions(TestConstants.EU_en_GB_Realm);
-                var auction = getAuction.Auctions.Auction;
+                var auction = getAuction.Auctions;
 
                 string owner = "";
                 foreach (var a in auction.Take(51))
@@ -40,11 +40,26 @@ namespace SharprWowApi.Test
                     Console.WriteLine(a.BidSilver);
                     Console.WriteLine(a.BidCopper);
                     Console.WriteLine("-------------------");
-
-
                     owner = a.Owner;
                 }
             }
+        }
+
+        [TestMethod]
+        public async Task Test_US_GetAuctionData()
+        {
+            var client = new ApiClientAsync(Region.US, Locale.en_US, TestConstants.ApiKey);
+            var auctions = await client.GetAuctionsAsync(TestConstants.US_en_US_Realm);
+            Assert.IsNotNull(auctions);
+
+            Parallel.ForEach(auctions.Auctions.Take(150), auction =>
+                 {
+                     Assert.IsNotNull(auction.Auc);
+                     Assert.IsNotNull(auction.Bid);
+                     Assert.IsNotNull(auction.Buyout);
+                     Assert.IsNotNull(auction.Context);
+                     Assert.IsNotNull(auction.Item);
+                 });
         }
 
         [TestMethod]
@@ -61,7 +76,7 @@ namespace SharprWowApi.Test
             {
 
                 var getAuction = await client.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
-                var auction = getAuction.Auctions.Auction;
+                var auction = getAuction.Auctions;
 
                 string owner = "";
                 using (auction.GetEnumerator())
