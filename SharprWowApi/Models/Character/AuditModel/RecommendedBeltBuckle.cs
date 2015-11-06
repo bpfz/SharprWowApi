@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharprWowApi.Models.Character.AuditModel
 {
+    /// <summary>
+    /// not used anymore (as of WOD)
+    /// </summary>
     public class RecommendedBeltBuckle
     {
         public int id { get; set; }

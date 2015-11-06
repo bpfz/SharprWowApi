@@ -46,7 +46,7 @@ namespace SharprWowApi.Models.Character.AuditModel
         public MissingScribeEnchants MissingScribeEnchants { get; set; }
 
         [JsonProperty("nMissingJewelcrafterGems")]
-        public int MissingJewelcrafterGems { get; set; }
+        public int MissingJewelcrafingGems { get; set; }
 
         public MissingLeatherworkerEnchants MissingLeatherworkerEnchants { get; set; }
     }
