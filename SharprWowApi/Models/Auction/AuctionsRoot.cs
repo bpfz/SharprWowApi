@@ -1,9 +1,11 @@
-﻿namespace SharprWowApi.Models.Auction
+﻿using System.Collections.Generic;
+
+namespace SharprWowApi.Models.Auction
 {
     public class AuctionsRoot
     {
-        public AuctionRealm Realm { get; set; }
+        public IEnumerable<AuctionRealm> Realms { get; set; }
 
-        public AuctionsList Auctions { get; set; }
+        public IEnumerable<Auction> Auctions { get; set; }
     }
 }
