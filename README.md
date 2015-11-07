@@ -95,15 +95,12 @@ var lm = from f in getAuctionFile.Files
   {
     //await here
     var getAuction = await client.GetAuctionsAsync("Realm");
-    var auction = getAuction.Auctions.Auction;
+    var auction = getAuction.Auctions
     
-  using (auction.GetEnumerator())
-  {
-       Parallel.ForEach(auction, a =>
+       Parallel.ForEach(auction.Take(10), a =>
        {
          Console.WriteLine(a.Item);
        });
-  }
  ...
 ```
 ####Get all members from a guild as Character objects (1.1)
