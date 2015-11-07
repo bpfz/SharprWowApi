@@ -35,7 +35,14 @@ namespace SharprWowApi
         {
             return await this.GetAuctionFileAsync(this.Realm);
         }
-
+      
+        /// <summary>
+        /// Gets the the url to othe auction datablob
+        /// </summary>
+        /// <param name="realm">The realm which you want to retrieve the  data from. Method replaces an space ' ' with '-'.
+        ///  <example>"Grim Batol" becomes "Grim-Batol"</example>
+        /// </param>
+        /// <returns>AuctionFile root containing a list containing URLs to the auction datablob (usually there's only one)</returns>
         public async Task<AuctionFilesRoot> GetAuctionFileAsync(string realm)
         {
             realm.ToLower().Replace(' ', '-');
@@ -57,7 +64,7 @@ namespace SharprWowApi
         }
 
         /// <summary>
-        /// Does not block main thread.
+        ///
         /// </summary>
         /// <remarks>
         /// Sometimes Unexpected character encountered while parsing value: . Path '', line 0, position 0.
@@ -69,6 +76,10 @@ namespace SharprWowApi
             var auctionFiles = await this.GetAuctionFileAsync(realm);
 
             var auctionUrl = auctionFiles.Files.FirstOrDefault(file => !string.IsNullOrEmpty(file.Url)).Url;
+            if (auctionUrl == null)
+            {
+                throw new System.NullReferenceException($"Could not find an url to the auctions. Make sure this is correctly a spelled realm: {realm}");
+            }
             return await this._jsonUtility.GetDataFromURLAsync<AuctionsRoot>(auctionUrl);
         }
 
