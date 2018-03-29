@@ -9,7 +9,7 @@ namespace SharprWowApi
     /// <summary>
     /// Client to use to get data from the api.
     /// </summary>
-    public class ApiClientAsync : GetDataAsync
+    public class WowClient : GetDataAsync
     {
         /// <summary>
         /// Initializes a new instance of the ApiClientAsync class.
@@ -18,7 +18,7 @@ namespace SharprWowApi
         /// <param name="region">The region, EU, KR, TW, CN or US. Use "_Region property".</param>
         /// <param name="locale">_Locale, en_gb, en_us etc. Use "_Locale" Property"</param>
         /// <param name="apiKey">Your API key (get one at dev.battle.net)</param>
-        public ApiClientAsync(Region region, Locale locale, string apiKey)
+        public WowClient(Region region, Locale locale, string apiKey)
         {
             if (!string.IsNullOrEmpty(apiKey))
             {
@@ -42,7 +42,7 @@ namespace SharprWowApi
         /// <param name="locale">_Locale, en_gb, en_us etc. Use "_Locale" Property"</param>
         /// <param name="apiKey">Your API key (get one at dev.battle.net)</param>
         /// <param name="realm"></param>
-        public ApiClientAsync(Region region, Locale locale, string apiKey, string realm)
+        public WowClient(Region region, Locale locale, string apiKey, string realm)
         {
             if (!string.IsNullOrEmpty(apiKey))
             {

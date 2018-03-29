@@ -51,10 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiClientAsync.cs" />
+    <Compile Include="IGetDataAsync.cs" />
+    <Compile Include="WowClient.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="GetData.cs">
-    </Compile>
     <Compile Include="GetDataAsync.cs" />
     <Compile Include="GetDataBase.cs" />
     <Compile Include="Models\Achievement\AchievementRoot.cs" />
@@ -111,7 +110,7 @@
     <Compile Include="Models\Character\CharacterProfession.cs" />
     <Compile Include="Models\Character\CharacterProgressionBoss.cs" />
     <Compile Include="Models\Character\CharacterProgressionRaid.cs" />
-    <Compile Include="Models\Character\CharacterPVPBrackets.cs" />
+    <Compile Include="Models\Character\CharacterPvpBrackets.cs" />
     <Compile Include="Models\Character\CharacterRoot.cs" />
     <Compile Include="Models\Character\CharacterFeedAchivements.cs" />
     <Compile Include="Models\Character\CharacterFeedAchievementCriteria.cs" />
@@ -178,8 +177,6 @@
     </Compile>
     <Compile Include="Utility\JsonUtility.cs" />
     <Compile Include="Utility\LeaderboardFields.cs" />
-    <Compile Include="ApiClient.cs">
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
