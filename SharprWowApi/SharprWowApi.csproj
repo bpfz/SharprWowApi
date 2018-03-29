@@ -51,7 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGetDataAsync.cs" />
+    <Compile Include="Models\Character\ArtifactTrait.cs" />
+    <Compile Include="Models\Character\CharacterItemAppearance.cs" />
+    <Compile Include="Models\Character\Relic.cs" />
+    <Compile Include="Models\Item\ItemSocket.cs" />
+    <Compile Include="Models\Item\ItemSocketInfo.cs" />
+    <Compile Include="Models\Mount\Mount.cs" />
+    <Compile Include="Models\Mount\MountRoot.cs" />
+    <Compile Include="Models\Zone\Boss.cs" />
+    <Compile Include="Models\Zone\Location.cs" />
+    <Compile Include="Models\Zone\Npc.cs" />
+    <Compile Include="Models\Zone\Zone.cs" />
+    <Compile Include="Models\Zone\ZoneRoot.cs" />
     <Compile Include="WowClient.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GetDataAsync.cs" />
@@ -161,7 +172,7 @@
     <Compile Include="Models\Item\ItemSpell.cs" />
     <Compile Include="Models\Item\ItemSpellDesc.cs" />
     <Compile Include="Models\Item\ItemWeaponInfo.cs" />
-    <Compile Include="Models\PVP\LeaderboardRoot.cs" />
+    <Compile Include="Models\Pvp\LeaderboardRoot.cs" />
     <Compile Include="Models\Quest\QuestRoot.cs" />
     <Compile Include="Models\RealmStatus\Realm.cs" />
     <Compile Include="Models\RealmStatus\RealmRoot.cs" />
@@ -172,15 +183,13 @@
     <Compile Include="Utility\CharacterFields.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Utility\GuildFields.cs" />
-    <Compile Include="Utility\GzipWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Utility\JsonUtility.cs" />
     <Compile Include="Utility\LeaderboardFields.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
