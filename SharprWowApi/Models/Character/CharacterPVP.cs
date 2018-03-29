@@ -1,6 +1,6 @@
 ﻿namespace SharprWowApi.Models.Character
 {
-    public class CharacterPVP
+    public class CharacterPvp
     {
         public CharacterPVPBrackets Brackets { get; set; }
     }

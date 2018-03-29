@@ -108,7 +108,7 @@ namespace SharprWowApi.Models.Character
         /// <summary>
         /// Gets or sets a map of player versus player information including arena team membership and rated battlegrounds information.
         /// </summary>
-        public CharacterPVP Pvp { get; set; }
+        public CharacterPvp Pvp { get; set; }
 
         /// <summary>
         /// Gets or sets a list of all of the combat pets obtained by the character.

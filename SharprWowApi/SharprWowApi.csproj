@@ -121,7 +121,7 @@
     <Compile Include="Models\Character\CharacterProfessions.cs" />
     <Compile Include="Models\Character\CharacterGuild.cs" />
     <Compile Include="Models\Character\CharacterProgression.cs" />
-    <Compile Include="Models\Character\CharacterPVP.cs" />
+    <Compile Include="Models\Character\CharacterPvp.cs" />
     <Compile Include="Models\Character\CharacterReputation.cs" />
     <Compile Include="Models\Character\CharacterStats.cs" />
     <Compile Include="Models\Character\CharacterTalent.cs" />
