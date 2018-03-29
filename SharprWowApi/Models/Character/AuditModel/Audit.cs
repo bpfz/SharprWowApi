@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace SharprWowApi.Models.Character.AuditModel
 {
+    /// <summary>
+    /// This  is currently unavailable
+    /// </summary>
     public class Audit
     {
         public int NumberOfIssues { get; set; }
