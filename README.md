@@ -10,7 +10,7 @@ PM> Install-Package SharprWowApi
 
 ## Usage example
 
-#####Get achievement By ID
+##### Get achievement By ID
 
 ```c#
 var client = WowClient(Region.Eu, Locale.en_GB, ApiKey.Value);
@@ -77,8 +77,8 @@ var lm = from f in getAuctionFile.Files
        });
  ...
 ```
-####Get all members from a guild as Character objects (1.1)
-An signifcant speed increase compared to a synchronous operation. It's worth noting that if you try to parse a guild with too many members (without setting how many members to take to a low enough number) and the amount of requests to the api gets too high, you will get a 403 (forbidden) error. 
+#### Get all members from a guild as Character objects (1.1)
+A signifcant speed increase compared to a synchronous operation. It's worth noting that if you try to parse a guild with too many members (without setting how many members to take to a low enough number) and the amount of requests to the api gets too high, you will get a 403 (forbidden) error. 
 
 ![Async vs Sync Test](http://i.imgur.com/nuCpGjQ.jpg)
 
