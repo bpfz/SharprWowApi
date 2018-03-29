@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace SharprWowApi.Models.Item
 
         public ItemSpellDesc Spell { get; set; }
 
-        public int NCharges { get; set; }
+        [JsonProperty("nCharges")]
+        public int Charges { get; set; }
 
         public bool Consumable { get; set; }
 

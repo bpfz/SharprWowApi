@@ -8,7 +8,7 @@ namespace SharprWowApi.Models.Item
 {
     public class ItemSpellDesc
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
         public string Name { get; set; }
 
@@ -17,5 +17,7 @@ namespace SharprWowApi.Models.Item
         public string Description { get; set; }
 
         public string CastTime { get; set; }
+
+        public string Range { get; set; }
     }
 }

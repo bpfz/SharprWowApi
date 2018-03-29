@@ -1,6 +1,6 @@
 ﻿namespace SharprWowApi.Models.Item
 {
-      public class ItemDamage
+    public class ItemDamage
     {
         public int Min { get; set; }
 

@@ -7,8 +7,6 @@ namespace SharprWowApi.Models.Item
     {
         public int Id { get; set; }
 
-        public int DisenchantingSkillRank { get; set; }
-
         public string Description { get; set; }
 
         public string Name { get; set; }
@@ -21,9 +19,9 @@ namespace SharprWowApi.Models.Item
 
         public IEnumerable<ItemBonusStat> BonusStats { get; set; }
 
-        public IEnumerable<ItemSpell> ItemSpells { get; set; }
+        public List<ItemSpell> ItemSpells { get; set; }
 
-        public string BuyPrice { get; set; }
+        public int BuyPrice { get; set; }
 
         public int ItemClass { get; set; }
 
@@ -47,18 +45,17 @@ namespace SharprWowApi.Models.Item
 
         public int MinReputation { get; set; }
 
-        /// <summary>
-        /// Gets or sets numerical value of the item (1 white... 5 legendary)
-        /// </summary>
         public int Quality { get; set; }
 
-        public string SellPrice { get; set; }
+        public int SellPrice { get; set; }
 
         public int RequiredSkill { get; set; }
 
         public int RequiredLevel { get; set; }
 
         public int RequiredSkillRank { get; set; }
+
+        public ItemSocket SocketInfo { get; set; }
 
         public ItemSource ItemSource { get; set; }
 
@@ -82,21 +79,22 @@ namespace SharprWowApi.Models.Item
 
         public string Context { get; set; }
 
-        public IEnumerable<object> BonusLists { get; set; }
+        public List<object> BonusLists { get; set; }
 
-        public IEnumerable<string> AvailableContexts { get; set; }
+        public List<string> AvailableContexts { get; set; }
 
         public ItemBonusSummary BonusSummary { get; set; }
 
-        public ItemSetRoot ItemSet { get; set; }
+        public int ArtifactId { get; set; }
 
         public string BuyPriceGold
         {
             get
             {
-                if (this.BuyPrice.Length > 4)
+                var buyPriceString = BuyPrice.ToString();
+                if (buyPriceString.Length > 4)
                 {
-                    return this.BuyPrice.RemoveTail(4);
+                    return buyPriceString.RemoveTail(4);
                 }
                 else
                 {
@@ -109,7 +107,8 @@ namespace SharprWowApi.Models.Item
         {
             get
             {
-                return this.BuyPrice.Tail(4).RemoveTail(2);
+                var buyPriceString = BuyPrice.ToString();
+                return buyPriceString.Tail(4).RemoveTail(2);
             }
         }
 
@@ -117,7 +116,8 @@ namespace SharprWowApi.Models.Item
         {
             get
             {
-                return this.BuyPrice.Tail(2);
+                var buyPriceString = BuyPrice.ToString();
+                return buyPriceString.Tail(2);
             }
         }
 
@@ -125,9 +125,10 @@ namespace SharprWowApi.Models.Item
         {
             get
             {
-                if (this.SellPrice.Length > 4)
+                var sellPriceString = SellPrice.ToString();
+                if (sellPriceString.Length > 4)
                 {
-                    return this.SellPrice.RemoveTail(4);
+                    return sellPriceString.RemoveTail(4);
                 }
                 else
                 {
@@ -140,7 +141,8 @@ namespace SharprWowApi.Models.Item
         {
             get
             {
-                return this.SellPrice.Tail(4).RemoveTail(2);
+                var sellPriceString = SellPrice.ToString();
+                return sellPriceString.Tail(4).RemoveTail(2);
             }
         }
 
@@ -148,7 +150,8 @@ namespace SharprWowApi.Models.Item
         {
             get
             {
-                return this.SellPrice.Tail(2);
+                var sellPriceString = SellPrice.ToString();
+                return sellPriceString.Tail(2);
             }
         }
 
