@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SharprWowApi")]
-[assembly: AssemblyDescriptionAttribute("World of warcraft API wrapper Library. Written in C# .Net 4.5")]
+[assembly: AssemblyDescription("World of warcraft API wrapper Library. Written in C# .Net 4.6")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompanyAttribute("bpfz")]
+[assembly: AssemblyCompany("bpfz")]
 [assembly: AssemblyProduct("SharprWowApi")]
-[assembly: AssemblyCopyrightAttribute("")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
