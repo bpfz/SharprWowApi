@@ -53,11 +53,13 @@
   <ItemGroup>
     <Compile Include="Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTestRealmStatus.cs" />
-    <Compile Include="UnitTestGuild.cs" />
-    <Compile Include="UnitTestAuction.cs" />
-    <Compile Include="UnitTestCharacter.cs" />
-    <Compile Include="UnitTestAchievement.cs" />
+    <Compile Include="RealmStatusTests.cs" />
+    <Compile Include="GuildTests.cs" />
+    <Compile Include="AuctionTests.cs" />
+    <Compile Include="CharacterTests.cs" />
+    <Compile Include="AchievementTests.cs" />
+    <Compile Include="TestBase.cs" />
+    <Compile Include="ZoneTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharprWowApi\SharprWowApi.csproj">

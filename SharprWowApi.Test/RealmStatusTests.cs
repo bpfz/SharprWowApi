@@ -1,16 +1,17 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace SharprWowApi.Test
 {
     [TestClass]
-    public class UnitTestRealmStatus
+    public class RealmStatusTests : TestBase
     {
         [TestMethod]
-        public void Test_GetRealms()
+        [TestCategory("Realm")]
+        public async Task Test_GetRealms()
         {
-            var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-            var realms = client.GetRealmStatus();
+            var realms = await EuClient.GetRealmStatusAsync();
 
             Console.WriteLine("var listItems = new List<ListItem>{");
             foreach (var realm in realms.Realms)

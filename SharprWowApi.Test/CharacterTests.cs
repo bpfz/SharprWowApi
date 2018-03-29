@@ -7,49 +7,59 @@ using System.Threading.Tasks;
 namespace SharprWowApi.Test
 {
     [TestClass]
-    public class UnitTestCharacter
+    public class CharacterTests : TestBase
     {
-        private static ApiClient client;
+        private static WowClient client;
 
 
         [TestMethod]
-        public void Test_CharacterRoot_EU()
-        {
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
+        [TestCategory("Character")]
 
-            var character = client.GetCharacter("Hjortronsmak", CharacterOptions.None, TestConstants.EU_en_GB_Realm);
+        public async Task Test_CharacterRoot()
+        {
+            var character = await EuClient.GetCharacterAsync(
+                "Hjortronsmak",
+                CharacterOptions.None,
+                TestConstants.EU_en_GB_Realm);
+
             Assert.IsNotNull(character.Name);
+
+            var usCharacter = await UsClient.GetCharacterAsync(
+                "Smexxin",
+                CharacterOptions.None,
+                TestConstants.US_en_US_Realm);
+
+            Assert.IsNotNull(usCharacter.Name);
         }
 
         [TestMethod]
-        public void Test_CharacterRoot_Guild_EU2()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_Guild()
         {
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
-            var character = client.GetCharacter("Hjortronsmak", CharacterOptions.Guild, TestConstants.EU_en_GB_Realm);
+            var character = await EuClient.GetCharacterAsync(
+                "Hjortronsmak",
+                CharacterOptions.Guild,
+                TestConstants.EU_en_GB_Realm);
 
             var str = Enum.GetName(typeof(CharacterOptions), CharacterOptions.Guild);
+
             Console.WriteLine(str);
             Assert.IsNotNull(character.Name);
             Assert.IsNotNull(character.Guild);
 
         }
-        [TestMethod]
-        public void Test_CharacterRoot_US()
-        {
-            client = new ApiClient(Region.US, Locale.en_US, TestConstants.ApiKey);
 
-            var character = client.GetCharacter("Smexxin", CharacterOptions.None, TestConstants.US_en_US_Realm);
-
-            Assert.IsNotNull(character.Name);
-        }
 
         [TestMethod]
-        public void Test_CharacterRoot_Achievement_EU()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_Achievement()
         {
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
             var options = CharacterOptions.Achievements | CharacterOptions.Guild | CharacterOptions.Items;
-            var character = client.GetCharacter("Hjortronsmak", CharacterOptions.Achievements, TestConstants.EU_en_GB_Realm);
+
+            var character = await EuClient.GetCharacterAsync(
+                "Hjortronsmak",
+                options,
+                TestConstants.EU_en_GB_Realm);
 
             Console.WriteLine(character.Name);
             Assert.IsNotNull(character.Achievements.AchievementsCompleted.ElementAt(1));
@@ -59,79 +69,49 @@ namespace SharprWowApi.Test
         }
 
         [TestMethod]
-        public void Test_CharacterRoot_PVP_EU()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_PVP()
         {
 
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
-            var character = client.GetCharacter("xzy", CharacterOptions.PvP, TestConstants.EU_en_GB_Realm);
+            var character = await EuClient.GetCharacterAsync(
+                "xzy",
+                CharacterOptions.PvP,
+                TestConstants.EU_en_GB_Realm);
 
             Console.WriteLine(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket3v3.Rating);
-            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket5v5.Rating);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracketRBG.Rating);
 
         }
         [TestMethod]
-        public void Test_CharacterRoot_Items_EU()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_Items()
         {
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-            var character = client.GetCharacter("xzy", CharacterOptions.Items, TestConstants.EU_en_GB_Realm);
+            var character = await EuClient.GetCharacterAsync(
+                "xzy",
+                CharacterOptions.Items,
+                TestConstants.EU_en_GB_Realm);
 
             foreach (var stat in character.Items.Finger1.Stats)
             {
                 Assert.IsNotNull(stat.Stat);
             }
+
             Assert.IsNotNull(character.Items.AverageItemLevel);
             Assert.IsNotNull(character.Items.Finger2.Id);
             Assert.IsNotNull(character.Items.AverageItemLevel);
         }
 
         [TestMethod]
-        public void Test_CharacterRoot_Everything_EU()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_Everything()
         {
-
-            client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
-            var character = client.GetCharacter("hjortronsmak", CharacterOptions.AllOptions, TestConstants.EU_en_GB_Realm);
-
-            Assert.IsTrue(character.TotalHonorableKills > 0);
-            Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
-            Assert.IsNotNull(character.AchievementPoints);
-            Assert.IsNotNull(character.Achievements);
-            Assert.IsNotNull(character.Appearance);
-            Assert.IsNotNull(character.Battlegroup);
-            Assert.IsNotNull(character.CalcClass);
-            Assert.IsNotNull(character.Feed);
-            Assert.IsNotNull(character.Guild);
-            Assert.IsNotNull(character.Level);
-
-            foreach (var raid in character.Progression.Raids)
-            {
-                var boss = from b in raid.Bosses
-                           select b.Id;
-
-                Assert.IsNotNull(boss);
-
-            }
-            Assert.AreEqual(CharacterClass.Priest, character.Class);
-
-            Assert.AreEqual(CharacterRace.Pandaren_Alliance, character.Race);
-
-            Console.WriteLine("Class: " + character.Class);
-            Console.WriteLine("Race: " + character.Race);
-            Console.WriteLine("Gender: " + character.Gender);
-        }
-
-        [TestMethod]
-        public async Task Test_CharacterRoot_Everything_EU_async()
-        {
-
-            var client = new ApiClientAsync(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-
-            var character = await client.GetCharacterAsync("hjortronsmak", CharacterOptions.AllOptions, TestConstants.EU_en_GB_Realm);
+            var character = await EuClient.GetCharacterAsync(
+                "hjortronsmak",
+                CharacterOptions.AllOptions,
+                TestConstants.EU_en_GB_Realm);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -162,12 +142,13 @@ namespace SharprWowApi.Test
         }
 
         [TestMethod]
-        public void Test_CharacterRoot_Everything_US()
+        [TestCategory("Character")]
+        public async Task Test_CharacterRoot_Everything_US()
         {
-
-            client = new ApiClient(Region.US, Locale.en_US, TestConstants.ApiKey);
-
-            var character = client.GetCharacter("smexxin", CharacterOptions.AllOptions, TestConstants.US_en_US_Realm);
+            var character = await UsClient.GetCharacterAsync(
+                "smexxin",
+                CharacterOptions.AllOptions,
+                TestConstants.US_en_US_Realm);
 
             Assert.IsTrue(character.TotalHonorableKills > 0);
             Assert.IsNotNull(character.Pvp.Brackets.ArenaBracket2v2.Rating);
@@ -186,16 +167,15 @@ namespace SharprWowApi.Test
                            select b.Id;
 
                 Assert.IsNotNull(boss);
-
             }
+
             Assert.AreEqual(CharacterClass.Warrior, character.Class);
 
-            Assert.AreEqual(CharacterRace.Human, character.Race);
+            Assert.AreEqual(CharacterRace.Orc, character.Race);
 
             Console.WriteLine("Class: " + character.Class);
             Console.WriteLine("Race: " + character.Race);
             Console.WriteLine("Gender: " + character.Gender);
         }
-
     }
 }

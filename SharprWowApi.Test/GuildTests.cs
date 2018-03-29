@@ -9,18 +9,16 @@ using System.Threading;
 namespace SharprWowApi.Test
 {
     [TestClass]
-    public class UnitTestGuild
+    public class GuildTests : TestBase
     {
         //get all members, get character based on member.character.name save to csv file?
         [TestMethod]
-        public void Test_GuildEU_Root()
+        [TestCategory("Guild")]
+        public async Task Test_Guild_Root()
         {
-            var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
             var options = GuildOptions.Members | GuildOptions.Challenge;
             Console.WriteLine(options);
-            var guild = client.GetGuild("Dress code purple", options, TestConstants.EU_en_GB_Realm);
-
-
+            var guild = await EuClient.GetGuildAsync("Dress code purple", options, TestConstants.EU_en_GB_Realm);
 
             foreach (var member in guild.Members)
             {
@@ -31,35 +29,34 @@ namespace SharprWowApi.Test
             Assert.IsNotNull(guild.LastModified);
             Assert.IsNotNull(guild.Challenge);
 
-            var guild2 = client.GetGuild("Dress code purple", GuildOptions.None, TestConstants.EU_en_GB_Realm);
+            var guild2 = await EuClient.GetGuildAsync("Dress code purple", GuildOptions.None, TestConstants.EU_en_GB_Realm);
             Assert.IsNotNull(guild.AchievementPoints);
 
 
         }
 
-                [TestMethod]
-        public void Test_GuildEU_Everything()
+        [TestMethod]
+        [TestCategory("Guild")]
+        public async Task Test_Guild_Everything()
         {
-            var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
             var options = GuildOptions.AllOptions;
             Console.WriteLine(options);
-            var guild = client.GetGuild("Dress code purple", options, TestConstants.EU_en_GB_Realm);
 
-
+            var guild = await EuClient.GetGuildAsync("Dress code purple", options, TestConstants.EU_en_GB_Realm);
 
             foreach (var member in guild.Members)
             {
                 Assert.IsNotNull(member.Character.Name);
                 Console.WriteLine(member.Character.Name);
             }
+
             Assert.IsNotNull(guild.Challenge);
             Assert.IsNotNull(guild.News);
-
 
             Assert.IsNotNull(guild.LastModified);
             Assert.IsNotNull(guild.Challenge);
 
-            var guild2 = client.GetGuild("Dress code purple", GuildOptions.None, TestConstants.EU_en_GB_Realm);
+            var guild2 = await EuClient.GetGuildAsync("Dress code purple", GuildOptions.None, TestConstants.EU_en_GB_Realm);
             Assert.IsNotNull(guild.AchievementPoints);
 
 
@@ -68,7 +65,7 @@ namespace SharprWowApi.Test
         //requires new guild to test against [TestMethod]
         public async Task Test_GetCharacter_FromGuildMembers()
         {
-            var client = new ApiClientAsync(Region.EU, Locale.en_GB, TestConstants.ApiKey);
+            var client = new WowClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
             //realm in getGuildAsync does not work (404 not found), why? setting realm in apiclient constructor works.
             var guild = await client.GetGuildAsync("method", GuildOptions.Members, "Twisting Nether");
 
@@ -100,7 +97,7 @@ namespace SharprWowApi.Test
         //needs new guild, this is  moved/inactive or something [TestMethod]
         public async Task Test_GetCharacters_FromGuildMembersHashSet()
         {
-            var client = new ApiClientAsync(Region.EU, Locale.en_GB, TestConstants.ApiKey, "Twisting Nether");
+            var client = new WowClient(Region.EU, Locale.en_GB, TestConstants.ApiKey, "Twisting Nether");
             //var guild = await client.GetGuildAsync("dress code purple", GuildOptions.Members);
 
             //var client = new ApiClientAsync(_Region.EU, _Locale.en_GB, TestConstants.ApiKey, "grim batol");

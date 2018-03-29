@@ -8,13 +8,13 @@ using System.Diagnostics;
 namespace SharprWowApi.Test
 {
     [TestClass]
-    public class UnitTestAuction
+    public class AuctionTests : TestBase
     {
         [TestMethod]
-        public void Test_Get_EU_AuctionData()
+        [TestCategory("Auction")]
+        public async Task Get_EU_AuctionData()
         {
-            var client = new ApiClient(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-            var getAuctionFile = client.GetAuctionFile(TestConstants.EU_en_GB_Realm);
+            var getAuctionFile = await EuClient.GetAuctionFileAsync(TestConstants.EU_en_GB_Realm);
             var someCachedValue = "14218549882000";
 
             var lm = from f in getAuctionFile.Files
@@ -22,8 +22,7 @@ namespace SharprWowApi.Test
 
             if (!lm.Equals(someCachedValue))
             {
-
-                var getAuction = client.GetAuctions(TestConstants.EU_en_GB_Realm);
+                var getAuction = await EuClient.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
                 var auction = getAuction.Auctions;
 
                 string owner = "";
@@ -46,10 +45,10 @@ namespace SharprWowApi.Test
         }
 
         [TestMethod]
-        public async Task Test_US_GetAuctionData()
+        [TestCategory("Auction")]
+        public async Task US_GetAuctionData()
         {
-            var client = new ApiClientAsync(Region.US, Locale.en_US, TestConstants.ApiKey);
-            var auctions = await client.GetAuctionsAsync(TestConstants.US_en_US_Realm);
+            var auctions = await EuClient.GetAuctionsAsync(TestConstants.US_en_US_Realm);
             Assert.IsNotNull(auctions);
 
             Parallel.ForEach(auctions.Auctions.Take(150), auction =>
@@ -63,10 +62,10 @@ namespace SharprWowApi.Test
         }
 
         [TestMethod]
-        public async Task Test_Get_EU_AuctionDataAsync()
+        [TestCategory("Auction")]
+        public async Task Get_AuctionDataAsync()
         {
-            var client = new ApiClientAsync(Region.EU, Locale.en_GB, TestConstants.ApiKey);
-            var getAuctionFile = await client.GetAuctionFileAsync(TestConstants.EU_en_GB_Realm);
+            var getAuctionFile = await EuClient.GetAuctionFileAsync(TestConstants.EU_en_GB_Realm);
             var someCachedValue = "14218549882000";
 
             var lm = from f in getAuctionFile.Files
@@ -75,7 +74,7 @@ namespace SharprWowApi.Test
             if (!lm.Equals(someCachedValue))
             {
 
-                var getAuction = await client.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
+                var getAuction = await EuClient.GetAuctionsAsync(TestConstants.EU_en_GB_Realm);
                 var auction = getAuction.Auctions;
 
                 string owner = "";
