@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SharprWowApi.Models.Item;
+using System.Collections.Generic;
 
 namespace SharprWowApi.Models.Character
 {
@@ -14,13 +15,27 @@ namespace SharprWowApi.Models.Character
 
         public int ItemLevel { get; set; }
 
+        public int Armor { get; set; }
+
+        public string Context { get; set; }
+
         public CharacterItemTooltipParams TooltipParams { get; set; }
 
         public IEnumerable<CharacterItemStat> Stats { get; set; }
 
-        public int Armor { get; set; }
+        public ItemWeaponInfo WeaponInfo { get; set; }
 
-        public string Context { get; set; }
+        public int ArtifactInfoId { get; set; }
+
+        public int DisplayInfoId { get; set; }
+
+        public int ArtifactAppearanceId { get; set; }
+
+        public IEnumerable<ArtifactTrait> ArtifactTraits { get; set; }
+
+        public IEnumerable<Relic> Relics { get; set; }
+
+        public CharacterItemAppearance Appearance { get; set; }
 
         public IEnumerable<int> BonusLists { get; set; }
     }
