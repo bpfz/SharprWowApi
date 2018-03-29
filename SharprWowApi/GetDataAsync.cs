@@ -9,18 +9,25 @@ using SharprWowApi.Models.Character;
 using SharprWowApi.Models.DataResources;
 using SharprWowApi.Models.Guild;
 using SharprWowApi.Models.Item;
-using SharprWowApi.Models.PVP;
+using SharprWowApi.Models.Pvp;
 using SharprWowApi.Models.Quest;
 using SharprWowApi.Models.RealmStatus;
 using SharprWowApi.Models.Recipe;
 using SharprWowApi.Models.Spells;
 using SharprWowApi.Utility;
+using SharprWowApi.Models.Zone;
+using SharprWowApi.Models.Mount;
 
 namespace SharprWowApi
 {
-    public abstract class GetDataAsync : GetDataBase, IGetDataAsync
+    public abstract class GetDataAsync : GetDataBase
     {
-        private JsonUtility _jsonUtility = new JsonUtility();
+        private JsonUtility _jsonUtility;
+
+        public GetDataAsync()
+        {
+            _jsonUtility = new JsonUtility();
+        }
 
         #region Achievement
         public async Task<AchievementRoot> GetAchievementAsync(int achievementId)
@@ -35,7 +42,7 @@ namespace SharprWowApi
         {
             return await this.GetAuctionFileAsync(this.Realm);
         }
-      
+
         /// <summary>
         /// Gets the the url to othe auction datablob
         /// </summary>
@@ -513,6 +520,30 @@ namespace SharprWowApi
         #endregion
 
         #endregion
+
+        #region Zone
+        public async Task<ZoneRoot> GetZoneMasterListAsync()
+        {
+            var url = $"{Host}/wow/zone/?locale={Locale}&apikey={APIKey}";
+            return await _jsonUtility.GetDataFromURLAsync<ZoneRoot>(url);
+        }
+
+        public async Task<Zone> GetZoneById(int id)
+        {
+            var url = $"{Host}/wow/zone/{id}?locale={Locale}&apikey={APIKey}";
+            return await _jsonUtility.GetDataFromURLAsync<Zone>(url);
+        }
+
+        #endregion
+
+        #region Mounts
+
+        public async Task<MountRoot> GetMountMasterList()
+        {
+            var url = $"{Host}/wow/mount/?locale={Locale}&apikey={APIKey}";
+            return await _jsonUtility.GetDataFromURLAsync<MountRoot>(url);
+        }
+
+        #endregion
     }
-  
 }
