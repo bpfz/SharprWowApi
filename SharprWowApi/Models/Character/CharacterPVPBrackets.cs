@@ -10,9 +10,6 @@ namespace SharprWowApi.Models.Character
         [JsonProperty("Arena_Bracket_3v3")]
         public ArenaBracket ArenaBracket3v3 { get; set; }
 
-        [JsonProperty("Arena_Bracket_5v5")]
-        public ArenaBracket ArenaBracket5v5 { get; set; }
-
         [JsonProperty("Arena_Bracket_RBG")]
         public ArenaBracket ArenaBracketRBG { get; set; }
     }
