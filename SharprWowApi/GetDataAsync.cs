@@ -18,7 +18,7 @@ using SharprWowApi.Utility;
 
 namespace SharprWowApi
 {
-    public abstract class GetDataAsync : GetDataBase
+    public abstract class GetDataAsync : GetDataBase, IGetDataAsync
     {
         private JsonUtility _jsonUtility = new JsonUtility();
 
@@ -514,4 +514,5 @@ namespace SharprWowApi
 
         #endregion
     }
+  
 }
