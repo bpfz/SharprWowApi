@@ -2,7 +2,7 @@
 
 namespace SharprWowApi.Models.Character
 {
-    public class CharacterPVPBrackets
+    public class CharacterPvpBrackets
     {
         [JsonProperty("Arena_Bracket_2v2")]
         public ArenaBracket ArenaBracket2v2 { get; set; }

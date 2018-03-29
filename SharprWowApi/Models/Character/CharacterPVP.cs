@@ -2,6 +2,6 @@
 {
     public class CharacterPvp
     {
-        public CharacterPVPBrackets Brackets { get; set; }
+        public CharacterPvpBrackets Brackets { get; set; }
     }
 }
