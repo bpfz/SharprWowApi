@@ -45,7 +45,8 @@ namespace SharprWowApi
         Mage = 8,
         Warlock = 9,
         Monk = 10,
-        Druid = 11
+        Druid = 11,
+        Demon_Hunter = 12
     }
 
     public enum CharacterGender
@@ -97,7 +98,13 @@ namespace SharprWowApi
         Worgen = 22,
         Pandaren_Neutral = 24,
         Pandaren_Alliance = 25,
-        Pandaren_Horde = 26
+        Pandaren_Horde = 26,
+        Nightborne = 27,
+        Highmountain_Tauren = 28,
+        Void_Elf = 29,
+        Lightforged_Draenei = 30,
+        Dark_Iron_Dwarf = 34,
+        Maghar_Orc = 36
     }
 
     [Flags]
